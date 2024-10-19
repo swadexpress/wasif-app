@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "380268624294",
+    "project_id": "orbitplug-ec50e",
+    "storage_bucket": "orbitplug-ec50e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:380268624294:android:6edfc52f3f31e392dc3767",
+        "android_client_info": {
+          "package_name": "com.orbitplug"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjNfcz1Zv94xGiz_ROxobgTT6wLhANrEM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

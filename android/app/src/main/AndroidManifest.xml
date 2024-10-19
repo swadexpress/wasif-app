@@ -2,6 +2,39 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+
+
+<!-- =======================used to web-rtc===================== -->
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature android:name="android.hardware.audio.output" />
+    <uses-feature android:name="android.hardware.microphone" />
+  
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- If you plan to also support Bluetooth devices then also add the following. -->
+
+    <uses-permission android:name="android.permission.BLUETOOTH" android:maxSdkVersion="30" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" android:maxSdkVersion="30" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <!-- Screen-sharing
+    If you want to enable it, first declare the following permissions: -->
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION" />
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CAMERA" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
+
+
+
+
     <application
       android:name=".MainApplication"
       android:label="@string/app_name"
@@ -22,5 +55,14 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
       </activity>
+
+
+
+      <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyCMm03dKpq1VhywQFS2LBBwI-dq9qjJu5A" />
+
+
+
+
+      
     </application>
 </manifest>

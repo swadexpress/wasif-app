@@ -1,0 +1,5 @@
+//** Amazon Auth Types */
+
+export const LOADING_OWN_ALL_POST = '  LOADING_OWN_ALL_POST';
+export const LOADED_OWN_ALL_POST = 'LOADED_OWN_ALL_POST';
+export const LOADED_SHOW_CUSTOM_DRAWER = 'LOADED_SHOW_CUSTOM_DRAWER';
