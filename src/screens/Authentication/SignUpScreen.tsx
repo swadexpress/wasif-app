@@ -16,9 +16,10 @@ import LottieView from 'lottie-react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import LinearGradient from 'react-native-linear-gradient';
 import { createNotifications } from 'react-native-notificated';
-import AppStatusBar from '../../components/AppStatusBar';
+import SingleImageHeader from '../../components/SingleImageHeader';
 import Wrapper from '../../components/Wrapper';
 import LoadingScreen from '../LoadingScreen';
+import ContinueWithOtherButton from './ContinueWithOtherButton';
 
 const SignIn = () => {
 
@@ -27,7 +28,7 @@ const SignIn = () => {
     const [email, setEmail] = useState('kawsarkhan@gmail.com')
     const [password, setPassword] = useState('kawsarkhan') as any
     const [confirmPassword, setConfirmPassword] = useState('kawsarkhan') as any
-    const [youAre, setYouAre] = useState('') as any
+    const [youAre, setYouAre] = useState('R') as any
 
 
     const [emailError, setEmailError] = useState('') as any
@@ -95,7 +96,7 @@ const SignIn = () => {
         // onDisplayNotification()
 
         if (
-            youAre !== '' &&
+
             email !== '' &&
             password !== '' &&
             confirmPassword !== ''
@@ -110,157 +111,18 @@ const SignIn = () => {
             // await AsysncStorage.removeItem('@email');
             // await AsysncStorage.removeItem('@youAre');
 
-            if (youAre == 'Foodie') {
-
-                setLoading(false)
-                const timeoutId = setTimeout(() => {
-                    setLoading(true)
-                    navigation.navigate('OnBoardingCategoryScreen')
-
-                    setTimeout(() => {
-                        onDisplayNotification()
-                    }, 10000)
-                }, 3000)
-            } else if (youAre == 'Seller') {
-
-                setLoading(false)
-                const timeoutId = setTimeout(() => {
-                    setLoading(true)
-                    navigation.navigate('SallerHomeScreen')
-
-                    setTimeout(() => {
-                        onDisplayNotification()
-                    }, 10000)
-                }, 3000)
-
-                return () => clearTimeout(timeoutId)
 
 
-            }
-            else if (youAre == 'Rider') {
+            setLoading(false)
+            setTimeout(() => {
+                setLoading(true)
+                navigation.navigate('FillYourProfileScreen')
 
-                setLoading(false)
-                const timeoutId = setTimeout(() => {
-                    setLoading(true)
-                    navigation.navigate('RiderHomeScreen')
+                setTimeout(() => {
+                    onDisplayNotification()
+                }, 50000)
+            }, 1500)
 
-                    setTimeout(() => {
-                        onDisplayNotification()
-                    }, 10000)
-                }, 3000)
-
-                return () => clearTimeout(timeoutId)
-
-
-            }
-
-
-
-
-
-
-
-        }
-        else {
-
-
-            if (
-                youAre == ''
-
-            ) {
-
-
-
-
-                return (
-                    <>
-                        {
-                            notify('error', {
-                                params: {
-                                    description: 'Select Foodie, Seller, Rider!',
-                                    title: 'I am a ?',
-                                    style: {
-                                        leftIconSource: icons.restaurant,
-                                        titleSize: SIZES.responsiveScreenFontSize(1.8),
-                                        titleWeight: '800',
-                                        titleColor: COLORS.red,
-                                        descriptionSize: SIZES.responsiveScreenFontSize(1.4),
-                                        descriptionWeight: '600',
-                                        accentColor: COLORS.darkRed,
-
-                                    },
-                                },
-
-                            })
-                        }
-
-                    </>
-                )
-            }
-            else if (
-                email == ''
-
-            ) {
-
-
-                return (
-                    <>
-                        {
-                            notify('error', {
-                                params: {
-                                    description: '',
-                                    title: 'Check your Mail!',
-                                    style: {
-                                        leftIconSource: icons.profile,
-                                        titleSize: SIZES.responsiveScreenFontSize(1.6),
-                                        titleWeight: '800',
-                                        titleColor: COLORS.red,
-                                        descriptionSize: SIZES.responsiveScreenFontSize(1.4),
-                                        descriptionWeight: '600',
-                                        accentColor: COLORS.darkRed,
-
-
-                                    },
-                                },
-
-                            })
-                        }
-
-                    </>
-                )
-            }
-            else if (
-                password == ''
-
-            ) {
-
-
-                return (
-                    <>
-                        {
-                            notify('error', {
-                                params: {
-                                    description: '',
-                                    title: 'Check your Password!',
-                                    style: {
-                                        leftIconSource: icons.restaurant,
-                                        titleSize: SIZES.responsiveScreenFontSize(1.6),
-                                        titleWeight: '800',
-                                        titleColor: COLORS.red,
-                                        descriptionSize: SIZES.responsiveScreenFontSize(1.4),
-                                        descriptionWeight: '600',
-                                        accentColor: COLORS.darkRed,
-
-
-                                    },
-                                },
-
-                            })
-                        }
-
-                    </>
-                )
-            }
 
 
 
@@ -274,482 +136,155 @@ const SignIn = () => {
         <>
             {isLoading ?
                 <Wrapper>
-                    <AppStatusBar />
-                    <NotificationsProvider />
+                    <SingleImageHeader
+                        name={'Register'}
+
+                    />
+
 
                     <View
                         style={{
 
+                            flex: 1,
                             alignItems: 'center',
-                            // height: SIZES.responsiveScreenHeight(10)
-                            // justifyContent: 'center'
+                            justifyContent: 'center',
                         }}
                     >
-                        <Text style={{
-                            fontSize: SIZES.responsiveScreenFontSize(2),
-                            fontWeight: '900',
-                            color: COLORS.primary
-                        }}>
-                            Register
-                        </Text>
-
-
-
-
-
-                        <View style={{
-                            // alignItems: 'center',
-                            justifyContent: 'space-between',
-                            width:SIZES.responsiveScreenWidth(95),
-                            flexDirection: 'row',
-                            // height: SIZES.responsiveScreenHeight(15)
-                            marginTop: SIZES.responsiveScreenHeight(3)
-
-                        }}>
-
-                            <TouchableOpacity
-
-                                onPress={() => setYouAre('Foodie')}
-                                activeOpacity={0.9}>
-                                <LinearGradient
-                                    style={{
-                                        backgroundColor: COLORS.lightGray2,
-                                        borderRadius: 5,
-                                        width: SIZES.responsiveScreenWidth(30),
-                                        height: SIZES.responsiveScreenWidth(13),
-                                       
-                                        elevation: 1,
-                                        justifyContent: 'space-between',
-                                        alignItems: 'center',
-                                        flexDirection: 'row'
-                                    }}
-
-                                    locations={[0, 1,]}
-                                    colors={[COLORS.darkRed, COLORS.lightBlue,]}
-                                    useAngle={true}
-                                    angle={45}>
-
-                                    <View style={{
-                                        flexDirection: 'row',
-                                        alignItems: 'center'
-                                    }}>
-                                        <Image
-                                            source={icons.restaurant}
-                                            style={{
-                                                marginLeft: 4,
-                                                width: SIZES.responsiveScreenWidth(7),
-                                                height: SIZES.responsiveScreenWidth(7),
-
-                                            }}
-                                        />
-                                        <View>
-                                            <Text style={{
-                                                fontSize: SIZES.responsiveScreenFontSize(1.4),
-                                                fontWeight: '700',
-                                                color: COLORS.primary,
-                                                marginLeft: 6
-                                            }}>I am a</Text>
-                                            <Text style={{
-                                                fontSize: SIZES.responsiveScreenFontSize(2.1),
-                                                fontWeight: '900',
-                                                color: COLORS.primary,
-                                                marginLeft: 6,
-                                            }}>Foodie</Text>
-
-                                        </View>
-                                    </View>
-
-                                    {youAre == 'Foodie' ?
-
-                                        <View style={{
-
-                                            alignItems: 'center',
-                                            justifyContent: 'center',
-                                            // borderWidth: 1,
-                                            // borderColor: COLORS.primary,
-                                            // borderRadius: 5,
-                                            width: SIZES.responsiveScreenWidth(5),
-                                            height: SIZES.responsiveScreenWidth(5),
-                                            marginRight: 4,
-                                            position: 'absolute',
-                                            right: -10,
-                                            top: -10,
-                                            zIndex: 999
-
-
-                                        }}>
-                                            <Image
-                                                source={icons.check}
-                                                style={{
-                                                    tintColor: COLORS.primary,
-                                                    width: SIZES.responsiveScreenWidth(4.5),
-                                                    height: SIZES.responsiveScreenWidth(4.5),
-
-                                                }}
-                                            />
-
-
-
-
-                                        </View>
-                                        : null
-                                    }
-
-
-                                </LinearGradient>
-
-
-                            </TouchableOpacity>
-
-                            <TouchableOpacity
-
-                                style={{
-                                  
-                                }}
-                                onPress={() => setYouAre('Seller')}
-                                activeOpacity={0.9}>
-                                <LinearGradient
-                                    style={{
-                                        backgroundColor: COLORS.lightGray2,
-                                        borderRadius: 5,
-                                        width: SIZES.responsiveScreenWidth(30),
-                                        height: SIZES.responsiveScreenWidth(13),
-                                       
-                                      
-                                        elevation: 1,
-                                        justifyContent: 'space-between',
-                                        alignItems: 'center',
-                                        flexDirection: 'row'
-                                    }}
-
-                                    locations={[0, 1,]}
-                                    colors={[COLORS.darkRed, COLORS.lightBlue,]}
-                                    useAngle={true}
-                                    angle={45}>
-
-                                    <View style={{
-                                        flexDirection: 'row',
-                                        alignItems: 'center'
-                                    }}>
-                                        <Image
-                                            source={icons.restaurant}
-                                            style={{
-                                                marginLeft: 4,
-                                                width: SIZES.responsiveScreenWidth(7),
-                                                height: SIZES.responsiveScreenWidth(7),
-
-                                            }}
-                                        />
-                                        <View>
-                                            <Text style={{
-                                                fontSize: SIZES.responsiveScreenFontSize(1.4),
-                                                fontWeight: '700',
-                                                color: COLORS.primary,
-                                                marginLeft: 6
-                                            }}>I am a</Text>
-                                            <Text style={{
-                                                fontSize: SIZES.responsiveScreenFontSize(2.1),
-                                                fontWeight: '900',
-                                                color: COLORS.primary,
-                                                marginLeft: 6,
-                                            }}>Seller</Text>
-
-                                        </View>
-                                    </View>
-
-                                    {youAre == 'Seller' ?
-
-                                        <View style={{
-
-                                            alignItems: 'center',
-                                            justifyContent: 'center',
-                                            // borderWidth: 1,
-                                            // borderColor: COLORS.primary,
-                                            // borderRadius: 5,
-                                            width: SIZES.responsiveScreenWidth(5),
-                                            height: SIZES.responsiveScreenWidth(5),
-                                            marginRight: 4,
-                                            position: 'absolute',
-                                            right: -10,
-                                            top: -10,
-                                            zIndex: 999
-
-
-                                        }}>
-                                            <Image
-                                                source={icons.check}
-                                                style={{
-                                                    tintColor: COLORS.primary,
-                                                    width: SIZES.responsiveScreenWidth(4.5),
-                                                    height: SIZES.responsiveScreenWidth(4.5),
-
-                                                }}
-                                            />
-
-
-
-
-                                        </View>
-                                        : null
-                                    }
-
-                                </LinearGradient>
-
-
-                            </TouchableOpacity>
-
-                            <TouchableOpacity
-
-                                style={{
-                                    
-                                }}
-                                onPress={() => setYouAre('Rider')}
-                                activeOpacity={0.9}>
-                                <LinearGradient
-                                    style={{
-                                        backgroundColor: COLORS.lightGray2,
-                                        borderRadius: 5,
-                                        width: SIZES.responsiveScreenWidth(30),
-                                        height: SIZES.responsiveScreenWidth(13),
-                                       
-                                        
-                                        elevation: 1,
-                                        justifyContent: 'space-between',
-                                        alignItems: 'center',
-                                        flexDirection: 'row'
-                                    }}
-
-                                    locations={[0, 1,]}
-                                    colors={[COLORS.darkRed, COLORS.lightBlue,]}
-                                    useAngle={true}
-                                    angle={45}>
-
-                                    <View style={{
-                                        flexDirection: 'row',
-                                        alignItems: 'center'
-                                    }}>
-                                        <Image
-                                            source={icons.delivery}
-                                            style={{
-                                                marginLeft: 4,
-                                                marginTop: 3,
-                                                width: SIZES.responsiveScreenWidth(7.5),
-                                                height: SIZES.responsiveScreenWidth(7.5),
-
-                                            }}
-                                        />
-                                        <View>
-                                            <Text style={{
-                                                fontSize: SIZES.responsiveScreenFontSize(1.4),
-                                                fontWeight: '700',
-                                                color: COLORS.primary,
-                                                marginLeft: 6
-                                            }}>I am a</Text>
-                                            <Text style={{
-                                                fontSize: SIZES.responsiveScreenFontSize(2.2),
-                                                fontWeight: '900',
-                                                color: COLORS.primary,
-                                                marginLeft: 7,
-                                            }}>Rider</Text>
-
-                                        </View>
-                                    </View>
-
-                                    {youAre == 'Rider' ?
-
-                                        <View style={{
-
-                                            alignItems: 'center',
-                                            justifyContent: 'center',
-                                            // borderWidth: 1,
-                                            // borderColor: COLORS.primary,
-                                            // borderRadius: 5,
-                                            width: SIZES.responsiveScreenWidth(5),
-                                            height: SIZES.responsiveScreenWidth(5),
-                                            marginRight: 4,
-                                            position: 'absolute',
-                                            right: -10,
-                                            top: -10,
-                                            zIndex: 999
-
-
-                                        }}>
-                                            <Image
-                                                source={icons.check}
-                                                style={{
-                                                    tintColor: COLORS.primary,
-                                                    width: SIZES.responsiveScreenWidth(4.5),
-                                                    height: SIZES.responsiveScreenWidth(4.5),
-
-                                                }}
-                                            />
-
-
-
-
-                                        </View>
-                                        : null
-                                    }
-                                </LinearGradient>
-
-
-                            </TouchableOpacity>
-
-                        </View>
-
-
-
-
-                    </View>
-
-
-                    <KeyboardAwareScrollView>
-
-
-
-                        <View
+                        <LottieView
+                            source={animations.logo}
                             style={{
+                                width: SIZES.responsiveScreenWidth(43),
+                                height: SIZES.responsiveScreenWidth(43),
 
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                marginTop: SIZES.responsiveScreenHeight(2)
                             }}
+                            loop={true}
+                            autoPlay
+                            cacheComposition={true}
+                            hardwareAccelerationAndroid
+                        />
+
+
+
+
+                        <KeyboardAwareScrollView
+                            contentContainerStyle={{
+                                flexGrow: 1,
+                                justifyContent: 'center'
+                            }}
+
                         >
-                            <LottieView
-                                source={animations.logo}
-                                style={{
-                                    width: SIZES.responsiveScreenWidth(30),
-                                    height: SIZES.responsiveScreenWidth(30),
-
-                                }}
-                                loop={true}
-                                autoPlay
-                                cacheComposition={true}
-                                hardwareAccelerationAndroid
-                            />
-
-
 
 
 
                             <View style={{
-
                                 alignItems: 'center',
+                                justifyContent: 'center',
 
-                                marginTop: SIZES.responsiveScreenHeight(3)
                             }}>
 
 
 
-                                <View style={{
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
 
-                                }}>
+                                <FromInput
+                                    label="Email"
+                                    placeholder="Email"
+                                    keyboardType='email-address'
+                                    autocomplete='email'
+                                    value={email}
+                                    onChange={(value: any) => {
+                                        setEmail(value)
+                                    }}
+                                    errorMsg={emailError}
+                                    appendComponent={
+                                        <View
+                                            style={{
+                                                justifyContent: 'center',
+                                                marginRight: 8
+                                            }}
+                                        >
+                                            <Image
+                                                source={email == "" || (email != "" && emailError == "") ? icons.correct : icons.correct}
 
-
-
-
-                                    <FromInput
-                                        label="Email"
-                                        placeholder="Email"
-                                        keyboardType='email-address'
-                                        autocomplete='email'
-                                        value={email}
-                                        onChange={(value: any) => {
-                                            setEmail(value)
-                                        }}
-                                        errorMsg={emailError}
-                                        appendComponent={
-                                            <View
                                                 style={{
-                                                    justifyContent: 'center',
-                                                    marginRight: 8
+                                                    width: 20,
+                                                    height: 20,
+                                                    tintColor: email == '' ? COLORS.gray : (email != "" && emailError == '') ? COLORS.green : COLORS.red
                                                 }}
-                                            >
-                                                <Image
-                                                    source={email == "" || (email != "" && emailError == "") ? icons.correct : icons.correct}
+                                            />
 
-                                                    style={{
-                                                        width: 20,
-                                                        height: 20,
-                                                        tintColor: email == '' ? COLORS.gray : (email != "" && emailError == '') ? COLORS.green : COLORS.red
-                                                    }}
-                                                />
+                                        </View>
+                                    }
 
-                                            </View>
-                                        }
-
-                                    />
+                                />
 
 
-                                    <FromInput
-                                        label="Password"
-                                        placeholder="Password"
-                                        secureTextEntry={!showPassword}
-                                        value={password}
-                                        onChange={(value: any) => {
-                                            setPassword(value)
+                                <FromInput
+                                    label="Password"
+                                    placeholder="Password"
+                                    secureTextEntry={!showPassword}
+                                    value={password}
+                                    onChange={(value: any) => {
+                                        setPassword(value)
+                                    }}
+                                    appendComponent={
+                                        <TouchableOpacity style={{
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            height: SIZES.responsiveScreenWidth(9),
+                                            width: SIZES.responsiveScreenWidth(9),
                                         }}
-                                        appendComponent={
-                                            <TouchableOpacity style={{
-                                                alignItems: 'center',
-                                                justifyContent: 'center',
-                                                height: SIZES.responsiveScreenWidth(9),
-                                                width: SIZES.responsiveScreenWidth(9),
-                                            }}
-                                                onPress={() => setShowPassword(!showPassword)}
-                                            >
-                                                <Image
-                                                    source={showPassword ? icons.eye_close : icons.eye}
-                                                    style={{
-                                                        width: SIZES.responsiveScreenWidth(4.2),
-                                                        height: SIZES.responsiveScreenWidth(4.2),
-                                                        tintColor: showPassword ? COLORS.primary : COLORS.gray,
+                                            onPress={() => setShowPassword(!showPassword)}
+                                        >
+                                            <Image
+                                                source={showPassword ? icons.eye_close : icons.eye}
+                                                style={{
+                                                    width: SIZES.responsiveScreenWidth(4.2),
+                                                    height: SIZES.responsiveScreenWidth(4.2),
+                                                    tintColor: showPassword ? COLORS.primary : COLORS.gray,
 
-                                                    }}
-                                                />
-                                            </TouchableOpacity>
-                                        }
+                                                }}
+                                            />
+                                        </TouchableOpacity>
+                                    }
 
-                                    />
-                                    <FromInput
-                                        label="Confirm Password"
-                                        placeholder="Confirm Password"
-                                        secureTextEntry={!showPassword}
-                                        value={confirmPassword}
-                                        onChange={(value: any) => {
-                                            setConfirmPassword(value)
+                                />
+                                <FromInput
+                                    label="Confirm Password"
+                                    placeholder="Confirm Password"
+                                    secureTextEntry={!showPassword}
+                                    value={confirmPassword}
+                                    onChange={(value: any) => {
+                                        setConfirmPassword(value)
+                                    }}
+                                    appendComponent={
+                                        <TouchableOpacity style={{
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            height: SIZES.responsiveScreenWidth(9),
+                                            width: SIZES.responsiveScreenWidth(9),
                                         }}
-                                        appendComponent={
-                                            <TouchableOpacity style={{
-                                                alignItems: 'center',
-                                                justifyContent: 'center',
-                                                height: SIZES.responsiveScreenWidth(9),
-                                                width: SIZES.responsiveScreenWidth(9),
-                                            }}
-                                                onPress={() => setShowPassword(!showPassword)}
-                                            >
-                                                <Image
-                                                    source={showPassword ? icons.eye_close : icons.eye}
-                                                    style={{
-                                                        width: SIZES.responsiveScreenWidth(4.2),
-                                                        height: SIZES.responsiveScreenWidth(4.2),
-                                                        tintColor: showPassword ? COLORS.primary : COLORS.gray,
+                                            onPress={() => setShowPassword(!showPassword)}
+                                        >
+                                            <Image
+                                                source={showPassword ? icons.eye_close : icons.eye}
+                                                style={{
+                                                    width: SIZES.responsiveScreenWidth(4.2),
+                                                    height: SIZES.responsiveScreenWidth(4.2),
+                                                    tintColor: showPassword ? COLORS.primary : COLORS.gray,
 
-                                                    }}
-                                                />
-                                            </TouchableOpacity>
-                                        }
+                                                }}
+                                            />
+                                        </TouchableOpacity>
+                                    }
 
-                                    />
+                                />
 
-                                </View>
+
 
 
                                 <TouchableOpacity
                                     style={{
-                                        marginTop: '7%',
+                                        marginTop: '5%',
                                     }}
 
                                     onPress={handelSignUpScreen}
@@ -764,8 +299,8 @@ const SignIn = () => {
 
                                             width: SIZES.responsiveScreenWidth(80),
                                             height: SIZES.responsiveScreenWidth(8.5),
-                                           
-                                           
+
+
                                             elevation: 1.5,
 
                                             justifyContent: 'center',
@@ -792,91 +327,22 @@ const SignIn = () => {
                                 </TouchableOpacity>
 
 
-
-
-
-
-
+                                {/* ============ContinueWithOtherButton===================== */}
+                                <ContinueWithOtherButton />
                             </View>
+                        </KeyboardAwareScrollView>
 
 
-                            <View style={{
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                flexDirection: 'row',
-                                marginTop: '7%',
 
-                            }}>
 
-                                <View
-                                    style={{
-                                        height: 1.5,
-                                        backgroundColor: COLORS.primary,
-                                        width: SIZES.responsiveScreenWidth(20),
-                                        marginTop: 4.2,
-                                        borderRadius: 5,
-                                        elevation: 0.6
-                                    }}
-                                />
-
-                                <Text style={{
-                                    fontWeight: '700',
-                                    fontSize: SIZES.responsiveScreenFontSize(1.5),
-                                    color: COLORS.primary,
-                                    marginHorizontal: 15
-                                }}>
-                                    or continue with
-                                </Text>
-
-                                <View
-                                    style={{
-                                        height: 1.5,
-                                        marginTop: 4.2,
-                                        backgroundColor: COLORS.primary,
-                                        width: SIZES.responsiveScreenWidth(20),
-                                        borderRadius: 5,
-                                        elevation: 0.6
-                                    }}
-                                />
+                    </View>
 
 
 
 
 
 
-                            </View>
 
-
-                            <TouchableOpacity
-                                style={{
-
-                                    marginTop: '5%'
-                                }}
-
-                                onPress={() => navigation.navigate('LoginScreen')}
-
-
-                                activeOpacity={0.9}>
-
-                                <Text style={{
-                                    fontWeight: '700',
-                                    fontSize: SIZES.responsiveScreenFontSize(1.5),
-                                    color: COLORS.primary,
-                                    marginHorizontal: 15,
-
-                                }}>
-                                    Already a member?
-                                    <Text style={{
-                                        fontWeight: '700',
-                                        fontSize: SIZES.responsiveScreenFontSize(1.5),
-                                        color: COLORS.blue2,
-
-                                    }}> Signin
-                                    </Text>
-                                </Text>
-                            </TouchableOpacity>
-                        </View>
-                    </KeyboardAwareScrollView>
                 </Wrapper>
 
                 :

@@ -24,11 +24,13 @@ const Header = ({ name }: any) => {
                 }}
             >
                 <TouchableOpacity
+
+                activeOpacity={0.9}
                     onPress={() => navigation.goBack()}
 
                     style={{
-                        width: SIZES.responsiveScreenWidth(10),
-                        height:SIZES.responsiveScreenWidth(10),
+                        width: SIZES.responsiveScreenWidth(11),
+                        height:SIZES.responsiveScreenWidth(11),
                         alignItems: 'center',
                         justifyContent: 'center',
                     }}
@@ -37,8 +39,8 @@ const Header = ({ name }: any) => {
                     <Image
                         source={icons.back}
                         style={{
-                            width: 20,
-                            height: 20,
+                            width: SIZES.responsiveScreenWidth(5),
+                            height:SIZES.responsiveScreenWidth(5),
                             tintColor: COLORS.black,
                         }} />
 

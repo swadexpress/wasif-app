@@ -1,19 +1,12 @@
-import {COLORS, FONTS, SIZES, constants, dummyData, icons, images} from '../../constants';
 import {
     Image,
-    Text,
-    TouchableOpacity,
     View
 } from 'react-native';
+import { COLORS, SIZES, icons } from '../../constants';
 
-import AuthLayout from './AuthLayout'
-import CustomSwitch from '../../components/CustomSwitch'
-import FromInput from '../../components/FromInput'
-import OTPInputView from '@twotalltotems/react-native-otp-input'
 import React from 'react';
-import TextButton from '../../components/TextButton'
-import TextIconButton2 from '../../components/TextIconButton2'
-import {utils} from '../../utils'
+import FromInput from '../../components/FromInput';
+import TextButton from '../../components/TextButton';
 
 const ForgotPassword = ({navigation}) => {
 
@@ -24,13 +17,7 @@ const ForgotPassword = ({navigation}) => {
 
 
     return (
-        <AuthLayout
-            title ="Password Recovery"
-            subtitle="Place enter your email address to recovery your password"
-
-            titleContainerStyle ={{
-                marginTop:SIZES.padding * 2
-            }}
+        <
         
             >
 
@@ -107,7 +94,7 @@ const ForgotPassword = ({navigation}) => {
 
 
 
-        </AuthLayout>
+        </>
     )
 }
 

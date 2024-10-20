@@ -100,7 +100,7 @@ const FoodCategories = ({
 
             }}>
                 <SingleImageHeader
-                    name={''}
+                    name={'Choose Category'}
 
                 />
 
@@ -188,7 +188,7 @@ const FoodCategories = ({
 
                     <TouchableOpacity
 
-                        onPress={() => navigation.navigate('FoodieHomeScreen')}
+                        onPress={() => navigation.navigate('AccountSwitchScreen')}
 
 
                         activeOpacity={0.9}>

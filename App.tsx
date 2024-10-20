@@ -13,10 +13,13 @@ import BottomNavigator from './src/navigation/BottomNavigator';
 import RiderBottomNavigator from './src/navigation/RiderBottomNavigator';
 import SallerBottomNavigator from './src/navigation/SallerBottomNavigator';
 import AddNewCardScreen from './src/screens/AddNewCardScreen';
+import AccountSwitchScreen from './src/screens/Authentication/AccountSwitchScreen';
+import FillYourProfileScreen from './src/screens/Authentication/FillYourProfileScreen';
 import ForgotPassword from './src/screens/Authentication/ForgotPassword';
-import Otp from './src/screens/Authentication/Otp';
+import { PhoneLogInScreen } from './src/screens/Authentication/PhoneLogInScreen';
 import SignUpScreen from './src/screens/Authentication/SignUpScreen';
 import SigninScreen from './src/screens/Authentication/SigninScreen';
+import VerificationOtpScreen from './src/screens/Authentication/VerificationOtpScreen';
 import CardScreen from './src/screens/CardScreen';
 import CategoryScreen from './src/screens/CategoryScreen';
 import CheckoutScreen from './src/screens/CheckoutScreen';
@@ -108,7 +111,7 @@ const App = () => {
 
                         detachPreviousScreen: false,
                     }}
-                    initialRouteName={'OnBoardingScreen'}
+                    initialRouteName={'SigninScreen'}
                 >
                     <Stack.Screen
                         name="OnBoardingScreen"
@@ -145,6 +148,10 @@ const App = () => {
                         name="SigninScreen"
                         component={SigninScreen}
                     />
+                    <Stack.Screen
+                        name="AccountSwitchScreen"
+                        component={AccountSwitchScreen}
+                    />
 
                     <Stack.Screen
                         name="ForgotPassword"
@@ -152,9 +159,21 @@ const App = () => {
                     />
 
                     <Stack.Screen
-                        name="Otp"
-                        component={Otp}
+                        name="PhoneLogInScreen"
+                        component={PhoneLogInScreen}
                     />
+
+                
+                    <Stack.Screen
+                        name="VerificationOtpScreen"
+                        component={VerificationOtpScreen}
+                    />
+                    <Stack.Screen
+                        name="FillYourProfileScreen"
+                        component={FillYourProfileScreen}
+                    />
+
+                
 
                     <Stack.Screen
                         name="FoodDetailsScreen"

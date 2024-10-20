@@ -9,15 +9,40 @@ import {
 import { COLORS, SIZES, constants, icons } from '../../constants';
 
 import { useNavigation } from '@react-navigation/native';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import SingleImageHeader from '../../components/SingleImageHeader';
 import Wrapper from '../../components/Wrapper';
 
 const DeliveryStatus = () => {
 
-    const [currentStep, setCurrentStep] = React.useState(2)
+    const [currentStep, setCurrentStep] = useState<any>(0)
     const navigation = useNavigation<any>()
 
+    useEffect(() => {
+
+
+
+        setTimeout(() => {
+            setCurrentStep(0)
+
+        }, 1500)
+
+        setTimeout(() => {
+            setCurrentStep(1)
+
+        }, 3000)
+
+        setTimeout(() => {
+            setCurrentStep(2)
+
+        }, 4500)
+        setTimeout(() => {
+            setCurrentStep(3)
+
+        }, 5500)
+
+
+    }, [])
 
 
 
@@ -192,7 +217,9 @@ const DeliveryStatus = () => {
                                             {index < currentStep &&
                                                 <View
                                                     style={{
-                                                        height: SIZES.responsiveScreenWidth(9.5),
+                                                        height: SIZES.responsiveScreenWidth(11),
+
+
                                                         width: SIZES.responsiveScreenWidth(0.8),
                                                         marginLeft: SIZES.responsiveScreenWidth(3),
                                                         backgroundColor: COLORS.primary,
@@ -211,7 +238,7 @@ const DeliveryStatus = () => {
                                                         source={icons.dotted_line}
                                                         resizeMode='cover'
                                                         style={{
-                                                            width: SIZES.responsiveScreenWidth(0.6),
+                                                            width: SIZES.responsiveScreenWidth(0.5),
                                                             height: SIZES.responsiveScreenWidth(11),
                                                             marginLeft: SIZES.responsiveScreenWidth(3),
                                                         }}
@@ -245,7 +272,7 @@ const DeliveryStatus = () => {
                         }}
 
                     >
-                        {currentStep < constants.track_order_status.length - 1 &&
+                        {currentStep > 2 ?
                             <View
                                 style={{
                                     flexDirection: 'row',
@@ -305,8 +332,8 @@ const DeliveryStatus = () => {
                                         backgroundColor: COLORS.primary,
                                         width: SIZES.responsiveScreenWidth(45),
                                         height: SIZES.responsiveScreenWidth(8.5),
-                                       
-                                       
+
+
                                         borderRadius: 6,
                                         flexDirection: 'row',
                                         marginLeft: 15
@@ -339,6 +366,7 @@ const DeliveryStatus = () => {
 
 
                             </View>
+                            : null
 
 
 

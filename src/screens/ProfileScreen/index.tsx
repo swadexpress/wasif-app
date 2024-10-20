@@ -1,32 +1,19 @@
-import { COLORS, FONTS, SIZES, constants, dummyData, icons, images } from '../../constants';
 import {
     ScrollView,
     Text,
-    View,
-    Image,
-    TouchableOpacity
+    View
 } from 'react-native';
+import { COLORS, SIZES, icons } from '../../constants';
 
-import CardItem from '../../components/CardItem'
-import CartQuantityButton from '../../components/CartQuantityButton'
-import FooterTotal from '../../components/FooterTotal'
-import IconButton from '../../components/IconButton'
-import IconLabel from '../../components/IconLabel'
+import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import TextButton from '../../components/TextButton'
-import Rating from '../../components/Rating'
-import TextIconButton from '../../components/TextIconButton'
-import LineDivider from '../../components/LineDivider'
-import { CompositeNavigationProp, useNavigation } from '@react-navigation/native';
-import SingleImageHeader from '../../components/SingleImageHeader';
-import ProfileValue from './ProfileValue';
-import ProfileRadioButton from './ProfileRadioButton';
-import ProfileValueTop from './ProfileValueTop';
+import LinearGradient from 'react-native-linear-gradient';
+import Wrapper from '../../components/Wrapper';
+import LoadingScreen from '../LoadingScreen';
 import Header from './Header';
 import ProfileHeader from './ProfileHeader';
-import Wrapper from '../../components/Wrapper';
-import LinearGradient from 'react-native-linear-gradient';
-import LoadingScreen from '../LoadingScreen';
+import ProfileRadioButton from './ProfileRadioButton';
+import ProfileValue from './ProfileValue';
 
 const MyAccount = ({ }) => {
     const [studyReminder, setStudyReminder] = useState(false)
@@ -150,7 +137,7 @@ const MyAccount = ({ }) => {
 
 
 
-                                {/* ====================== */}
+                                {/* ========Notification============== */}
 
 
                                 <LinearGradient
@@ -199,7 +186,7 @@ const MyAccount = ({ }) => {
                                     />
                                 </LinearGradient>
 
-                                {/* ========================== */}
+                                {/* ========= More container================= */}
                                 <LinearGradient
                                     style={{
 
@@ -227,11 +214,27 @@ const MyAccount = ({ }) => {
 
                                     }}>More</Text>
 
+
+
                                     <ProfileValue
                                         icon={icons.edit}
 
                                         value="Thame"
                                     />
+
+                                    <ProfileValue
+
+                                    onPress={()=>{
+                                        navigation.navigate('AccountSwitchScreen')
+
+                                    }}
+                                        icon={icons.restaurant}
+
+                                        value="Account Switch"
+                                    />
+
+
+
                                     <ProfileValue
                                         icon={icons.logout}
 
@@ -239,6 +242,9 @@ const MyAccount = ({ }) => {
                                     />
 
                                 </LinearGradient>
+
+
+
                             </View>
 
 

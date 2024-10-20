@@ -102,10 +102,16 @@ const Home = () => {
             toValue: 0,
             duration: 1200,
             useNativeDriver: false
-        }).start()
+        }).start(() => {
+            setTimeout(() => {
+                slideUp()
+
+            }, 2500)
+
+        })
     }
 
-  
+
 
 
 
@@ -125,32 +131,24 @@ const Home = () => {
     const [isLoading, setLoading] = useState(false)
 
 
-    const handelHeaderNoticeAnimation =(() => {
 
-       
-
-        const timeoutId = setTimeout(() => {
-            setIsStatusBar(false)
-            slideUp()
-        }, 2500)
-
-        return () => clearTimeout(timeoutId)
-
-
-    })
 
     useEffect(() => {
 
         setLoading(false)
         // setLoading(true)
-        const timeoutId = setTimeout(() => {
+        setTimeout(() => {
             setLoading(true)
-            slideDown()
-            handelHeaderNoticeAnimation()
-            setIsStatusBar(true)
-        }, 800)
 
-        return () => clearTimeout(timeoutId)
+        }, 500)
+      
+        setTimeout(() => {
+
+            slideDown()
+
+
+        }, 3000)
+
 
 
     }, [])

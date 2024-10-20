@@ -14,8 +14,9 @@ import { useNavigation } from '@react-navigation/native';
 import LottieView from 'lottie-react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import LinearGradient from 'react-native-linear-gradient';
-import AppStatusBar from '../../components/AppStatusBar';
+import SingleImageHeader from '../../components/SingleImageHeader';
 import Wrapper from '../../components/Wrapper';
+import ContinueWithOtherButton from './ContinueWithOtherButton';
 
 const SignIn = () => {
 
@@ -42,43 +43,27 @@ const SignIn = () => {
     }
     return (
         <Wrapper>
-            <AppStatusBar />
+            <SingleImageHeader
+                name={'Sign in'}
+
+            />
+
 
             <View
                 style={{
-
-                    alignItems: 'center',
-                    // height: SIZES.responsiveScreenHeight(10)
-                    // justifyContent: 'center'
-                }}
-            >
-                <Text style={{
-                    fontSize: SIZES.responsiveScreenFontSize(2),
-                    fontWeight: '900',
-                    color: COLORS.primary
-                }}>
-                    Signin
-                </Text>
-
-            </View>
-
-
-            <KeyboardAwareScrollView>
-
-            <View
-                style={{
-
-                    flex: 1,
+                    flex:1,
 
                     alignItems: 'center',
                     justifyContent: 'center'
                 }}
             >
+
+
                 <LottieView
                     source={animations.location}
                     style={{
-                        width: SIZES.responsiveScreenWidth(40),
-                        height: SIZES.responsiveScreenWidth(40),
+                        width: SIZES.responsiveScreenWidth(45),
+                        height: SIZES.responsiveScreenWidth(45),
 
                     }}
                     loop={true}
@@ -88,16 +73,41 @@ const SignIn = () => {
                 />
 
 
+           
 
 
 
-                <View style={{
 
-                    alignItems: 'center',
-                    marginTop: SIZES.responsiveScreenHeight(4)
-                }}>
+            <KeyboardAwareScrollView
+                contentContainerStyle={{
+                    flexGrow: 1,
+                    justifyContent: 'center'
+                }}
 
-                   
+            >
+
+                <View
+                    style={{
+
+                        flex: 1,
+
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        marginBottom: 20
+                    }}
+                >
+
+
+
+
+
+                    <View style={{
+
+                        alignItems: 'center',
+                        marginTop: SIZES.responsiveScreenHeight(1)
+                    }}>
+
+
 
 
                         <View style={{
@@ -173,323 +183,100 @@ const SignIn = () => {
 
 
 
-             
-
-                    <View
-                        style={{
-
-                            width: SIZES.responsiveScreenWidth(90),
-                            flexDirection: 'row',
-                            marginTop: 15,
-                            justifyContent: 'space-between'
-                        }}>
-
-                        <CustomSwitch
-                            value={saveMe}
-                            onChange={(value: any) => {
-                                setSaveMe(value)
 
 
-                            }}
-                        />
+                        <View
+                            style={{
+
+                                width: SIZES.responsiveScreenWidth(90),
+                                flexDirection: 'row',
+                                marginTop: 15,
+                                justifyContent: 'space-between'
+                            }}>
+
+                            <CustomSwitch
+                                value={saveMe}
+                                onChange={(value: any) => {
+                                    setSaveMe(value)
+
+
+                                }}
+                            />
+
+
+                            <TouchableOpacity
+                                onPress={() => navigation.navigate("ForgotPassword")}
+
+                                style={{
+                                    alignItems: 'center',
+                                    // justifyContent: 'center',
+                                }}
+                            >
+
+                                <Text style={{
+                                    color: COLORS.gray,
+                                    fontWeight: '700',
+                                    fontSize: SIZES.responsiveScreenFontSize(1.5)
+                                }}>
+                                    Forgot Password
+
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
+
 
 
                         <TouchableOpacity
-                            onPress={() => navigation.navigate("ForgotPassword")}
-
                             style={{
-                                alignItems: 'center',
-                                // justifyContent: 'center',
+                                marginTop: '8%',
                             }}
-                        >
+                            onPress={() => navigation.navigate('SignUpScreen')}
+                            activeOpacity={0.9}>
+                            <LinearGradient
+                                style={{
+                                    backgroundColor: COLORS.lightGray2,
+                                    borderRadius: 5,
+                                    width: SIZES.responsiveScreenWidth(80),
+                                    height: SIZES.responsiveScreenWidth(8.5),
+                                    elevation: 1.5,
+                                    justifyContent: 'center',
+                                    alignItems: 'center'
+                                }}
 
-                            <Text style={{
-                                color: COLORS.gray,
-                                fontWeight: '700',
-                                fontSize: SIZES.responsiveScreenFontSize(1.5)
-                            }}>
-                                Forgot Password
+                                locations={[0, 1,]}
+                                colors={[COLORS.darkRed, COLORS.lightBlue,]}
+                                useAngle={true}
+                                angle={90}>
 
-                            </Text>
+                                <Text style={{
+                                    fontSize: SIZES.responsiveScreenFontSize(1.8),
+                                    fontWeight: '900',
+                                    color: COLORS.primary,
+
+                                }}>
+                                    Sign in
+                                </Text>
+
+                            </LinearGradient>
+
+
                         </TouchableOpacity>
+
+
+
+
+
+
+
                     </View>
 
 
 
-                    <TouchableOpacity
-                        style={{
-                            marginTop: '8%',
-                        }}
-                        onPress={() => navigation.navigate('SignUpScreen')}
-                        activeOpacity={0.9}>
-                        <LinearGradient
-                            style={{
-                                backgroundColor: COLORS.lightGray2,
-                                borderRadius: 5,
-                                width: SIZES.responsiveScreenWidth(80),
-                                height: SIZES.responsiveScreenWidth(8.5),
-                                elevation: 1.5,
-                                justifyContent: 'center',
-                                alignItems: 'center'
-                            }}
-
-                            locations={[0, 1,]}
-                            colors={[COLORS.darkRed, COLORS.lightBlue,]}
-                            useAngle={true}
-                            angle={90}>
-
-                            <Text style={{
-                                fontSize: SIZES.responsiveScreenFontSize(1.8),
-                                fontWeight: '900',
-                                color: COLORS.primary,
-
-                            }}>
-                                Sign in
-                            </Text>
-
-                        </LinearGradient>
-
-
-                    </TouchableOpacity>
-
-
-
-
-
-
+                    <ContinueWithOtherButton />
 
                 </View>
-
-
-                <View style={{
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    flexDirection: 'row',
-                    marginTop: '8%',
-
-                }}>
-
-                    <View
-                        style={{
-                            height: 1.5,
-                            backgroundColor: COLORS.primary,
-                            width: SIZES.responsiveScreenWidth(20),
-                            marginTop: 4.2,
-                            borderRadius: 5,
-                            elevation: 0.6
-                        }}
-                    />
-
-                    <Text style={{
-                        fontWeight: '700',
-                        fontSize: SIZES.responsiveScreenFontSize(1.5),
-                        color: COLORS.primary,
-                        marginHorizontal: 15
-                    }}>
-                        or continue with
-                    </Text>
-
-                    <View
-                        style={{
-                            height: 1.5,
-                            marginTop: 4.2,
-                            backgroundColor: COLORS.primary,
-                            width: SIZES.responsiveScreenWidth(20),
-                            borderRadius: 5,
-                            elevation: 0.6
-                        }}
-                    />
-
-
-
-
-
-
-                </View>
-
-
-                <View style={{
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    flexDirection: 'row',
-                    marginTop: '7%',
-                }}>
-
-
-
-                    <TouchableOpacity
-
-
-                        onPress={() => navigation.navigate('')}
-
-
-                        activeOpacity={0.9}>
-
-                        <LinearGradient
-                            style={{
-                                backgroundColor: COLORS.lightGray2,
-                                borderRadius: 5,
-
-                                width: SIZES.responsiveScreenWidth(13),
-                                height: SIZES.responsiveScreenWidth(13),
-                                elevation: 1,
-
-                                justifyContent: 'center',
-                                alignItems: 'center'
-                            }}
-
-                            locations={[0, 1,]}
-                            colors={[COLORS.darkRed, COLORS.lightBlue,]}
-                            useAngle={true}
-                            angle={45}>
-
-
-                            <Image
-                                source={icons.google}
-                                style={{
-                                    width: SIZES.responsiveScreenWidth(6),
-                                    height: SIZES.responsiveScreenWidth(6),
-                                }}
-
-
-                            />
-
-
-
-                        </LinearGradient>
-
-
-                    </TouchableOpacity>
-                    <TouchableOpacity
-
-                        style={{
-
-                            marginLeft: 20
-                        }}
-
-                        onPress={() => navigation.navigate('')}
-
-
-                        activeOpacity={0.9}>
-
-                        <LinearGradient
-                            style={{
-
-                                borderRadius: 5,
-
-                                width: SIZES.responsiveScreenWidth(13),
-                                height: SIZES.responsiveScreenWidth(13),
-                                elevation: 1,
-
-                                justifyContent: 'center',
-                                alignItems: 'center'
-                            }}
-
-                            locations={[0, 1,]}
-                            colors={[COLORS.darkRed, COLORS.lightBlue,]}
-                            useAngle={true}
-                            angle={40}>
-
-
-                            <Image
-                                source={icons.apple}
-                                style={{
-                                    width: SIZES.responsiveScreenWidth(5.5),
-                                    height: SIZES.responsiveScreenWidth(6.5),
-                                }}
-
-
-                            />
-
-
-
-                        </LinearGradient>
-
-
-                    </TouchableOpacity>
-                    <TouchableOpacity
-
-                        style={{
-
-                            marginLeft: 20
-                        }}
-
-                        onPress={() => navigation.navigate('')}
-
-
-                        activeOpacity={0.9}>
-
-                        <LinearGradient
-                            style={{
-
-                                borderRadius: 5,
-
-                                width: SIZES.responsiveScreenWidth(13),
-                                height: SIZES.responsiveScreenWidth(13),
-                                elevation: 1,
-
-                                justifyContent: 'center',
-                                alignItems: 'center'
-                            }}
-
-                            locations={[0, 1,]}
-                            colors={[COLORS.darkRed, COLORS.lightBlue,]}
-                            useAngle={true}
-                            angle={20}>
-
-
-                            <Image
-                                source={icons.fb}
-                                style={{
-                                    width: SIZES.responsiveScreenWidth(6.5),
-                                    height: SIZES.responsiveScreenWidth(6.5),
-                                    borderRadius: 2,
-                                    tintColor: '#106BFF'
-
-                                }}
-
-
-                            />
-
-
-
-                        </LinearGradient>
-
-
-                    </TouchableOpacity>
-
-
-                </View>
-                <TouchableOpacity
-                    style={{
-
-                        marginTop: '5%'
-                    }}
-
-                    onPress={() => navigation.navigate('SignUpScreen')}
-
-
-                    activeOpacity={0.9}>
-
-                    <Text style={{
-                        fontWeight: '700',
-                        fontSize: SIZES.responsiveScreenFontSize(1.5),
-                        color: COLORS.primary,
-                        marginHorizontal: 15,
-
-                    }}>
-                        Not a member?
-                        <Text style={{
-                            fontWeight: '700',
-                            fontSize: SIZES.responsiveScreenFontSize(1.5),
-                            color: COLORS.blue2,
-
-                        }}> Register now
-                        </Text>
-                    </Text>
-                </TouchableOpacity>
-            </View>
             </KeyboardAwareScrollView>
+            </View>
         </Wrapper>
 
     )

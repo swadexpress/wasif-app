@@ -1,26 +1,14 @@
-import {COLORS, FONTS, SIZES, constants, dummyData, icons, images} from '../../constants';
 import {
     ScrollView,
-    Text,
-    View,
-    Image
+    View
 } from 'react-native';
+import { COLORS, SIZES } from '../../constants';
 
-import CardItem from '../../components/CardItem'
-import CartQuantityButton from '../../components/CartQuantityButton'
-import FooterTotal from '../../components/FooterTotal'
-import {Header} from '@react-navigation/stack';
-import Header2 from '../../components/Header2'
-import IconButton from '../../components/IconButton'
-import IconLabel from '../../components/IconLabel'
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import TextButton from '../../components/TextButton'
-import Rating from '../../components/Rating'
-import TextIconButton from '../../components/TextIconButton'
-import FromInput from '../../components/FromInput'
-import LineDivider from '../../components/LineDivider'
-import {CompositeNavigationProp, useNavigation} from '@react-navigation/native';
+import FromInput from '../../components/FromInput';
 import SingleImageHeader from '../../components/SingleImageHeader';
+import TextButton from '../../components/TextButton';
 
 const ChangePassword = ({ navigation }) => {
     const [selectedCard,setSelectedCard] =React.useState(null)

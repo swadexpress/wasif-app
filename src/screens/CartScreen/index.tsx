@@ -131,7 +131,7 @@ const MyCart = ({ }) => {
                                         alignItems: 'center',
                                         justifyContent: 'space-between',
                                         marginLeft: 5,
-                                        height: SIZES.responsiveScreenWidth(25),
+                                        height: SIZES.responsiveScreenWidth(26),
                                         elevation: 1,
                                         borderRadius: 8,
                                         marginTop: 10
@@ -152,7 +152,7 @@ const MyCart = ({ }) => {
 
                                             style={{
                                                 width: SIZES.responsiveScreenWidth(25),
-                                                height: SIZES.responsiveScreenWidth(25),
+                                                height: SIZES.responsiveScreenWidth(26),
                                                 borderRadius: 8
                                                 // borderTopLeftRadius:8,
                                                 // borderBottomLeftRadius:8
@@ -502,7 +502,8 @@ const MyCart = ({ }) => {
                     renderHiddenItem={(data, rowMap) => (
                         <View style={{
 
-                            height: SIZES.responsiveScreenWidth(25),
+                            height: SIZES.responsiveScreenWidth(26),
+
                             width: SIZES.responsiveScreenWidth(95),
                             backgroundColor: COLORS.primary,
                             ...styles.cartItemContainer,
