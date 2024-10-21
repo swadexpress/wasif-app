@@ -19,7 +19,7 @@ import PhoneInput from './PhoneInput';
 
 
 export function PhoneLogInScreen() {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState<any>('1771297948');
   const [code, setCode] = useState('');
   const phoneInput = useRef<PhoneInput>(null);
   const navigation = useNavigation() as any;
@@ -72,7 +72,7 @@ export function PhoneLogInScreen() {
 
 
             contentContainerStyle={{
-              marginTop:'8%'
+              marginTop: '8%'
 
 
             }}
@@ -94,54 +94,61 @@ export function PhoneLogInScreen() {
               withShadow
               autoFocus
             />
-        
+
+
+
+            <View style={{
+              alignItems: 'center',
+             
+            }}>
+
+
+              <TouchableOpacity
+                style={{
+                  marginTop: '8%',
+                }}
+
+                onPress={handelLogin}
+
+
+                activeOpacity={0.9}>
+
+                <LinearGradient
+                  style={{
+                    backgroundColor: COLORS.lightGray2,
+                    borderRadius: 5,
+
+                    width: SIZES.responsiveScreenWidth(80),
+                    height: SIZES.responsiveScreenWidth(8.5),
+                    elevation: 1,
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                  }}
+
+                  locations={[0, 1,]}
+                  colors={[COLORS.darkRed, COLORS.lightBlue,]}
+                  useAngle={true}
+                  angle={90}>
+
+                  <Text style={{
+                    fontSize: SIZES.responsiveScreenFontSize(1.8),
+                    fontWeight: '800',
+                    color: COLORS.primary,
+
+                  }}>
+                    Register
+                  </Text>
+
+                </LinearGradient>
+
+
+              </TouchableOpacity>
 
 
 
 
-
-          <TouchableOpacity
-            style={{
-              marginTop: '7%',
-            }}
-
-            onPress={handelLogin}
-
-
-            activeOpacity={0.9}>
-
-            <LinearGradient
-              style={{
-                backgroundColor: COLORS.lightGray2,
-                borderRadius: 5,
-
-                width: SIZES.responsiveScreenWidth(80),
-                height: SIZES.responsiveScreenWidth(8.5),
-                elevation: 1,
-                justifyContent: 'center',
-                alignItems: 'center'
-              }}
-
-              locations={[0, 1,]}
-              colors={[COLORS.darkRed, COLORS.lightBlue,]}
-              useAngle={true}
-              angle={90}>
-
-              <Text style={{
-                fontSize: SIZES.responsiveScreenFontSize(1.8),
-                fontWeight: '800',
-                color: COLORS.primary,
-
-              }}>
-                Register
-              </Text>
-
-            </LinearGradient>
-
-
-          </TouchableOpacity>
-
-          <ContinueWithOtherButton isUser={true} />
+              <ContinueWithOtherButton isUser={true} />
+            </View>
           </KeyboardAwareScrollView>
         </View>
 

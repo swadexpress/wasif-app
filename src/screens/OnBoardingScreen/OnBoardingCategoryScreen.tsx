@@ -117,9 +117,9 @@ const FoodCategories = ({
                         keyExtractor={(item: any) => `${item.id}`}
                         horizontal={false}
                         numColumns={5}
-                        // style={{
-                        //     marginLeft: 8
-                        // }}
+                        style={{
+                           marginTop:15
+                        }}
                         showsHorizontalScrollIndicator={false}
                         renderItem={({ item, index }: any) => (
                             <TouchableOpacity
@@ -132,7 +132,7 @@ const FoodCategories = ({
 
                                 onPress={() => {
 
-                                    navigation.navigate('SearchingAndFiteringProducts')
+                                    // navigation.navigate('SearchingAndFiteringProducts')
 
 
 

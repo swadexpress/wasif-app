@@ -147,7 +147,7 @@ const Home = () => {
             slideDown()
 
 
-        }, 5300)
+        }, 6000)
 
 
 
