@@ -18,7 +18,7 @@
     "@react-native-community/masked-view": "^0.1.11",
     "@react-native-firebase/app": "^21.0.0",
     "@react-native-firebase/messaging": "^21.0.0",
-    "@react-native-google-signin/google-signin": "^13.1.0",
+    "@react-native-google-signin/google-signin": "latest",
     "@react-native-picker/picker": "^2.8.1",
     "@react-navigation/bottom-tabs": "^6.6.1",
     "@react-navigation/drawer": "^6.7.2",

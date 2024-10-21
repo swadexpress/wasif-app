@@ -9,7 +9,74 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import { COLORS, SIZES, icons } from '../../constants';
 
+import {
+    GoogleSignin, isErrorWithCode, isSuccessResponse, statusCodes
+} from '@react-native-google-signin/google-signin';
+
+
 const ContinueWithOtherButton = ({ isUser }: any) => {
+
+    GoogleSignin.configure({
+        webClientId: '380268624294-esiniil29s150983rn8c8ubfq4vdbejd.apps.googleusercontent.com', // client ID of type WEB for your server. Required to get the `idToken` on the user object, and for offline access.
+     
+    
+    });
+
+    const signOut = async () => {
+        try {
+          await GoogleSignin.signOut();
+          console.log('signOut........')
+       
+        } catch (error) {
+          console.error(error);
+        }
+      };
+
+// Somewhere in your code
+const handelSignInWithGoogle = async () => {
+    
+    try {
+      await GoogleSignin.hasPlayServices();
+      const response = await GoogleSignin.signIn();
+      if (isSuccessResponse(response)) {
+        const { idToken, user } = response;
+
+        // setState({ userInfo: response.data });
+    
+        console.log(user,'res')
+        setTimeout(()=>{
+            signOut()
+        },5000)
+
+
+      } else {
+        // sign in was cancelled by user
+
+        console.log('errrr')
+      }
+    } catch (error) {
+        console.log(error,'error')
+      if (isErrorWithCode(error)) {
+        switch (error.code) {
+          case statusCodes.IN_PROGRESS:
+            // operation (eg. sign in) already in progress
+            break;
+          case statusCodes.PLAY_SERVICES_NOT_AVAILABLE:
+            // Android only, play services not available or outdated
+            break;
+          default:
+          // some other error happened
+        }
+      } else {
+
+        console.log('errrr----2')
+        // an error that's not related to google sign in occurred
+      }
+    }
+}
+
+
+
 
     const navigation = useNavigation() as any
 
@@ -80,7 +147,7 @@ const ContinueWithOtherButton = ({ isUser }: any) => {
                 <TouchableOpacity
 
 
-                    onPress={() => navigation.navigate('')}
+                    onPress={handelSignInWithGoogle}
 
 
                     activeOpacity={0.9}>

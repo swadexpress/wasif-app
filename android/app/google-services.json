@@ -12,7 +12,20 @@
           "package_name": "com.orbitplug"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "380268624294-i5dqtrm351a1in8n0pkssc8lmbkic95d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.orbitplug",
+            "certificate_hash": "a9e673d1e7af85e6d7129663fee3ff2389ad021d"
+          }
+        },
+        {
+          "client_id": "380268624294-esiniil29s150983rn8c8ubfq4vdbejd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCjNfcz1Zv94xGiz_ROxobgTT6wLhANrEM"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "380268624294-esiniil29s150983rn8c8ubfq4vdbejd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

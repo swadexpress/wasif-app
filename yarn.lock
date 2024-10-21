@@ -2944,7 +2944,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-native-google-signin/google-signin@npm:^13.1.0":
+"@react-native-google-signin/google-signin@npm:latest":
   version: 13.1.0
   resolution: "@react-native-google-signin/google-signin@npm:13.1.0"
   peerDependencies:
@@ -9039,7 +9039,7 @@ __metadata:
     "@react-native-community/masked-view": ^0.1.11
     "@react-native-firebase/app": ^21.0.0
     "@react-native-firebase/messaging": ^21.0.0
-    "@react-native-google-signin/google-signin": ^13.1.0
+    "@react-native-google-signin/google-signin": latest
     "@react-native-picker/picker": ^2.8.1
     "@react-native/babel-preset": 0.75.4
     "@react-native/eslint-config": 0.75.4
