@@ -1,24 +1,19 @@
 import {
-    Animated,
-    FlatList,
     Image,
-    Modal,
     ScrollView,
     Text,
     TouchableOpacity,
-    TouchableWithoutFeedback,
-    View,
+    View
 } from 'react-native';
-import { COLORS, FONTS, SIZES, constants, dummyData, icons } from '../../constants';
+import { COLORS, SIZES, constants, icons } from '../../constants';
 
-import IconButton from '../../components/IconButton'
-import React, { useEffect } from 'react';
-import TextButton from '../../components/TextButton'
-import TextIconButton from '../../components/TextIconButton'
-import TowPointSlider from '../../components/TowPointSlider'
-import Wrapper from '../../components/Wrapper';
+import React from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import RBSheet from 'react-native-raw-bottom-sheet';
+import Animated, { FadeInDown } from 'react-native-reanimated';
+import TextButton from '../../components/TextButton';
+import TextIconButton from '../../components/TextIconButton';
+import TowPointSlider from '../../components/TowPointSlider';
 
 const Section = ({ containerStyle, title, children }: any) => {
 
@@ -41,14 +36,9 @@ const Section = ({ containerStyle, title, children }: any) => {
 }
 
 const FilterModel = ({ isVisible, onClose, refRBSheetFilter }: any) => {
-    const modalAnimatedValue = React.useRef(new Animated.Value(0)).current
     const [deliveryTime, setDeliveryTime] = React.useState("");
     const [ratings, setRatings] = React.useState("");
     const [tags, setTags] = React.useState("");
-    const modalY = modalAnimatedValue.interpolate({
-        inputRange: [0, 1],
-        outputRange: [SIZES.height, SIZES.height - 680]
-    })
 
     const renderDistance = () => {
         return (
@@ -320,6 +310,10 @@ const FilterModel = ({ isVisible, onClose, refRBSheetFilter }: any) => {
                 },
             }}>
 
+
+
+
+
             <LinearGradient
                 style={{
                     flex: 1,
@@ -389,66 +383,68 @@ const FilterModel = ({ isVisible, onClose, refRBSheetFilter }: any) => {
 
 
                 >
+                    <Animated.View entering={FadeInDown.delay(50).duration(1100)}>
 
 
-                    {renderDistance()}
-                    {/* Delivery Time */}
-                    {renderDeliveryTime()}
+                        {renderDistance()}
+                        {/* Delivery Time */}
+                        {renderDeliveryTime()}
 
-                    {/* Pricing Range  */}
-                    {renderPriceRange()}
-                    {/* Ratings  */}
-                    {renderRating()}
+                        {/* Pricing Range  */}
+                        {renderPriceRange()}
+                        {/* Ratings  */}
+                        {renderRating()}
 
-                    {/* Tags */}
-                    {renderTags()}
-
-
-
-
-                    <View style={{
-                        alignItems: 'center',
-                        marginTop: 15
-                    }}>
-
-
-                        <TouchableOpacity
-                            style={{
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                backgroundColor: COLORS.primary,
-                                height: 26,
-                                borderRadius: 8,
-                                width: SIZES.responsiveScreenWidth(70)
-
-
-                            }}
-
-
-                        >
-
-                            <Text style={{
-                                color: COLORS.white,
-                                fontWeight: '700',
-                                fontSize: SIZES.responsiveScreenFontSize(1.4)
+                        {/* Tags */}
+                        {renderTags()}
 
 
 
-                            }}>
-                                Apply
 
-                            </Text>
-
-
-
-                        </TouchableOpacity>
-
-                    </View>
+                        <View style={{
+                            alignItems: 'center',
+                            marginTop: 15
+                        }}>
 
 
+                            <TouchableOpacity
+                                style={{
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    backgroundColor: COLORS.primary,
+                                    height: 26,
+                                    borderRadius: 8,
+                                    width: SIZES.responsiveScreenWidth(70)
+
+
+                                }}
+
+
+                            >
+
+                                <Text style={{
+                                    color: COLORS.white,
+                                    fontWeight: '700',
+                                    fontSize: SIZES.responsiveScreenFontSize(1.4)
+
+
+
+                                }}>
+                                    Apply
+
+                                </Text>
+
+
+
+                            </TouchableOpacity>
+
+                        </View>
+
+                    </Animated.View>
                 </ScrollView>
 
             </LinearGradient>
+
 
         </RBSheet>
     )

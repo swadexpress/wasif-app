@@ -1,39 +1,33 @@
-import { COLORS, FONTS, SIZES, images } from '../../constants';
 import {
-    FlatList,
+    Animated as RNAnimated,
+    StatusBar,
     Text,
     TouchableOpacity,
-    View,
-    Animated as RNAnimated,
-    StatusBar
+    View
 } from 'react-native';
+import { COLORS, SIZES, images } from '../../constants';
 
-import HorizontalFoodCard from '../../components/HorizontalFoodCard'
-import React, { useEffect, useRef, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
+import React, { useEffect, useRef, useState } from 'react';
 import Wrapper from '../../components/Wrapper';
-import CarouselScreen from '../../components/CarouselScreen';
 
 import {
     CollapsibleContainer,
     CollapsibleFlatList,
     CollapsibleHeaderContainer,
-    CollapsibleScrollView,
     StickyView,
     useCollapsibleContext,
     withCollapsibleContext,
-} from '@r0b0t3d/react-native-collapsible'
-import AppStatusBar from '../../components/AppStatusBar';
-import NoticeAnimation from '../../components/NoticeAnimation';
+} from '@r0b0t3d/react-native-collapsible';
+import FastImage from 'react-native-fast-image';
 import { interpolate, useAnimatedStyle } from 'react-native-reanimated';
-import Notice from '../../components/NoticeAnimation/Notice';
 import Svg, { Defs, G, Path, Use } from 'react-native-svg';
+import AppStatusBar from '../../components/AppStatusBar';
+import FilterModel from '../HomeScreen/FilterModel';
 import HomeHeader from '../HomeScreen/HomeHeader';
 import HomeSearchBar from '../HomeScreen/HomeSearchBar';
-import MenuTypes from './MenuTypes';
-import FastImage from 'react-native-fast-image';
-import FilterModel from '../HomeScreen/FilterModel';
 import LoadingScreen from '../LoadingScreen';
+import MenuTypes from './MenuTypes';
 
 let noticeHeight2 = 75
 const noticeHeight = -(noticeHeight2 + StatusBar.currentHeight)

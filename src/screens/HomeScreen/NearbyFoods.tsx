@@ -1,7 +1,6 @@
 import { FlatList, Image, Text, View } from "react-native"
 import FastImage from "react-native-fast-image"
 import LinearGradient from "react-native-linear-gradient"
-import Animated, { FadeInDown } from "react-native-reanimated"
 import ScalePress from "../../components/ScalePress"
 import { COLORS, SIZES, icons, images } from "../../constants"
 
@@ -72,7 +71,6 @@ const NearbyFoods = ({ recommends }: any) => {
                 horizontal
                 showsHorizontalScrollIndicator={false}
                 renderItem={({ item, index }) => (
-                    <Animated.View entering={FadeInDown.delay(150).duration(1200)}>
 
                     <ScalePress
 
@@ -341,7 +339,7 @@ const NearbyFoods = ({ recommends }: any) => {
                         </LinearGradient>
 
                     </ScalePress>
-                    </Animated.View>
+               
 
                 )}
 

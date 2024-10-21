@@ -1,20 +1,18 @@
-import { COLORS, SIZES, icons, images } from '../../constants';
 import {
-    Text,
-    View,
+    FlatList,
     Image,
+    Text,
     TouchableOpacity,
-    FlatList
+    View
 } from 'react-native';
+import { COLORS, SIZES, icons, images } from '../../constants';
 
-import Header2 from '../../components/Header2'
-import IconButton from '../../components/IconButton'
-import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import SingleImageHeader from '../../components/SingleImageHeader';
+import React, { useState } from 'react';
 import LinearGradient from 'react-native-linear-gradient';
-import Wrapper from '../../components/Wrapper';
 import ProductItem from '../../components/ProductItem';
+import SingleImageHeader from '../../components/SingleImageHeader';
+import Wrapper from '../../components/Wrapper';
 const data = [
     {
         id: 1,
@@ -250,7 +248,7 @@ const data = [
 
 ]
 
-const MyAccount = () => {
+const UserOrdersScreen = () => {
     const [selectedCard, setSelectedCard] = useState(null)
     const [ratings, setRatings] = useState("");
     const [comment, setComment] = useState("");
@@ -449,19 +447,20 @@ const MyAccount = () => {
                                             alignItems: 'center',
                                             justifyContent: 'center',
                                             flexDirection: 'row',
-                                            marginRight: 8
+                                            marginRight: 8,
+                                            marginTop:4
 
                                         }}>
 
                                             <Text style={{
-                                                fontSize: SIZES.responsiveScreenFontSize(1.1),
+                                                fontSize: SIZES.responsiveScreenFontSize(1.2),
                                                 fontWeight: '500',
                                                 color: COLORS.primary,
                                             }}>
                                                 {`Total(${4}) items:`}
                                             </Text>
                                             <Text style={{
-                                                fontSize: SIZES.responsiveScreenFontSize(1.2),
+                                                fontSize: SIZES.responsiveScreenFontSize(1.3),
                                                 fontWeight: '800',
                                                 color: COLORS.primary,
                                                 marginLeft: 5
@@ -491,7 +490,7 @@ const MyAccount = () => {
 
 
                                             <View style={{
-                                                width: SIZES.responsiveScreenWidth(15),
+                                                width: SIZES.responsiveScreenWidth(18),
                                                 height: 19,
                                                 borderRadius: 5,
                                                 borderWidth: 0.4,
@@ -500,7 +499,7 @@ const MyAccount = () => {
                                                 justifyContent: 'center'
                                             }}>
                                                 <Text style={{
-                                                    fontSize: SIZES.responsiveScreenFontSize(1.1),
+                                                    fontSize: SIZES.responsiveScreenFontSize(1.2),
                                                     fontWeight: '600',
                                                     color: COLORS.red,
                                                 }}>
@@ -508,7 +507,7 @@ const MyAccount = () => {
                                                 </Text>
                                             </View>
                                             <View style={{
-                                                width: SIZES.responsiveScreenWidth(15),
+                                                width: SIZES.responsiveScreenWidth(18),
                                                 marginLeft: 10,
                                                 height: 19,
                                                 borderRadius: 5,
@@ -518,7 +517,7 @@ const MyAccount = () => {
                                                 justifyContent: 'center'
                                             }}>
                                                 <Text style={{
-                                                    fontSize: SIZES.responsiveScreenFontSize(1.1),
+                                                    fontSize: SIZES.responsiveScreenFontSize(1.2),
                                                     fontWeight: '600',
                                                     color: COLORS.black,
                                                 }}>
@@ -557,4 +556,4 @@ const MyAccount = () => {
     )
 }
 
-export default MyAccount;
+export default UserOrdersScreen;

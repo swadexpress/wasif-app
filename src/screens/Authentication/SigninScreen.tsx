@@ -22,10 +22,9 @@ const SignIn = () => {
 
     const navigation = useNavigation() as any
 
-    const [email, setEmail] = React.useState('')
-    const [password, setPassword] = React.useState('')
-    const [username, setUsername] = React.useState('')
-    const [youAre, setYouAre] = React.useState('')
+    const [email, setEmail] = React.useState('kawsarkhan@gmail.com')
+    const [password, setPassword] = React.useState('kawsarkhan12345')
+
 
 
     const [emailError, setEmailError] = React.useState('')
@@ -152,6 +151,7 @@ const SignIn = () => {
                                 label="Password"
                                 placeholder="Password"
                                 secureTextEntry={!showPassword}
+                                value={password}
                                 onChange={(value: any) => {
                                     setPassword(value)
                                 }}

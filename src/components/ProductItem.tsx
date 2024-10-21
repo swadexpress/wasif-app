@@ -1,6 +1,6 @@
-import { FlatList, Image, Text, TouchableOpacity, View } from "react-native"
-import FastImage from "react-native-fast-image"
 import { useNavigation } from "@react-navigation/native"
+import { Image, Text, TouchableOpacity, View } from "react-native"
+import FastImage from "react-native-fast-image"
 import LinearGradient from "react-native-linear-gradient"
 import { COLORS, SIZES, icons } from "../constants"
 
@@ -240,7 +240,7 @@ const Kitchen = ({ item,onPress }: any) => {
 
                             }}>
 
-                                <Image
+                                {/* <Image
                                     source={icons.dollar}
                                     style={{
                                         width: 15,
@@ -248,7 +248,7 @@ const Kitchen = ({ item,onPress }: any) => {
                                         tintColor: COLORS.red2
                                     }}
 
-                                />
+                                /> */}
 
 
                                 <Text style={{
@@ -257,7 +257,7 @@ const Kitchen = ({ item,onPress }: any) => {
                                     color: COLORS.red2,
                                     marginLeft: -2
                                 }}>
-                                    200.0
+                                    ৳ 200.0
                                 </Text>
 
                             </View>

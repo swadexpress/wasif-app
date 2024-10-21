@@ -2,7 +2,6 @@ import { useNavigation } from "@react-navigation/native"
 import { FlatList, Image, Text, View } from "react-native"
 import FastImage from "react-native-fast-image"
 import LinearGradient from "react-native-linear-gradient"
-import Animated, { FadeInDown } from 'react-native-reanimated'
 import ScalePress from "../../components/ScalePress"
 import { COLORS, SIZES, icons, images } from "../../constants"
 
@@ -73,11 +72,7 @@ const Kitchen = ({ recommends }: any) => {
                 initialNumToRender={2}
                 showsHorizontalScrollIndicator={false}
                 renderItem={({ item, index }) => (
-                    <Animated.View
-                        entering={
-                            FadeInDown.delay(90).duration(1200)}
-
-                    >
+                 
 
                         <ScalePress
 
@@ -494,7 +489,7 @@ const Kitchen = ({ recommends }: any) => {
 
                             </LinearGradient>
                         </ScalePress>
-                    </Animated.View>
+                   
 
                 )}
 

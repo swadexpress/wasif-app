@@ -26,8 +26,8 @@ const SignIn = () => {
     const navigation = useNavigation() as any
 
     const [email, setEmail] = useState('kawsarkhan@gmail.com')
-    const [password, setPassword] = useState('kawsarkhan') as any
-    const [confirmPassword, setConfirmPassword] = useState('kawsarkhan') as any
+    const [password, setPassword] = useState('kawsarkhan12345') as any
+    const [confirmPassword, setConfirmPassword] = useState('kawsarkhan12345') as any
     const [youAre, setYouAre] = useState('R') as any
 
 

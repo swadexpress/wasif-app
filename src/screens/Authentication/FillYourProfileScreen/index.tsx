@@ -22,16 +22,13 @@ const SignIn = () => {
 
   const navigation = useNavigation() as any
 
-  const [email, setEmail] = React.useState('')
-  const [password, setPassword] = React.useState('')
+  const [fastName, setFastName] = React.useState('Kawsar')
+  const [lastName, setLastName] = React.useState('Khan')
   const [username, setUsername] = React.useState('')
   const [youAre, setYouAre] = React.useState('')
 
 
   const [emailError, setEmailError] = React.useState('')
-  const [usernameError, setUsernameError] = React.useState('')
-  const [passwordError, setPasswordError] = React.useState('')
-  const [showPassword, setShowPassword] = React.useState(false)
 
   const [saveMe, setSaveMe] = React.useState(false)
 
@@ -143,9 +140,9 @@ const SignIn = () => {
               placeholder="Fast Name"
               keyboardType='email-address'
               autocomplete='email'
-              value={email}
+              value={fastName}
               onChange={(value: any) => {
-                setEmail(value)
+                setFastName(value)
               }}
               errorMsg={emailError}
               appendComponent={
@@ -156,12 +153,12 @@ const SignIn = () => {
                   }}
                 >
                   <Image
-                    source={email == "" || (email != "" && emailError == "") ? icons.correct : icons.correct}
+                    source={fastName == "" || (fastName != "" && emailError == "") ? icons.correct : icons.correct}
 
                     style={{
                       width: SIZES.responsiveScreenWidth(4.5),
                       height: SIZES.responsiveScreenWidth(4.5),
-                      tintColor: email == '' ? COLORS.gray : (email != "" && emailError == '') ? COLORS.green : COLORS.red
+                      tintColor: fastName == '' ? COLORS.gray : (fastName != "" && emailError == '') ? COLORS.green : COLORS.red
                     }}
                   />
 
@@ -175,9 +172,9 @@ const SignIn = () => {
               placeholder="Last Name"
               keyboardType='email-address'
               autocomplete='email'
-              value={email}
+              value={lastName}
               onChange={(value: any) => {
-                setEmail(value)
+                setLastName(value)
               }}
               errorMsg={emailError}
               appendComponent={
@@ -188,12 +185,12 @@ const SignIn = () => {
                   }}
                 >
                   <Image
-                    source={email == "" || (email != "" && emailError == "") ? icons.correct : icons.correct}
+                    source={lastName == "" || (lastName != "" && emailError == "") ? icons.correct : icons.correct}
 
                     style={{
                       width: SIZES.responsiveScreenWidth(4.5),
                       height: SIZES.responsiveScreenWidth(4.5),
-                      tintColor: email == '' ? COLORS.gray : (email != "" && emailError == '') ? COLORS.green : COLORS.red
+                      tintColor: lastName == '' ? COLORS.gray : (lastName != "" && emailError == '') ? COLORS.green : COLORS.red
                     }}
                   />
 

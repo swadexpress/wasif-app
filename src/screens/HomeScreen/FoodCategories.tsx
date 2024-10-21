@@ -1,7 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import { FlatList, Image, Text } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
-import Animated from "react-native-reanimated";
 import ScalePress from "../../components/ScalePress";
 import { COLORS, SIZES, icons } from "../../constants";
 
@@ -98,14 +97,7 @@ const FoodCategories = ({ item }: any) => {
             }}
             showsHorizontalScrollIndicator={false}
             renderItem={({ item, index }: any) => (
-                <Animated.View
-                
-                // entering={FadeInDown.delay(50).duration(900)}
-                
-                
-                >
-
-              
+           
                 <ScalePress
 
              
@@ -162,7 +154,7 @@ const FoodCategories = ({ item }: any) => {
 
                 </ScalePress>
 
-                </Animated.View>
+         
 
 
             )}

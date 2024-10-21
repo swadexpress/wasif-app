@@ -1,32 +1,13 @@
 
-import { COLORS, FONTS, SIZES, constants, dummyData, icons, images } from '../../constants';
 import {
     Image,
-    ImageBackground,
-    ScrollView,
-    StyleSheet,
     Text,
-    TouchableOpacity,
     View
 } from 'react-native';
+import { COLORS, constants, icons } from '../../constants';
 
-import CardItem from '../../components/CardItem'
-import CartQuantityButton from '../../components/CartQuantityButton'
-import FooterTotal from '../../components/FooterTotal'
-import FormInputCheck from '../../components/FormInputCheck'
-import FromInput from '../../components/FromInput'
-import Header from '../../components/Header';
-import Header2 from '../../components/Header2'
-import IconButton from '../../components/IconButton'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import LineDivider from '../../components/LineDivider';
-import React from 'react';
-import StepperInput from '../../components/StepperInput'
-import TextButton from '../../components/TextButton'
-import TextIconButton2 from '../../components/TextIconButton2'
-import { useNavigate } from 'react-router-dom';
 import { useNavigation } from '@react-navigation/native';
-import SingleImageHeader from '../../components/SingleImageHeader';
+import React from 'react';
 
 const DeliveryStatus = () => {
 

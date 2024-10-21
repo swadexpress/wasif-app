@@ -1,7 +1,6 @@
 import { Image, Text, View } from "react-native"
 import FastImage from "react-native-fast-image"
 import LinearGradient from "react-native-linear-gradient"
-import Animated, { FadeInDown } from "react-native-reanimated"
 import { COLORS, SIZES, icons, images } from "../../constants"
 import ScalePress from "../ScalePress"
 
@@ -50,10 +49,9 @@ const data = [
 const VerticalProductItem = ({ item }: any) => {
 
     return (
-        <Animated.View entering={FadeInDown.delay(150).duration(1100)}>
 
         <ScalePress
-           >
+        >
 
             <LinearGradient
                 style={{
@@ -208,7 +206,7 @@ const VerticalProductItem = ({ item }: any) => {
                     // alignItems: 'center',
                     justifyContent: 'space-between',
                     marginTop: 8,
-                    marginHorizontal:4
+                    marginHorizontal: 4
 
 
                 }}>
@@ -244,7 +242,7 @@ const VerticalProductItem = ({ item }: any) => {
                     <View style={{
                         flexDirection: 'row',
                         alignItems: 'center',
-                        marginHorizontal:4
+                        marginHorizontal: 4
 
                     }}>
 
@@ -309,7 +307,7 @@ const VerticalProductItem = ({ item }: any) => {
             </LinearGradient>
 
         </ScalePress>
-        </Animated.View>
+
     )
 
 }

@@ -1,18 +1,18 @@
-import { COLORS, SIZES, icons, images } from '../../constants';
 import {
-    Text,
-    View,
+    FlatList,
     Image,
+    Text,
     TouchableOpacity,
-    FlatList
+    View
 } from 'react-native';
+import { COLORS, SIZES, icons, images } from '../../constants';
 
-import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import SingleImageHeader from '../../components/SingleImageHeader';
+import React, { useState } from 'react';
 import LinearGradient from 'react-native-linear-gradient';
-import Wrapper from '../../components/Wrapper';
 import ProductItem from '../../components/ProductItem';
+import SingleImageHeader from '../../components/SingleImageHeader';
+import Wrapper from '../../components/Wrapper';
 const data = [
     {
         id: 1,
@@ -442,7 +442,7 @@ const MyAccount = () => {
 
                                 }}>
                                     <Text style={{
-                                        fontSize: 11,
+                                        fontSize: SIZES.responsiveScreenFontSize(1.3),
                                         marginLeft: 4,
                                         fontWeight: '800',
                                         color: COLORS.primary,
@@ -459,10 +459,10 @@ const MyAccount = () => {
                                     alignItems: 'center',
                                     justifyContent: 'space-between',
                                     flexDirection: 'row',
-                                    marginTop: 10
+                                    marginTop: 13
                                 }}>
                                     <Text style={{
-                                        fontSize: 10,
+                                        fontSize: SIZES.responsiveScreenFontSize(1.2),
                                         marginLeft: 4,
                                         fontWeight: '400',
                                         color: COLORS.primary,
@@ -473,13 +473,13 @@ const MyAccount = () => {
                                     </Text>
 
                                     <Text style={{
-                                        fontSize: 10,
+                                        fontSize: SIZES.responsiveScreenFontSize(1.2),
                                         marginLeft: 4,
                                         fontWeight: '400',
                                         color: COLORS.primary,
 
                                     }}>
-                                        {`$${330}`}
+                                        {`৳ ${330}`}
 
                                     </Text>
 
@@ -494,7 +494,7 @@ const MyAccount = () => {
 
                                 }}>
                                     <Text style={{
-                                        fontSize: 10,
+                                        fontSize: SIZES.responsiveScreenFontSize(1.2),
                                         marginLeft: 4,
                                         fontWeight: '400',
                                         color: COLORS.primary,
@@ -505,13 +505,13 @@ const MyAccount = () => {
                                     </Text>
 
                                     <Text style={{
-                                        fontSize: 10,
+                                        fontSize: SIZES.responsiveScreenFontSize(1.2),
                                         marginLeft: 4,
                                         fontWeight: '400',
                                         color: COLORS.primary,
 
                                     }}>
-                                        {`$${"08"}`}
+                                        {`৳ ${"08"}`}
 
                                     </Text>
 
@@ -526,7 +526,7 @@ const MyAccount = () => {
 
                                 }}>
                                     <Text style={{
-                                        fontSize: 10,
+                                        fontSize: SIZES.responsiveScreenFontSize(1.2),
                                         marginLeft: 4,
                                         fontWeight: '400',
                                         color: COLORS.primary,
@@ -537,13 +537,13 @@ const MyAccount = () => {
                                     </Text>
 
                                     <Text style={{
-                                        fontSize: 10,
+                                        fontSize: SIZES.responsiveScreenFontSize(1.2),
                                         marginLeft: 4,
                                         fontWeight: '400',
                                         color: COLORS.primary,
 
                                     }}>
-                                        {`$${"0.80"}`}
+                                        {`৳ ${"0.80"}`}
 
                                     </Text>
 
@@ -559,7 +559,7 @@ const MyAccount = () => {
 
                                 }}>
                                     <Text style={{
-                                        fontSize: 11,
+                                        fontSize: SIZES.responsiveScreenFontSize(1.3),
                                         marginLeft: 4,
                                         fontWeight: '800',
                                         color: COLORS.primary,
@@ -570,13 +570,13 @@ const MyAccount = () => {
                                     </Text>
 
                                     <Text style={{
-                                        fontSize: 11,
+                                        fontSize: SIZES.responsiveScreenFontSize(1.3),
                                         marginLeft: 4,
                                         fontWeight: '800',
                                         color: COLORS.primary,
 
                                     }}>
-                                        {`$${"339"}`}
+                                        {`৳ ${"339"}`}
 
                                     </Text>
 

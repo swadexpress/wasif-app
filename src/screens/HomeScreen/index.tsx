@@ -141,13 +141,13 @@ const Home = () => {
             setLoading(true)
 
         }, 500)
-      
+
         setTimeout(() => {
 
             slideDown()
 
 
-        }, 3000)
+        }, 5300)
 
 
 
@@ -265,6 +265,11 @@ const Home = () => {
 
                             </CollapsibleHeaderContainer>
 
+
+
+
+
+
                             <CollapsibleFlatList
                                 data={data}
                                 headerSnappable={false} // <-- should header auto snap when you release the finger
@@ -272,8 +277,8 @@ const Home = () => {
                                 keyExtractor={(item) => `${item.id}`}
                                 showsVerticalScrollIndicator={false}
                                 ListHeaderComponent={
-                                    <View style={{}}>
 
+                                    <>
 
                                         {/* Food categories */}
                                         <FoodCategories
@@ -283,24 +288,28 @@ const Home = () => {
                                             selectedMenuType={selectedMenuType}
 
                                         />
-
                                         <CarouselScreen />
-                                        <Kitchen />
-                                        <Seller />
-                                        <NearbyFoods />
 
-                                        <Text style={{
-                                            fontSize: SIZES.responsiveScreenFontSize(1.7),
-                                            fontWeight: '800',
-                                            color: COLORS.black,
-                                            marginTop: 20,
-                                            marginLeft: 10,
-                                        }}>
-                                            Best Foods
-                                        </Text>
+                                        {/* <Animated.View entering={FadeInDown.delay(10).duration(1100)}> */}
 
 
-                                    </View>
+                                            <Kitchen />
+                                            <Seller />
+                                            <NearbyFoods />
+
+                                            <Text style={{
+                                                fontSize: SIZES.responsiveScreenFontSize(1.7),
+                                                fontWeight: '800',
+                                                color: COLORS.black,
+                                                marginTop: 20,
+                                                marginLeft: 10,
+                                            }}>
+                                                Best Foods
+                                            </Text>
+
+
+                                        {/* </Animated.View> */}
+                                    </>
                                 }
                                 renderItem={({ item }) => {
 
@@ -335,6 +344,7 @@ const Home = () => {
                                 }
 
                             />
+
 
 
                         </CollapsibleContainer>

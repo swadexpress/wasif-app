@@ -1,14 +1,13 @@
 import React from 'react';
 import {
-    View,
-    Text,
+    Animated,
     Image,
+    Text,
     TouchableOpacity,
-    Animated
+    View
 } from 'react-native';
-import { connect } from "react-redux";
 
-import { COLORS, FONTS, SIZES } from "../../constants";
+import { COLORS, SIZES } from "../../constants";
 
 const ProfileRadioButton = ({ icon, label, isSelected, onPress }: any) => {
 
@@ -47,7 +46,7 @@ const ProfileRadioButton = ({ icon, label, isSelected, onPress }: any) => {
                 height: 50,
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                marginHorizontal:8
+                marginHorizontal: 8
             }}
         >
 
@@ -68,7 +67,7 @@ const ProfileRadioButton = ({ icon, label, isSelected, onPress }: any) => {
                         justifyContent: 'center',
                         borderRadius: 5,
                         backgroundColor: COLORS.lightBlue,
-                        elevation:1
+                        elevation: 1
                     }}
                 >
                     <Image
@@ -86,8 +85,8 @@ const ProfileRadioButton = ({ icon, label, isSelected, onPress }: any) => {
                     style={{
                         color: COLORS.primary,
                         fontWeight: '700',
-                        fontSize:  SIZES.responsiveScreenFontSize(1.5),
-                        marginLeft:5
+                        fontSize: SIZES.responsiveScreenFontSize(1.5),
+                        marginLeft: 5
                     }}
                 >
                     {label}
@@ -101,7 +100,9 @@ const ProfileRadioButton = ({ icon, label, isSelected, onPress }: any) => {
                     height: SIZES.responsiveScreenWidth(7),
                     alignItems: 'center',
                     justifyContent: 'center',
-                   
+
+                    marginRight: 5
+
                 }}
                 onPress={() => onPress()}
             >
@@ -124,7 +125,7 @@ const ProfileRadioButton = ({ icon, label, isSelected, onPress }: any) => {
                         borderWidth: 8,
                         borderColor: circleColorAnimated,
                         backgroundColor: COLORS.gray,
-                        
+
                     }}
                 />
             </TouchableOpacity>
