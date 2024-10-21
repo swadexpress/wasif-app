@@ -1,4 +1,4 @@
-package com.orbitplug
+package com.foodies
 
 import android.app.Application
 import com.facebook.react.PackageList
