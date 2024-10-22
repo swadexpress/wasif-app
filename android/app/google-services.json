@@ -1,41 +1,49 @@
 {
   "project_info": {
-    "project_number": "380268624294",
-    "project_id": "orbitplug-ec50e",
-    "storage_bucket": "orbitplug-ec50e.appspot.com"
+    "project_number": "545940161262",
+    "project_id": "foodies-2820f",
+    "storage_bucket": "foodies-2820f.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:380268624294:android:6edfc52f3f31e392dc3767",
+        "mobilesdk_app_id": "1:545940161262:android:bb2f41df5b03115b3429ff",
         "android_client_info": {
-          "package_name": "com.orbitplug"
+          "package_name": "com.orbitplug.foodies"
         }
       },
       "oauth_client": [
         {
-          "client_id": "380268624294-i5dqtrm351a1in8n0pkssc8lmbkic95d.apps.googleusercontent.com",
+          "client_id": "545940161262-493g3e6t0rrhdufiu8fll9hg5la6rrmm.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.orbitplug",
+            "package_name": "com.orbitplug.foodies",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "545940161262-qgfigqvd4b0vag25jla25kgvf1vgsk8c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.orbitplug.foodies",
             "certificate_hash": "a9e673d1e7af85e6d7129663fee3ff2389ad021d"
           }
         },
         {
-          "client_id": "380268624294-esiniil29s150983rn8c8ubfq4vdbejd.apps.googleusercontent.com",
+          "client_id": "545940161262-mpi2g73ajlu81vkaqvututgck4hc75pg.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCjNfcz1Zv94xGiz_ROxobgTT6wLhANrEM"
+          "current_key": "AIzaSyAVXT97xGUOVEwg09k_92ORHDdhuwHO_xI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "380268624294-esiniil29s150983rn8c8ubfq4vdbejd.apps.googleusercontent.com",
+              "client_id": "545940161262-mpi2g73ajlu81vkaqvututgck4hc75pg.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

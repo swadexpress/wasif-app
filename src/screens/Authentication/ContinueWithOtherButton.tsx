@@ -13,72 +13,103 @@ import {
     GoogleSignin, isErrorWithCode, isSuccessResponse, statusCodes
 } from '@react-native-google-signin/google-signin';
 
+import {
+    AccessToken,
+    LoginManager
+} from 'react-native-fbsdk-next';
 
 const ContinueWithOtherButton = ({ isUser }: any) => {
 
+
+    const navigation = useNavigation() as any
+
+
     GoogleSignin.configure({
-        webClientId: '380268624294-esiniil29s150983rn8c8ubfq4vdbejd.apps.googleusercontent.com', // client ID of type WEB for your server. Required to get the `idToken` on the user object, and for offline access.
-     
-    
+        webClientId: '545940161262-mpi2g73ajlu81vkaqvututgck4hc75pg.apps.googleusercontent.com',
+
+
     });
 
     const signOut = async () => {
         try {
-          await GoogleSignin.signOut();
-          console.log('signOut........')
-       
+            await GoogleSignin.signOut();
+            console.log('signOut........')
+
         } catch (error) {
-          console.error(error);
+            console.error(error);
         }
-      };
+    };
 
-// Somewhere in your code
-const handelSignInWithGoogle = async () => {
-    
-    try {
-      await GoogleSignin.hasPlayServices();
-      const response = await GoogleSignin.signIn();
-      if (isSuccessResponse(response)) {
-        const { idToken, user } = response;
+    // Somewhere in your code
+    const handelSignInWithGoogle = async () => {
 
-        // setState({ userInfo: response.data });
-    
-        console.log(user,'res')
-        setTimeout(()=>{
-            signOut()
-        },5000)
+        try {
+            await GoogleSignin.hasPlayServices();
+            const response = await GoogleSignin.signIn();
+            if (isSuccessResponse(response)) {
+                const { idToken, user } = response.data;
+
+                // setState({ userInfo: response.data });
+
+                navigation.navigate('FillYourProfileScreen')
+                console.log(user, 'res')
+                setTimeout(() => {
+                    signOut()
+                }, 5000)
 
 
-      } else {
-        // sign in was cancelled by user
+            } else {
+                // sign in was cancelled by user
 
-        console.log('errrr')
-      }
-    } catch (error) {
-        console.log(error,'error')
-      if (isErrorWithCode(error)) {
-        switch (error.code) {
-          case statusCodes.IN_PROGRESS:
-            // operation (eg. sign in) already in progress
-            break;
-          case statusCodes.PLAY_SERVICES_NOT_AVAILABLE:
-            // Android only, play services not available or outdated
-            break;
-          default:
-          // some other error happened
+                console.log('errrr')
+            }
+        } catch (error) {
+            console.log(error, 'error')
+            if (isErrorWithCode(error)) {
+                switch (error.code) {
+                    case statusCodes.IN_PROGRESS:
+                        // operation (eg. sign in) already in progress
+                        break;
+                    case statusCodes.PLAY_SERVICES_NOT_AVAILABLE:
+                        // Android only, play services not available or outdated
+                        break;
+                    default:
+                    // some other error happened
+                }
+            } else {
+
+                console.log('errrr----2')
+                // an error that's not related to google sign in occurred
+            }
         }
-      } else {
-
-        console.log('errrr----2')
-        // an error that's not related to google sign in occurred
-      }
     }
-}
+
+
+
+    const handelLoginWithFacebook = () => {
+        // Attempt a login using the Facebook login dialog asking for default permissions.
+        LoginManager.logInWithPermissions(['public_profile']).then(
+            login => {
+                if (login.isCancelled) {
+                    console.log('Login cancelled');
+                } else {
+                    AccessToken.getCurrentAccessToken().then(data => {
+                        const accessToken = data.accessToken.toString();
+                        console.log('okay')
+                    });
+                }
+            },
+            error => {
+                console.log('Login fail with error: ' + error);
+            },
+        );
+    };
 
 
 
 
-    const navigation = useNavigation() as any
+
+
 
     return (
 
@@ -141,6 +172,8 @@ const handelSignInWithGoogle = async () => {
                 flexDirection: 'row',
                 marginTop: '5%',
             }}>
+
+
 
 
 
@@ -241,7 +274,7 @@ const handelSignInWithGoogle = async () => {
                         marginLeft: 20
                     }}
 
-                    onPress={() => navigation.navigate('')}
+                    onPress={handelLoginWithFacebook}
 
 
                     activeOpacity={0.9}>

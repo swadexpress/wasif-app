@@ -8,8 +8,10 @@ const logo_01 = require("../assets/images/logo_01.png")
 const logo_02 = require("../assets/images/logo_02.png")
 const profile = require("../assets/images/profile.jpg")
 const success = require("../assets/images/success.png")
+const logo = require("../assets/images/logo.png")
 
 export default {
+    logo,
     background_01,
     background_02,
     card,

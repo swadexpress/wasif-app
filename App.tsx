@@ -111,7 +111,7 @@ const App = () => {
 
                         detachPreviousScreen: false,
                     }}
-                    initialRouteName={'SigninScreen'}
+                    initialRouteName={'OnBoardingScreen'}
                 >
                     <Stack.Screen
                         name="OnBoardingScreen"

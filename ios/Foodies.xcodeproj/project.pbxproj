@@ -431,7 +431,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.foodies";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.orbitplug.foodies";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Foodies.app/Foodies";
 			};
@@ -455,7 +455,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.foodies";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.orbitplug.foodies";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Foodies.app/Foodies";
 			};
@@ -481,7 +481,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.foodies";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.orbitplug.foodies";
 				PRODUCT_NAME = "Foodies";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -508,7 +508,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.foodies";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.orbitplug.foodies";
 				PRODUCT_NAME = "Foodies";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";

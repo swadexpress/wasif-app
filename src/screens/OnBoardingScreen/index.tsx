@@ -1,15 +1,14 @@
-import { StyleSheet, View, FlatList, ViewToken } from 'react-native';
 import React from 'react';
+import { FlatList, StyleSheet, View, ViewToken } from 'react-native';
 import Animated, {
-  useSharedValue,
-  useAnimatedScrollHandler,
   useAnimatedRef,
+  useAnimatedScrollHandler,
+  useSharedValue,
 } from 'react-native-reanimated';
-import data, { OnboardingData } from './data';
 import Pagination from './/Pagination';
 import CustomButton from './CustomButton';
 import RenderItem from './RenderItem';
-import AppStatusBar from '../../components/AppStatusBar';
+import data, { OnboardingData } from './data';
 
 
 
@@ -34,6 +33,20 @@ const OnboardingScreen = () => {
       x.value = event.contentOffset.x;
     },
   });
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 
   return (
     <View style={styles.container}>

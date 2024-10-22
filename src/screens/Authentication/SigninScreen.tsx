@@ -22,8 +22,8 @@ const SignIn = () => {
 
     const navigation = useNavigation() as any
 
-    const [email, setEmail] = React.useState('kawsarkhan@gmail.com')
-    const [password, setPassword] = React.useState('kawsarkhan12345')
+    const [email, setEmail] = React.useState('foodies@gmail.com')
+    const [password, setPassword] = React.useState('foodies12345')
 
 
 

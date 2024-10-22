@@ -1,6 +1,9 @@
 import { useNavigation } from "@react-navigation/native";
+import { useState } from "react";
 import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
+import Animated, { FadeInDown } from "react-native-reanimated";
+import ScalePress from "../../components/ScalePress";
 import SingleImageHeader from "../../components/SingleImageHeader";
 import Wrapper from "../../components/Wrapper";
 import { COLORS, SIZES, icons } from "../../constants";
@@ -58,11 +61,59 @@ const categoryData = [
         image: icons.wine,
         id: 10,
     },
+
     {
-        name: 'More',
-        image: icons.see_more,
+        name: 'Bakery',
+        image: icons.bakery,
         id: 11,
+
     },
+    {
+        name: 'Buger',
+        image: icons.buger,
+        id: 12,
+    },
+    {
+        name: 'Coffee',
+        image: icons.coffee,
+        id: 13,
+    },
+    {
+        name: 'Fish',
+        image: icons.fish,
+        id: 14,
+    },
+    {
+        name: 'Icecream',
+        image: icons.icecream,
+        id: 15,
+    },
+    {
+        name: 'Juice',
+        image: icons.juice,
+        id: 16,
+    },
+    {
+        name: 'Kabab',
+        image: icons.kabab,
+        id: 17,
+    },
+    {
+        name: 'Meat',
+        image: icons.meat,
+        id: 18,
+    },
+    {
+        name: 'Sea Food',
+        image: icons.sea_food,
+        id: 19,
+    },
+    {
+        name: 'Wine',
+        image: icons.wine,
+        id: 20,
+    },
+
 
 
 
@@ -78,14 +129,47 @@ const categoryData = [
 
 
 
-const FoodCategories = ({
-    handelChangeCategory,
-    selectedCategoryId,
-    setSelectedCategoryId,
-    selectedMenuType,
+const FoodCategories = () => {
+
+    const [data, setData] = useState<any>(categoryData)
 
 
-}: any) => {
+
+
+
+
+
+
+
+    // array.push(element)
+    const handelSelectedCategory = async (id: any) => {
+
+
+
+
+        for (let i = 0; i < data.length; i++) {
+
+            if (data[i].id == id) {
+
+                if (data[i].selected == true) {
+                    data[i].selected = false;
+                    setData([...data]);
+
+                }
+                else {
+                    data[i].selected = true;
+                    setData([...data]);
+
+                }
+
+            }
+
+        }
+
+
+    }
+
+
 
 
 
@@ -110,79 +194,76 @@ const FoodCategories = ({
                     alignItems: 'center',
 
                 }}>
+                    <Animated.View entering={FadeInDown.delay(50).duration(900)}>
 
 
-                    <FlatList
-                        data={categoryData}
-                        keyExtractor={(item: any) => `${item.id}`}
-                        horizontal={false}
-                        numColumns={5}
-                        style={{
-                           marginTop:15
-                        }}
-                        showsHorizontalScrollIndicator={false}
-                        renderItem={({ item, index }: any) => (
-                            <TouchableOpacity
-
-                                style={{
-                                    marginHorizontal: 3,
-                                    marginTop: 8,
-                                    marginBottom: 1
-                                }}
-
-                                onPress={() => {
-
-                                    // navigation.navigate('SearchingAndFiteringProducts')
+                        <FlatList
+                            data={data}
+                            keyExtractor={(item: any) => `${item.id}`}
+                            horizontal={false}
+                            numColumns={5}
+                            style={{
+                                marginTop: 15
+                            }}
+                            showsHorizontalScrollIndicator={false}
+                            renderItem={({ item, index }: any) => (
+                                <ScalePress
 
 
 
-                                }}
-
-                            >
-
-                                <LinearGradient
-                                    style={{
-
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        height: SIZES.responsiveScreenWidth(19),
-                                        width: SIZES.responsiveScreenWidth(17.8),
-                                        borderRadius: 6,
-                                        elevation: 2,
-
+                                    onPress={() => {
+                                        handelSelectedCategory(item.id)
                                     }}
 
-                                    locations={[0, 1]}
-                                    colors={[COLORS.darkRed, COLORS.lightBlue,]}
-                                    useAngle={true}
-                                    angle={20}>
+                                >
 
-
-                                    <Image source={item.image}
+                                    <LinearGradient
                                         style={{
-                                            height: SIZES.responsiveScreenWidth(12),
-                                            width: SIZES.responsiveScreenWidth(12),
 
-                                        }} />
-                                    <Text style={{
-                                        fontSize: SIZES.responsiveScreenFontSize(1.3),
-                                        fontWeight: '800',
-                                        color: COLORS.black,
-                                        marginTop: 3
-                                    }}>
-                                        {item.name}
-                                    </Text>
-                                </LinearGradient>
-                            </TouchableOpacity>
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            height: SIZES.responsiveScreenWidth(19),
+                                            width: SIZES.responsiveScreenWidth(17.8),
+                                            borderRadius: 6,
+                                            elevation: 2,
+                                            marginHorizontal: 3,
+                                            marginTop: 8,
+                                            marginBottom: 1
+
+                                        }}
+
+                                        locations={[0, 1]}
+                                        colors={[COLORS.darkRed, item.selected ? COLORS.lightOrange3 : COLORS.lightBlue,]}
+                                        useAngle={true}
+                                        angle={20}>
 
 
-                        )}
+                                        <Image source={item.image}
+                                            style={{
+                                                height: SIZES.responsiveScreenWidth(12),
+                                                width: SIZES.responsiveScreenWidth(12),
+
+                                            }} />
+                                        <Text style={{
+                                            fontSize: SIZES.responsiveScreenFontSize(1.3),
+                                            fontWeight: '800',
+                                            color: COLORS.black,
+                                            marginTop: 3
+                                        }}>
+                                            {item.name}
+                                        </Text>
+                                    </LinearGradient>
+                                </ScalePress>
 
 
-                    />
+                            )}
 
+
+                        />
+                    </Animated.View>
 
                 </View>
+
                 <>
 
 

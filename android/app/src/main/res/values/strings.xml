@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Foodies</string>
+
+
+<string name="facebook_app_id">1084695016387376</string>
+<string name="fb_login_protocol_scheme">fb1234</string>
+<string name="facebook_client_token">a7babb3c80207d4e805973f4fe0ac8f8</string>
+
+
 </resources>
