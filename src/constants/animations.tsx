@@ -10,12 +10,20 @@ const serving_catering_food = require("../assets/animations/serving_catering_foo
 const true_food = require("../assets/animations/true_food.json")
 const logo = require("../assets/animations/logo.json")
 const location = require("../assets/animations/location.json")
+const forgot_password = require("../assets/animations/forgot_password.json")
+const otp = require("../assets/animations/otp.json")
+const password_change_success = require("../assets/animations/password_change_success.json")
+const chef = require("../assets/animations/chef.json")
 
 
 
 
 export default {
     true_food,
+    password_change_success,
+    forgot_password,
+    chef,
+    otp,
     location,
     logo,
     chat_icon,

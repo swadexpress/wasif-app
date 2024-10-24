@@ -1,9 +1,6 @@
-import { Image, Pressable, StatusBar, Text, TextInput, TouchableOpacity, View } from "react-native"
-import { COLORS, FONTS, SIZES, dummyData, icons } from "../../constants"
-import { useDispatch, useSelector } from "react-redux";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import AppStatusBar from "../../../../src/screens/AppStatusBar";
 import { useNavigation } from "@react-navigation/native";
+import { Image, StatusBar, Text, TouchableOpacity, View } from "react-native";
+import { COLORS, SIZES, icons } from "../../constants";
 
 const Header = ({ name }: any) => {
     const navigation = useNavigation<any>()

@@ -1,6 +1,5 @@
 import { AnimationObject } from 'lottie-react-native';
-import { SIZES, animations } from '../../constants';
-import { COLORS } from '../../constants';
+import { COLORS, SIZES, animations } from '../../constants';
 
 export interface OnboardingData {
   id: number;

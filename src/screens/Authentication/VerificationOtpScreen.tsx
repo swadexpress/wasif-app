@@ -58,7 +58,7 @@ const VerificationOtpScreen = () => {
 
             }}>
             <LottieView
-              source={animations.serving_catering_food}
+              source={animations.otp}
               style={{
                 width: SIZES.responsiveScreenWidth(50),
                 height: SIZES.responsiveScreenWidth(50),
@@ -85,7 +85,7 @@ const VerificationOtpScreen = () => {
                 style={{
                   backgroundColor: COLORS.lightGray2,
                   borderRadius: 5,
-                  marginTop: '8%',
+                  marginTop: '10%',
 
                   width: SIZES.responsiveScreenWidth(83),
                   height: SIZES.responsiveScreenWidth(15),

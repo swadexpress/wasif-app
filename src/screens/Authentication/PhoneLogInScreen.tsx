@@ -55,8 +55,8 @@ export function PhoneLogInScreen() {
           <LottieView
             source={animations.location}
             style={{
-              width: SIZES.responsiveScreenWidth(45),
-              height: SIZES.responsiveScreenWidth(45),
+              width: SIZES.responsiveScreenWidth(50),
+              height: SIZES.responsiveScreenWidth(50),
 
             }}
             loop={true}

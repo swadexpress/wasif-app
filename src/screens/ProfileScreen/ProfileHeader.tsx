@@ -10,7 +10,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import { COLORS, SIZES, icons, images } from "../../constants";
 import ProfileValueTop from './ProfileValueTop';
 
-const ProfileValue = ({ icon, value, onPress, isProfile,setSelectedShowDetails }: any) => {
+const ProfileValue = ({ icon, value, onPress, isProfile, setSelectedShowDetails }: any) => {
 
     const navigation = useNavigation<any>()
 
@@ -54,19 +54,45 @@ const ProfileValue = ({ icon, value, onPress, isProfile,setSelectedShowDetails }
                         }}
                     />
 
-                    <Text
+                    <View
                         style={{
-                            fontSize: SIZES.responsiveScreenFontSize(1.6),
-                            fontWeight: '800',
-                            color: COLORS.primary,
-                            marginTop: 5
+
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            flexDirection: 'row',
+                            marginTop: 5,
+                            marginLeft: 13
                         }}
-
                     >
-                        Kawsar Khan
-                    </Text>
 
 
+
+                        <Text
+                            style={{
+                                fontSize: SIZES.responsiveScreenFontSize(1.6),
+                                fontWeight: '800',
+                                color: COLORS.primary,
+
+
+
+                            }}
+                        >
+                            Kawsar Khan
+                        </Text>
+
+
+
+                        <Image
+                            source={icons.check_circle}
+                            style={{
+                                marginLeft: 5,
+                                marginTop: 3,
+                                width: SIZES.responsiveScreenWidth(3),
+                                height: SIZES.responsiveScreenWidth(3),
+                                tintColor: COLORS.blue2
+                            }}
+                        />
+                    </View>
 
 
                 </View>
@@ -99,38 +125,38 @@ const ProfileValue = ({ icon, value, onPress, isProfile,setSelectedShowDetails }
 
 
                 <ProfileValueTop
-                    icon={isProfile ? icons.restaurant : icons.order}
-                    value={isProfile ? "Products" : "Orders"}
-                    onPress={() => isProfile ? setSelectedShowDetails('Products'): navigation.navigate('UserOrdersScreen')}
+                    icon={icons.order}
+                    value={"Orders"}
+                    onPress={() => navigation.navigate('UserOrdersScreen')}
                 />
 
                 <ProfileValueTop
-                    icon={isProfile ? icons.profile : icons.delivery}
+                    icon={icons.delivery}
 
-                    value={isProfile ? "About" : "To Ship"}
-                    onPress={() => isProfile ? setSelectedShowDetails('About us'): navigation.navigate('UserOrdersScreen')}
-
-                />
-
-                <ProfileValueTop
-                    icon={isProfile ? icons.eye : icons.check}
-
-                    value={isProfile ? "Review" : "Receive"}
-                    onPress={() => isProfile ? setSelectedShowDetails('Review'): navigation.navigate('UserOrdersScreen')}
+                    value={"To Ship"}
+                    onPress={() => navigation.navigate('UserToShipOrdersScreen')}
 
                 />
 
                 <ProfileValueTop
-                    icon={isProfile ? icons.map : icons.restaurant}
-                    onPress={() => isProfile? setSelectedShowDetails('Map'): navigation.navigate('UserOrdersScreen')}
+                    icon={!isProfile ? icons.eye : icons.check}
 
-                    value={isProfile ? "Map" : "Returns"}
+                    value={"Receive"}
+                    onPress={() => navigation.navigate('UserReceiveOrdersScreen')}
+
+                />
+
+                <ProfileValueTop
+                    icon={!isProfile ? icons.map : icons.restaurant}
+                    onPress={() => navigation.navigate('UserReturnOrdersScreen')}
+
+                    value={"Returns"}
 
                 />
                 <ProfileValueTop
-                    icon={isProfile ? icons.transaction : icons.transaction}
-                    onPress={() => isProfile ? setSelectedShowDetails('Review') : navigation.navigate('ReviewScreen') }
-                    value={isProfile ? "Review" : "Review"}
+                    icon={!isProfile ? icons.transaction : icons.transaction}
+                    onPress={() => navigation.navigate('UserOrdersReviewScreen')}
+                    value={"Review"}
 
                 />
 

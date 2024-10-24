@@ -15,7 +15,9 @@ import SallerBottomNavigator from './src/navigation/SallerBottomNavigator';
 import AddNewCardScreen from './src/screens/AddNewCardScreen';
 import AccountSwitchScreen from './src/screens/Authentication/AccountSwitchScreen';
 import FillYourProfileScreen from './src/screens/Authentication/FillYourProfileScreen';
-import ForgotPassword from './src/screens/Authentication/ForgotPassword';
+import ForgotNewPasswordScreen from './src/screens/Authentication/ForgotNewPasswordScreen';
+import ForgotPasswordOtpVerificationScreen from './src/screens/Authentication/ForgotPasswordOtpVerificationScreen';
+import ForgotPasswordScreen from './src/screens/Authentication/ForgotPasswordScreen';
 import { PhoneLogInScreen } from './src/screens/Authentication/PhoneLogInScreen';
 import SignUpScreen from './src/screens/Authentication/SignUpScreen';
 import SigninScreen from './src/screens/Authentication/SigninScreen';
@@ -51,7 +53,12 @@ import UpdateProfileScreen from './src/screens/UpdateProfileScreen';
 import UserNotificationsScreen from './src/screens/UserNotificationsScreen';
 import UserOrdersDeliveryDetailsScreen from './src/screens/UserOrdersDeliveryDetailsScreen';
 import UserOrdersDetailsScreen from './src/screens/UserOrdersDetailsScreen';
+import UserOrdersReviewScreen from './src/screens/UserOrdersReviewScreen';
+import UserOrdersReviewTextScreen from './src/screens/UserOrdersReviewTextScreen';
 import UserOrdersScreen from './src/screens/UserOrdersScreen';
+import UserReceiveOrdersScreen from './src/screens/UserReceiveOrdersScreen';
+import UserReturnOrdersScreen from './src/screens/UserReturnOrdersScreen';
+import UserToShipOrdersScreen from './src/screens/UserToShipOrdersScreen';
 import rootReducer from './src/stores/rootReducer';
 
 
@@ -66,38 +73,38 @@ const store = createStore(
 
 
 const requestNotificationPermission = async () => {
-    if(Platform.OS ==="android"){
-      try {
-        PermissionsAndroid.check('android.permission.POST_NOTIFICATIONS').then(
-          response => {
-            if(!response){
-              PermissionsAndroid.request('android.permission.POST_NOTIFICATIONS',{
-                  title: 'Notification',
-                  message:
-                    'App needs access to your notification ' +
-                    'so you can get Updates',
-                  buttonNeutral: 'Ask Me Later',
-                  buttonNegative: 'Cancel',
-                  buttonPositive: 'OK',
-              })
-            }
-          }
-        ).catch(
-          err => {
-            console.log("Notification Error=====>",err);
-          }
-        )
-      } catch (err){
-        console.log(err);
-      }
+    if (Platform.OS === "android") {
+        try {
+            PermissionsAndroid.check('android.permission.POST_NOTIFICATIONS').then(
+                response => {
+                    if (!response) {
+                        PermissionsAndroid.request('android.permission.POST_NOTIFICATIONS', {
+                            title: 'Notification',
+                            message:
+                                'App needs access to your notification ' +
+                                'so you can get Updates',
+                            buttonNeutral: 'Ask Me Later',
+                            buttonNegative: 'Cancel',
+                            buttonPositive: 'OK',
+                        })
+                    }
+                }
+            ).catch(
+                err => {
+                    console.log("Notification Error=====>", err);
+                }
+            )
+        } catch (err) {
+            console.log(err);
+        }
     }
-  };
+};
 
 
 
 const App = () => {
 
-    useEffect(()=>{
+    useEffect(() => {
         requestNotificationPermission()
     })
     return (
@@ -127,6 +134,8 @@ const App = () => {
                         component={SallerBottomNavigator}
                         options={{ headerShown: false }}
                     />
+
+
                     <Stack.Screen
                         name="RiderHomeScreen"
                         component={RiderBottomNavigator}
@@ -153,17 +162,31 @@ const App = () => {
                         component={AccountSwitchScreen}
                     />
 
+             
+
                     <Stack.Screen
-                        name="ForgotPassword"
-                        component={ForgotPassword}
+                        name="ForgotPasswordScreen"
+                        component={ForgotPasswordScreen}
+                        options={{ headerShown: false }}
                     />
+                    <Stack.Screen
+                        name="ForgotPasswordOtpVerificationScreen"
+                        component={ForgotPasswordOtpVerificationScreen}
+                        options={{ headerShown: false }}
+                    />
+                    <Stack.Screen
+                        name="ForgotNewPasswordScreen"
+                        component={ForgotNewPasswordScreen}
+                        options={{ headerShown: false }}
+                    />
+
 
                     <Stack.Screen
                         name="PhoneLogInScreen"
                         component={PhoneLogInScreen}
                     />
 
-                
+
                     <Stack.Screen
                         name="VerificationOtpScreen"
                         component={VerificationOtpScreen}
@@ -173,7 +196,7 @@ const App = () => {
                         component={FillYourProfileScreen}
                     />
 
-                
+
 
                     <Stack.Screen
                         name="FoodDetailsScreen"
@@ -223,6 +246,30 @@ const App = () => {
                         name="UserOrdersScreen"
                         component={UserOrdersScreen}
                     />
+                    <Stack.Screen
+                        name="UserReceiveOrdersScreen"
+                        component={UserReceiveOrdersScreen}
+                    />
+                    <Stack.Screen
+                        name="UserToShipOrdersScreen"
+                        component={UserToShipOrdersScreen}
+                    />
+                    <Stack.Screen
+                        name="UserReturnOrdersScreen"
+                        component={UserReturnOrdersScreen}
+                    />
+                    <Stack.Screen
+                        name="UserOrdersReviewScreen"
+                        component={UserOrdersReviewScreen}
+                    />
+                    
+                    <Stack.Screen
+                        name="UserOrdersReviewTextScreen"
+                        component={UserOrdersReviewTextScreen}
+                    />
+
+
+
                     <Stack.Screen
                         name="UserNotificationsScreen"
                         component={UserNotificationsScreen}

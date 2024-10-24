@@ -1,81 +1,113 @@
-import { Image, Pressable, StatusBar, Text, TextInput, TouchableOpacity, View } from "react-native"
-import { COLORS, FONTS, SIZES, dummyData, icons } from "../../constants"
-import { useDispatch, useSelector } from "react-redux";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import AppStatusBar from "../../../../src/screens/AppStatusBar";
 import { useNavigation } from "@react-navigation/native";
+import {
+    Image,
+    TouchableOpacity, View
+} from "react-native";
+import { useDispatch } from "react-redux";
+import { COLORS, SIZES, icons } from "../../constants";
+import BluerSearchBar from "./BluerSearchBar";
 
-const Header = ({ name }: any) => {
-    const navigation = useNavigation<any>()
+
+
+
+const Header = ({ isHomeRout }: any) => {
+
+    const dispatch = useDispatch<any>();
+    const navigation = useNavigation<any>();
 
 
     return (
 
-        <View style ={{
-            backgroundColor:COLORS.primary
-        }}>
-           
+        <View style={
+            {
+                alignItems: 'center',
+                justifyContent: 'center',
+          
+            }
+        }>
+
             <View
                 style={{
-                    height: 40,
+                    // height: 40,
                     flexDirection: 'row',
-                    marginTop: StatusBar.currentHeight,
+
                     alignItems: 'center',
+                    width: SIZES.responsiveScreenWidth(97),
+                    height: SIZES.responsiveScreenWidth(7),
                     justifyContent: 'space-between',
-                    width:SIZES.width,
-                 
+                    // height: SIZES.responsiveScreenWidth(35),
                 }}
             >
-                <TouchableOpacity
-                    onPress={() => navigation.goBack()}
 
+
+                <TouchableOpacity
+
+                    activeOpacity={0.9}
                     style={{
-                        width: 30,
-                        height: 30,
+                        flexDirection: 'row',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        marginLeft:8
-                    
+
+                        marginTop: 4,
+                        borderRadius: 5,
+                        
+                        height: SIZES.responsiveScreenWidth(6),
+                        width: SIZES.responsiveScreenWidth(6),
+                    }}
+
+                    onPress={() => navigation.goBack()}
+
+                >
+
+                    <Image
+                        source={icons.back}
+                        style={{
+                            width: SIZES.responsiveScreenWidth(4.5),
+                            height: SIZES.responsiveScreenWidth(4.5),
+                            tintColor: COLORS.primary
+
+                        }} />
+                </TouchableOpacity>
+
+                <BluerSearchBar />
+
+
+
+
+
+                <TouchableOpacity
+
+                    style={{
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+
+                        marginTop: 4,
+                        borderRadius: 5,
+                       
+                        height: SIZES.responsiveScreenWidth(6.5),
+                        width: SIZES.responsiveScreenWidth(6.5),
+
+
+
+
                     }}
 
                 >
                     <Image
-                        source={icons.back}
+                        source={icons.cart}
                         style={{
-                            width: 20,
-                            height: 20,
-                            tintColor: COLORS.white,
+                            width: SIZES.responsiveScreenWidth(5.5),
+                            height: SIZES.responsiveScreenWidth(5.5),
+
+
+                            tintColor: COLORS.black,
                         }} />
+
 
                 </TouchableOpacity>
 
-                <Text style={{
-                    fontSize: 14.5,
-                    fontWeight: '800',
-                    color: COLORS.white
-                }}>
-                    {name}
-                </Text>
-
-                <View
-
-                    style={{
-                        width: 30,
-                        height: 30,
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        marginRight:8
-              
-                    }}
-
-                />
-                    
-
-              
-
-
             </View>
-
         </View>
 
     )

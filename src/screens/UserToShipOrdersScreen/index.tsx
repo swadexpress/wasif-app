@@ -8,7 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import SingleImageHeader from '../../components/SingleImageHeader';
 import Wrapper from '../../components/Wrapper';
-import UserOrderItem from './UserOrderItem';
+import UserOrderItem from '../UserOrdersScreen/UserOrderItem';
 const data = [
     {
         id: 1,
@@ -267,7 +267,7 @@ const UserOrdersScreen = () => {
                 }}
             >
                 <SingleImageHeader
-                    name={'All Orders'}
+                    name={'To-Ship Orders'}
 
                 />
 
@@ -289,13 +289,12 @@ const UserOrdersScreen = () => {
                         horizontal={false}
                         showsVerticalScrollIndicator={false}
                         renderItem={({ item, index }) => (
+                            <UserOrderItem
 
-                          <UserOrderItem 
-
-                          orderStatus={'Orders'}
-                          
-                          item={item}/>
-
+                            orderStatus={'ToShip'}
+                             item={item} 
+                             
+                             />
                         )}
 
                         ListFooterComponent={<>
