@@ -1,474 +1,652 @@
-import {COLORS, FONTS, SIZES, constants, dummyData, icons, images} from '../../constants';
 import {
+    FlatList,
     Image,
     ScrollView,
+    StatusBar,
     Text,
+    TouchableOpacity,
     View
 } from 'react-native';
-
-import CartQuantityButton from '../../components/CartQuantityButton'
-
-import IconButton from '../../components/IconButton'
-import IconLabel from '../../components/IconLabel'
-import LineDivider from '../../components/LineDivider'
-import Rating from '../../components/Rating'
-import React from 'react';
-import StepperInput from '../../components/StepperInput'
-import TextButton from '../../components/TextButton'
-import SingleImageHeader from '../../components/SingleImageHeader';
-
-const FoodDetail = ({ navigation}) => {
+import { COLORS, SIZES, icons } from '../../constants';
 
 
+import React, { useRef, useState } from 'react';
+import FastImage from 'react-native-fast-image';
+import LinearGradient from 'react-native-linear-gradient';
+import Animated, { FadeInDown } from 'react-native-reanimated';
+import ScalePress from '../../components/ScalePress';
+import Wrapper from '../../components/Wrapper';
+import Header from './Header';
+import LiveReactions from './LiveReactions';
+import RelatedItems from './RelatedItems';
 
 
-    const [foodItem,setFoodItem] =React.useState(dummyData.vegBiryani)
-    const [selectedSize,setSelectedSize] =React.useState("")
-    const [qty,setQty] =React.useState(1)
+const categoryData = [
+    {
+        name: 'Pepper julienned',
+        image: icons.bakery,
+        id: 1,
+
+    },
+    {
+        name: 'Baby spinach ',
+        image: icons.buger,
+        id: 2,
+    },
+    {
+        name: 'Masroom',
+        image: icons.coffee,
+        id: 3,
+    },
+]
 
 
 
-    function renderDetails (){
-        return(
-            <View
-                style ={{
-                    marginTop:SIZES.radius,
-                    marginBottom:SIZES.padding,
-                    paddingHorizontal:SIZES.padding
-                }}
-            
-            >
-                <View
-                    style ={{
-                        height:190,
-                        borderRadius:15,
-                        backgroundColor:COLORS.lightGray2
+
+const FoodDetail = () => {
+
+    const [data, setData] = useState<any>(categoryData)
+    const [quantity, setQuantity] = useState<any>(1)
+    // const [selectedEmoji, setSelectedEmoji] = useState('🛒');
+    const [selectedEmoji, setSelectedEmoji] = useState('❤️');
+
+    const liveReactionsFunctionRef = useRef<any>(null)
+
+    // array.push(element)
+    const handelSelectedCategory = async (id: any) => {
+
+
+
+
+        for (let i = 0; i < data.length; i++) {
+
+            if (data[i].id == id) {
+
+                if (data[i].selected == true) {
+                    data[i].selected = false;
+                    setData([...data]);
+
+                }
+                else {
+                    data[i].selected = true;
+                    setData([...data]);
+
+                }
+
+            }
+
+        }
+
+
+    }
+
+
+    return (
+
+        <Wrapper>
+            <StatusBar
+                animated={true}
+                // backgroundColor="#61dafb"
+                barStyle={'light-content'}
+                translucent
+                backgroundColor="transparent"
+            />
+            {/* <AppStatusBar /> */}
+            <Header />
+            <ScrollView showsVerticalScrollIndicator={false}>
+
+
+                <LinearGradient
+                    style={{
+                        borderBottomLeftRadius: SIZES.responsiveScreenWidth(5),
+                        borderBottomRightRadius: SIZES.responsiveScreenWidth(5),
+
+                        alignItems: 'center',
+                        elevation: 2,
+                        width: SIZES.responsiveScreenWidth(100),
+                        height: SIZES.responsiveScreenWidth(81.3),
+                    }}
+
+                    locations={[0, 1]}
+                    colors={[COLORS.lightRed, COLORS.lightBlue,]}
+                    useAngle={true}
+                    angle={0}>
+
+
+                    <FastImage
+                        source={{
+                            uri: 'https://img.freepik.com/free-photo/pizza-pizza-filled-with-tomatoes-salami-olives_140725-1200.jpg?t=st=1729867029~exp=1729870629~hmac=cc6a40cbccca45ba2cfaf7ef8dd60baa6dd3a19e4bc972d7ce139fe7d78ca980&w=2000'
+                        }}
+                        style={{
+                            width: SIZES.responsiveScreenWidth(100),
+                            height: SIZES.responsiveScreenWidth(80),
+                            borderBottomLeftRadius: SIZES.responsiveScreenWidth(5),
+                            borderBottomRightRadius: SIZES.responsiveScreenWidth(5),
+
+                        }}
+                        resizeMode='cover'
+                    />
+                </LinearGradient>
+                <Animated.View entering={FadeInDown.delay(50).duration(800)}>
+
+
+                    <Text style={{
+                        fontSize: SIZES.responsiveScreenFontSize(1.7),
+                        fontWeight: '700',
+                        color: COLORS.primary,
+                        marginHorizontal: 10,
+                        marginTop: 10,
+                        flex: 1
 
                     }}>
+                        Pizza pizza filled with tomatoes, salami and olives
 
-                        {/* Calories & Favourite */}
-
-                        <View
-                            style ={{
-                                flexDirection: "row",
-                                justifyContent:'space-between',
-                                marginTop: SIZES.base,
-                                paddingHorizontal:SIZES.radius
-                            }}
-                        
-                        
-                            >
-                                {/* Calories */}
-                                <View style={{
-                                    flexDirection: "row",
-
-                                }}>
-
-
-                                    <Image source={icons.calories}
-                                        style ={{
-                                            width:30, height:30
-                                        }}/>
-
-                                        <Text
-                                            style ={{
-                                                color:COLORS.darkGray2,
-                                                ...FONTS.body4
-
-                                            }}
-                                        
-                                        >
-                                            {foodItem?.calories} calories
-                                        </Text>
-
-
-
-                                </View>
-
-                                {/* Favourite */}
-                                <Image
-                                    source ={icons.love}
-                                    style ={{
-                                        width:20,
-                                        height:20,
-                                        tintColor:foodItem?.isFavourite ? COLORS.primary : COLORS.gray
-                                    }}/>
-
-                        </View>
-
-                        {/* Food Image */}
-                        <Image 
-                            source ={foodItem?.image}
-                            resizeMode ='contain'
-                            style ={{
-                                height:170,
-                                width:'100%'
-                            }}/>
-
-                    </View>
-
-                    {/* Food Information */}
+                    </Text>
 
                     <View style={{
-                        marginTop:SIZES.padding,
+                        alignItems: 'center',
                     }}>
-                        <Text
-                            style ={{
-                                ...FONTS.h1
-                            }}
-                        
-                        >
-                            {foodItem?.name}
-                        </Text>
-
-
-                        <Text
-                            style ={{
-                                ...FONTS.body3,
-                                marginTop:SIZES.base,
-                                color:COLORS.darkGray,
-                                textAlign:'justify'
-                               
-                            }}
-                        
-                        >
-                            {foodItem?.description}
-                        </Text>
-
-                        {/* Ratings Duration and Shipping */}
-
                         <View style={{
-                            flexDirection:'row',
-                            marginTop:SIZES.padding
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                            flexDirection: 'row',
 
+                            width: SIZES.responsiveScreenWidth(96),
                         }}>
-                            {/* Ratings */}
+                            <Text style={{
+                                fontSize: SIZES.responsiveScreenFontSize(1.9),
+                                fontWeight: '700',
+                                color: COLORS.red2,
 
-
-                            
-
-                            <IconLabel
-
-                                containerStyle ={{
-                                    backgroundColor:COLORS.primary,
-                                    
-                                    }}
-
-                                icon ={icons.star}
-                                label ='4.5'
-                                labelStyle ={{
-                                    color:COLORS.white,
-                                    
-                                }}
-                                
-                            
-                            />
-
-                            {/* duration */}
-                            <IconLabel
-                                containerStyle ={{
-                                    marginLeft:SIZES.radius,
-                                    paddingHorizontal:0,
-                                    
-                                    }}
-                                icon ={icons.clock}
-                                label ='30 Mins'
-                                iconStyle ={{
-                                    tintColor:COLORS.black
-                                }}
-                                labelStyle ={{
-                                    color:COLORS.black,
-                                    
-                                }}
-
-
-                                />
-
-
-
-
-                            {/* Shipping */}
-
-                            <IconLabel
-                                containerStyle ={{
-                                    marginLeft:SIZES.radius,
-                                    paddingHorizontal:0,
-                                    
-                                    }}
-                                icon ={icons.dollar}
-                                label ='Free Shipping'
-                                iconStyle ={{
-                                    tintColor:COLORS.black
-                                }}
-                                labelStyle ={{
-                                    color:COLORS.black,
-                                    
-                                }}
-
-
-                                />
-
-
-
-
-
-
-
-
-
-
-
-                        </View>
-
-                        {/* Sizes  */}
-
-
-                        <View
-                            style={{
-
-                                flexDirection:'row',
-                                marginTop: SIZES.padding,
-                                alignItems: 'center'
-
-
-
+                                marginTop: 10
                             }}>
-                                <Text style={{...FONTS.h3}}>Sizes:</Text>
+                                ৳ 250
+                            </Text>
+                            <View style={{
+                                flexDirection: 'row'
+                            }}>
 
-                                <View style ={{
+
+                                <View style={{
+                                    backgroundColor: COLORS.lightBlue,
+                                    marginTop: 5,
+
+                                    width: SIZES.responsiveScreenWidth(15),
+                                    height: SIZES.responsiveScreenWidth(5.5),
+
+
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
                                     flexDirection: 'row',
-                                    flexWrap: 'wrap',
-                                    marginLeft: SIZES.padding
+                                    elevation: 1,
+                                    borderRadius: 4,
+
                                 }}>
 
-                                    {dummyData.sizes.map((item,index)=>{
-                                        return(
-                                            <TextButton
-                                                key ={`Sizes-${index}`}
-                                                buttonContainerStyle ={{
-                                                    width:55,
-                                                    height:55,
-                                                    margin:SIZES.base,
-                                                    borderWidth:1,
-                                                    borderRadius:SIZES.radius,
-                                                    borderColor:selectedSize ==item.id ? COLORS.primary: COLORS.gray2,
-                                                    backgroundColor:selectedSize ==item.id ?COLORS.primary: null
-                                                }}
+                                    <Image
+                                        source={icons.delivery}
+                                        style={{
+                                            width: SIZES.responsiveScreenWidth(3.3),
+                                            height: SIZES.responsiveScreenWidth(3.3),
 
-                                                label ={item.label}
-                                                labelStyle ={{
-                                                    color:selectedSize ==item.id ?COLORS.white :COLORS.gray2,
-                                                    ...FONTS.body2
-                                                }}
-                                                onPress = {() =>setSelectedSize(item.id)}
-                                            
-                                            />
+                                            tintColor: COLORS.primary
 
 
+                                        }}
 
-                                            
-                                        )
-                                    })}
-
+                                    />
 
 
+                                    <Text style={{
+                                        fontSize: SIZES.responsiveScreenFontSize(1.2),
+                                        fontWeight: '700',
+                                        color: COLORS.primary,
+                                        marginLeft: 3
+                                    }}>
+                                        {'Free'}
+                                    </Text>
 
                                 </View>
 
 
+                                <View style={{
+
+                                    backgroundColor: COLORS.lightBlue,
+                                    marginTop: 5,
+
+                                    width: SIZES.responsiveScreenWidth(15),
+                                    height: SIZES.responsiveScreenWidth(5.5),
+
+
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    flexDirection: 'row',
+                                    marginLeft: 10,
+                                    elevation: 1,
+                                    borderRadius: 4,
+                                }}>
+                                    <Image
+                                        source={icons.star}
+                                        style={{
+                                            width: SIZES.responsiveScreenWidth(2.7),
+                                            height: SIZES.responsiveScreenWidth(2.7),
+                                            tintColor: COLORS.primary
+
+
+                                        }}
+                                    />
+                                    <Text style={{
+                                        fontSize: SIZES.responsiveScreenFontSize(1.3),
+                                        fontWeight: '900',
+                                        color: COLORS.black,
+                                        marginLeft: 3
+
+                                    }}>
+                                        4.5
+                                    </Text>
+                                    <Text style={{
+                                        fontSize: SIZES.responsiveScreenFontSize(0.9),
+
+                                        fontWeight: '900',
+                                        color: COLORS.gray
+
+                                    }}>
+                                        (23+)
+                                    </Text>
+                                </View>
+
+
+                            </View>
+
+
+
+
+
+
+
+
                         </View>
 
 
+                        <FlatList
+                            data={data}
+                            keyExtractor={(item: any) => `${item.id}`}
+
+
+                            style={{
+                                marginTop: 15
+                            }}
+
+                            ListHeaderComponent={
+                                <>
+                                    <Text style={{
+                                        fontSize: SIZES.responsiveScreenFontSize(1.5),
+                                        fontWeight: '800',
+                                        color: COLORS.primary,
+                                        marginHorizontal: 10,
+
+                                        marginBottom: 5
+
+
+                                    }}>
+                                        Add more items
+
+                                    </Text>
+
+
+                                </>
+                            }
+                            showsHorizontalScrollIndicator={false}
+                            renderItem={({ item, index }: any) => (
+                                <View style={{
+                                    alignItems: 'center'
+                                }}>
+
+
+                                    <ScalePress
 
 
 
+                                        onPress={() => {
+                                            handelSelectedCategory(item.id)
+                                        }}
+
+                                    >
+
+                                        <LinearGradient
+                                            style={{
+
+                                                alignItems: 'center',
+                                                justifyContent: 'space-between',
+                                                height: SIZES.responsiveScreenWidth(9),
+                                                width: SIZES.responsiveScreenWidth(96),
+                                                borderRadius: 4,
+                                                elevation: 1,
+                                                marginHorizontal: 3,
+                                                marginTop: 5,
+                                                marginBottom: 1,
+                                                flexDirection: 'row'
+                                            }}
+
+                                            locations={[0, 1]}
+                                            colors={[COLORS.darkRed, item.selected ? COLORS.lightOrange3 : COLORS.lightBlue,]}
+                                            useAngle={true}
+                                            angle={20}>
+                                            <View style={{
+                                                flexDirection: 'row',
+                                                alignItems: 'center',
+                                                justifyContent: 'center'
+                                            }}>
+                                                <View
+                                                    style={{
+                                                        height: SIZES.responsiveScreenWidth(8),
+                                                        width: SIZES.responsiveScreenWidth(8),
+
+                                                        // backgroundColor: COLORS.lightBlue,
+                                                        borderRadius: 2,
+                                                        // elevation: 2,
+                                                        marginLeft: 2,
+                                                        alignItems: 'center',
+                                                        justifyContent: 'center',
+
+
+
+                                                    }}
+
+
+                                                >
+
+
+
+
+                                                    <Image source={item.image}
+                                                        style={{
+                                                            height: SIZES.responsiveScreenWidth(6.7),
+                                                            width: SIZES.responsiveScreenWidth(6.7),
+
+                                                        }} />
+                                                </View>
+                                                <Text style={{
+                                                    fontSize: SIZES.responsiveScreenFontSize(1.3),
+                                                    fontWeight: '700',
+                                                    color: COLORS.black,
+                                                    marginLeft: 8
+                                                }}>
+                                                    {item.name}
+                                                </Text>
+                                            </View>
+                                            <View style={{
+                                                flexDirection: 'row',
+                                                alignItems: 'center',
+                                                justifyContent: 'center'
+                                            }}>
+                                                <Text style={{
+                                                    fontSize: SIZES.responsiveScreenFontSize(1.3),
+                                                    fontWeight: '700',
+                                                    color: COLORS.black,
+                                                    marginRight: 8
+                                                }}>
+                                                    +৳50
+                                                </Text>
+                                                <Image
+                                                    source={item.selected ? icons.check_on : icons.check_off}
+                                                    style={{
+                                                        width: SIZES.responsiveScreenWidth(4),
+                                                        height: SIZES.responsiveScreenWidth(4),
+                                                        marginRight: 10,
+                                                        tintColor: item.selected ? COLORS.lightOrange : COLORS.gray
+                                                    }}
+
+                                                />
+
+
+                                            </View>
+
+
+                                        </LinearGradient>
+                                    </ScalePress>
+
+                                </View>
+
+
+                            )}
+
+                            ListFooterComponent={
+                                <>
+                                    <RelatedItems />
+
+                                    <View style={{ marginBottom: 50 }} />
+                                </>
+                            }
+
+
+                        />
 
 
                     </View>
 
-            </View>
-        )
-    }
 
-    function renderRestaurant (){
-        return (
-            <View
-
-                style ={{
-                    flexDirection: 'row',
-                    marginVertical:SIZES.padding,
-                    paddingHorizontal:SIZES.padding,
-                    alignItems: 'center',
-
-                }}
-                >
-                    <Image 
-
-                        source ={images.profile}
-                        style ={{
-                            width:50,
-                            height:50,
-                            borderRadius: SIZES.radius
-
-                        }}
-                        
-                        
-                        />
-
-                        {/* Info */}
-
-                        <View 
-                            style ={{
-                                flex: 1,
-                                marginLeft:SIZES.radius,
-                                justifyContent: 'center',
-
-                            }}
-                        
-                        >
-                            <Text style={{
-                                ...FONTS.h3
-                            }}>SwadeXpress</Text>
-
-                            <Text style={{color:COLORS.gray,...FONTS.body3}}>1.5 KM away from you</Text>
-
-
-
-                        </View>
-
-
-                        {/* Ratings */}
-                        <Rating
-                        
-                        rating ={4}
-                        iconStyle ={{
-                            marginLeft:3
-                        }}
-                        />
-
-                       
-
-
-
-
-
-            </View>
-
-
-
-        )
-    }
-
-
-
-
-function renderFooter (){
-    return (
-        <View
-            style ={{
-                flexDirection: 'row',
-                height:120,
-                alignItems: 'center',
-                paddingHorizontal:SIZES.padding,
-                paddingBottom:SIZES.radius
-            }}
-        
-        >
-
-            {/* Stepper Input */}
-
-            <StepperInput 
-                value ={qty}
-                onAdd ={()=>{
-                    setQty(qty+1)
-                }}
-
-                onMinus ={()=>{
-                    if(qty >1 ){
-                        setQty(qty-1)
-                    }
-                }}
-            
-            
-            />
-            {/* TextButton  */}
-
-            <TextButton
-                buttonContainerStyle ={{
-                    flex: 1,
-                    flexDirection:'row',
-                    height:60,
-                    marginLeft:SIZES.radius,
-                    borderRadius:SIZES.radius,
-                    backgroundColor:COLORS.primary,
-                    paddingHorizontal:SIZES.radius
-                }}
-                label ='Buy Now'
-                label2='৳99.00'
-
-                onPress ={()=>{
-                    navigation.navigate('MyCart')
-
-
-                }}
-
-                
-            
-            
-            />
-
-
-        </View>
-        
-
-    )
-}
-
-
-
-
-
-    return (
-        <View
-            style={{
-                flex: 1,
-                backgroundColor:COLORS.white
-            }}
-        >
-
-            {/* Header */}
-            <SingleImageHeader
-                name={'Check Out'}
-
-            />
-
-
-
-            {/* Body  */}
-
-            <ScrollView>
-                {/* Food Details */}
-                {renderDetails()}
-
-                <LineDivider/>
-
-                {/* Restaurant  */}
-
-                {renderRestaurant()}
-
-                <LineDivider/>
-
-
+                </Animated.View>
 
 
             </ScrollView>
 
-{/* Footer  */}
+            <View style={{
+                position: 'absolute',
+                bottom: 0,
+                left: 10,
+                right: 10,
+                // zIndex:999,
+                alignItems: 'center',
+                justifyContent: 'center'
+            }}>
+                <View
+                    style={{
+                        // borderBottomLeftRadius: SIZES.responsiveScreenWidth(5),
+                        borderRadius: 8,
 
-{renderFooter()}
+                        alignItems: 'center',
 
-           
-        </View>
+                        justifyContent: 'space-between',
+                        flexDirection: 'row',
+                        // elevation: 1,
+                        width: SIZES.responsiveScreenWidth(96),
+                        height: SIZES.responsiveScreenWidth(9),
+
+
+                    }}
+
+                // locations={[0, 1]}
+                // colors={[COLORS.darkRed, COLORS.lightBlue,]}
+                // useAngle={true}
+                // angle={10}
+
+
+                >
+
+
+
+
+
+
+
+
+
+
+                    {/* ======== cart update============ */}
+
+                    <LinearGradient
+                        style={{
+                            // borderBottomLeftRadius: SIZES.responsiveScreenWidth(5),
+                            borderRadius: 5,
+
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            flexDirection: 'row',
+                            elevation: 1,
+                            width: SIZES.responsiveScreenWidth(24),
+                            height: SIZES.responsiveScreenWidth(7),
+
+
+                        }}
+
+                        locations={[0, 1]}
+                        colors={[COLORS.darkRed, COLORS.lightBlue,]}
+                        useAngle={true}
+                        angle={190}>
+
+                        <View style={{
+                            width: SIZES.responsiveScreenWidth(17.8),
+                            height: SIZES.responsiveScreenWidth(4),
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                            flexDirection: 'row',
+
+
+                        }}>
+
+                            <TouchableOpacity
+                                onPress={() => {
+                                    if (quantity > 1) {
+                                        setQuantity(quantity - 1)
+                                    }
+
+                                }}
+
+
+                                style={{
+                                    width: SIZES.responsiveScreenWidth(5.4),
+                                    height: SIZES.responsiveScreenWidth(5.4),
+
+                                    // backgroundColor: quantity > 1 ? COLORS.darkRed : COLORS.gray3,
+                                    backgroundColor: COLORS.darkRed,
+
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    elevation: 0.9,
+                                    borderRadius: 3
+                                }}>
+
+
+                                <Image
+                                    source={icons.minus}
+                                    style={{
+                                        width: SIZES.responsiveScreenWidth(3.4),
+                                        height: SIZES.responsiveScreenWidth(3.4),
+                                        // tintColor: quantity > 1 ? COLORS.red2 : COLORS.white,
+                                        tintColor: COLORS.red2,
+
+                                    }}
+                                />
+
+                            </TouchableOpacity>
+
+                            <Text style={{
+                                fontSize: SIZES.responsiveScreenFontSize(1.4),
+                                fontWeight: '800',
+                                color: COLORS.primary
+                            }}>
+                                {quantity}
+                            </Text>
+
+                            <TouchableOpacity
+
+                                onPress={() => {
+                                    setQuantity(quantity + 1)
+                                }}
+                                style={{
+                                    width: SIZES.responsiveScreenWidth(5.4),
+                                    height: SIZES.responsiveScreenWidth(5.4),
+                                    backgroundColor: COLORS.lightYellow,
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    borderRadius: 3,
+                                    elevation: 0.4
+                                }}>
+
+
+                                <Image
+                                    source={icons.plus}
+                                    style={{
+                                        width: SIZES.responsiveScreenWidth(3.4),
+                                        height: SIZES.responsiveScreenWidth(3.4),
+                                        tintColor: COLORS.orange,
+
+                                    }}
+                                />
+
+                            </TouchableOpacity>
+
+
+                        </View>
+
+                    </LinearGradient>
+                    {/* ============================ */}
+                    <TouchableOpacity
+
+                        activeOpacity={0.9}
+
+                        onPress={() => {
+                            liveReactionsFunctionRef.current(selectedEmoji)
+
+                        }}
+                    >
+
+                        <LinearGradient
+                            style={{
+                                // borderBottomLeftRadius: SIZES.responsiveScreenWidth(5),
+                                borderRadius: 8,
+
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexDirection: 'row',
+                                elevation: 1,
+                                width: SIZES.responsiveScreenWidth(29),
+                                height: SIZES.responsiveScreenWidth(7),
+
+
+                            }}
+
+                            locations={[0, 1]}
+                            colors={[COLORS.darkRed, COLORS.lightBlue,]}
+                            useAngle={true}
+                            angle={190}>
+
+
+
+                            <Image
+                                source={icons.cart}
+                                style={{
+                                    width: SIZES.responsiveScreenWidth(4),
+                                    height: SIZES.responsiveScreenWidth(4),
+                                    tintColor: COLORS.primary,
+
+                                }}
+                            />
+                            <Text style={{
+                                fontSize: SIZES.responsiveScreenFontSize(1.4),
+                                fontWeight: '700',
+                                color: COLORS.primary,
+                                marginLeft: 5
+                            }}>
+                                Add to cart
+                            </Text>
+
+
+
+
+
+                        </LinearGradient>
+                    </TouchableOpacity>
+
+                    <LiveReactions liveReactionsFunctionRef={liveReactionsFunctionRef} />
+
+
+                </View>
+
+            </View>
+
+        </Wrapper>
     )
 }
 
