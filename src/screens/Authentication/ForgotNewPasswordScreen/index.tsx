@@ -9,6 +9,7 @@ import { COLORS, SIZES, animations, icons } from '../../../constants';
 import { useNavigation } from '@react-navigation/native';
 import LottieView from 'lottie-react-native';
 import React, { useState } from 'react';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import LinearGradient from 'react-native-linear-gradient';
 import SingleImageHeader from '../../../components/SingleImageHeader';
 import Wrapper from '../../../components/Wrapper';
@@ -45,22 +46,25 @@ const SignIn = () => {
             />
 
 
-            <View
-                style={{
-                    flex: 1,
+            <KeyboardAwareScrollView
 
+                contentContainerStyle={{
+                    flexGrow: 1,
                     alignItems: 'center',
-                    // justifyContent: 'center'
+                    justifyContent: 'center'
                 }}
-            >
+
+                showsVerticalScrollIndicator={false}>
+
+
 
 
                 <LottieView
                     source={animations.password_change_success}
                     style={{
-                        width: SIZES.responsiveScreenWidth(45),
-                        height: SIZES.responsiveScreenWidth(45),
-                        marginTop: '6%'
+                        width: SIZES.responsiveScreenWidth(48),
+                        height: SIZES.responsiveScreenWidth(48),
+
 
                     }}
                     loop={true}
@@ -69,99 +73,79 @@ const SignIn = () => {
                     hardwareAccelerationAndroid
                 />
 
-
-
-
-
-
                 <View style={{
-
                     alignItems: 'center',
-                    marginTop: SIZES.responsiveScreenHeight(5)
+                    justifyContent: 'center',
                 }}>
 
 
-
-
-                    <View style={{
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                    }}>
-
-
-                        <FromInput
-                            label="New Password"
-                            placeholder="New Password"
-                            secureTextEntry={!showPassword}
-                            value={password}
-                            onChange={(value: any) => {
-                                setPassword(value)
+                    <FromInput
+                        label="New Password"
+                        placeholder="New Password"
+                        secureTextEntry={!showPassword}
+                        value={password}
+                        onChange={(value: any) => {
+                            setPassword(value)
+                        }}
+                        appendComponent={
+                            <TouchableOpacity style={{
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                height: SIZES.responsiveScreenWidth(9),
+                                width: SIZES.responsiveScreenWidth(9),
                             }}
-                            appendComponent={
-                                <TouchableOpacity style={{
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    height: SIZES.responsiveScreenWidth(9),
-                                    width: SIZES.responsiveScreenWidth(9),
-                                }}
-                                    onPress={() => setShowPassword(!showPassword)}
-                                >
-                                    <Image
-                                        source={showPassword ? icons.eye_close : icons.eye}
-                                        style={{
-                                            width: SIZES.responsiveScreenWidth(4.2),
-                                            height: SIZES.responsiveScreenWidth(4.2),
-                                            tintColor: showPassword ? COLORS.primary : COLORS.gray,
+                                onPress={() => setShowPassword(!showPassword)}
+                            >
+                                <Image
+                                    source={showPassword ? icons.eye_close : icons.eye}
+                                    style={{
+                                        width: SIZES.responsiveScreenWidth(4.2),
+                                        height: SIZES.responsiveScreenWidth(4.2),
+                                        tintColor: showPassword ? COLORS.primary : COLORS.gray,
 
-                                        }}
-                                    />
-                                </TouchableOpacity>
-                            }
+                                    }}
+                                />
+                            </TouchableOpacity>
+                        }
 
-                        />
-                        <FromInput
-                            label="Confirm Password"
-                            placeholder="Confirm Password"
-                            secureTextEntry={!showPassword}
-                            value={confirmPassword}
-                            onChange={(value: any) => {
-                                setConfirmPassword(value)
+                    />
+                    <FromInput
+                        label="Confirm Password"
+                        placeholder="Confirm Password"
+                        secureTextEntry={!showPassword}
+                        value={confirmPassword}
+                        onChange={(value: any) => {
+                            setConfirmPassword(value)
+                        }}
+                        appendComponent={
+                            <TouchableOpacity style={{
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                height: SIZES.responsiveScreenWidth(9),
+                                width: SIZES.responsiveScreenWidth(9),
                             }}
-                            appendComponent={
-                                <TouchableOpacity style={{
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    height: SIZES.responsiveScreenWidth(9),
-                                    width: SIZES.responsiveScreenWidth(9),
-                                }}
-                                    onPress={() => setShowPassword(!showPassword)}
-                                >
-                                    <Image
-                                        source={showPassword ? icons.eye_close : icons.eye}
-                                        style={{
-                                            width: SIZES.responsiveScreenWidth(4.2),
-                                            height: SIZES.responsiveScreenWidth(4.2),
-                                            tintColor: showPassword ? COLORS.primary : COLORS.gray,
+                                onPress={() => setShowPassword(!showPassword)}
+                            >
+                                <Image
+                                    source={showPassword ? icons.eye_close : icons.eye}
+                                    style={{
+                                        width: SIZES.responsiveScreenWidth(4.2),
+                                        height: SIZES.responsiveScreenWidth(4.2),
+                                        tintColor: showPassword ? COLORS.primary : COLORS.gray,
 
-                                        }}
-                                    />
-                                </TouchableOpacity>
-                            }
+                                    }}
+                                />
+                            </TouchableOpacity>
+                        }
 
-                        />
-
-
-
-                    </View>
-
-
+                    />
 
 
                     <TouchableOpacity
                         style={{
                             marginTop: '8%',
                         }}
-                        onPress={() => navigation.navigate('FoodieHomeScreen')}
+                        onPress={() => navigation.navigate('SignUpScreen')}
                         activeOpacity={0.9}>
                         <LinearGradient
                             style={{
@@ -191,19 +175,9 @@ const SignIn = () => {
 
 
                     </TouchableOpacity>
-
-
-
-
-
-
-
                 </View>
 
-
-
-
-            </View>
+            </KeyboardAwareScrollView>
         </Wrapper>
 
     )

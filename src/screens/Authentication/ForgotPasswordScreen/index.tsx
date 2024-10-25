@@ -49,7 +49,7 @@ const SignIn = () => {
                     flex:1,
 
                     alignItems: 'center',
-                    // justifyContent: 'center'
+                    justifyContent: 'center'
                 }}
             >
 
@@ -59,7 +59,7 @@ const SignIn = () => {
                     style={{
                         width: SIZES.responsiveScreenWidth(50),
                         height: SIZES.responsiveScreenWidth(50),
-                        marginTop:'6%'
+                        marginTop:-SIZES.responsiveScreenHeight(15)
 
                     }}
                     loop={true}
@@ -120,12 +120,7 @@ const SignIn = () => {
                             />
 
 
-
                         </View>
-
-
-
-
                         <TouchableOpacity
                             style={{
                                 marginTop: '8%',
@@ -160,12 +155,6 @@ const SignIn = () => {
 
 
                         </TouchableOpacity>
-
-
-
-
-
-
 
                     </View>
 

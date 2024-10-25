@@ -42,21 +42,24 @@ export function PhoneLogInScreen() {
         />
 
 
+        <KeyboardAwareScrollView
 
-        <View
-          style={{
 
+          contentContainerStyle={{
+            flexGrow: 1,
             alignItems: 'center',
-            justifyContent: 'center',
-            marginTop: SIZES.responsiveScreenHeight(1)
+            justifyContent: 'center'
 
+          }}
 
-          }}>
+          showsVerticalScrollIndicator={false}>
           <LottieView
             source={animations.location}
             style={{
               width: SIZES.responsiveScreenWidth(50),
               height: SIZES.responsiveScreenWidth(50),
+              marginBottom:'5%',
+              marginTop:'-5%'
 
             }}
             loop={true}
@@ -68,89 +71,80 @@ export function PhoneLogInScreen() {
 
 
 
-          <KeyboardAwareScrollView
 
 
-            contentContainerStyle={{
-              marginTop: '8%'
 
-
+          <PhoneInput
+            ref={phoneInput}
+            defaultValue={value}
+            defaultCode="BD"
+            maxLength={11}
+            onChangeFormattedText={(number, code) => {
+              setValue(number);
+              setCode(code);
+              console.log(number, code);
             }}
+            withDarkTheme
+            withShadow
+            autoFocus
+          />
 
-            showsVerticalScrollIndicator={false}>
 
 
-            <PhoneInput
-              ref={phoneInput}
-              defaultValue={value}
-              defaultCode="BD"
-              maxLength={11}
-              onChangeFormattedText={(number, code) => {
-                setValue(number);
-                setCode(code);
-                console.log(number, code);
+          <View style={{
+            alignItems: 'center',
+
+          }}>
+
+
+            <TouchableOpacity
+              style={{
+                marginTop: '8%',
               }}
-              withDarkTheme
-              withShadow
-              autoFocus
-            />
+
+              onPress={handelLogin}
 
 
+              activeOpacity={0.9}>
 
-            <View style={{
-              alignItems: 'center',
-             
-            }}>
-
-
-              <TouchableOpacity
+              <LinearGradient
                 style={{
-                  marginTop: '8%',
+                  backgroundColor: COLORS.lightGray2,
+                  borderRadius: 5,
+
+                  width: SIZES.responsiveScreenWidth(80),
+                  height: SIZES.responsiveScreenWidth(8.5),
+                  elevation: 1,
+                  justifyContent: 'center',
+                  alignItems: 'center'
                 }}
 
-                onPress={handelLogin}
+                locations={[0, 1,]}
+                colors={[COLORS.darkRed, COLORS.lightBlue,]}
+                useAngle={true}
+                angle={90}>
+
+                <Text style={{
+                  fontSize: SIZES.responsiveScreenFontSize(1.8),
+                  fontWeight: '800',
+                  color: COLORS.primary,
+
+                }}>
+                  Register
+                </Text>
+
+              </LinearGradient>
 
 
-                activeOpacity={0.9}>
-
-                <LinearGradient
-                  style={{
-                    backgroundColor: COLORS.lightGray2,
-                    borderRadius: 5,
-
-                    width: SIZES.responsiveScreenWidth(80),
-                    height: SIZES.responsiveScreenWidth(8.5),
-                    elevation: 1,
-                    justifyContent: 'center',
-                    alignItems: 'center'
-                  }}
-
-                  locations={[0, 1,]}
-                  colors={[COLORS.darkRed, COLORS.lightBlue,]}
-                  useAngle={true}
-                  angle={90}>
-
-                  <Text style={{
-                    fontSize: SIZES.responsiveScreenFontSize(1.8),
-                    fontWeight: '800',
-                    color: COLORS.primary,
-
-                  }}>
-                    Register
-                  </Text>
-
-                </LinearGradient>
-
-
-              </TouchableOpacity>
+            </TouchableOpacity>
 
 
 
 
-              <ContinueWithOtherButton isUser={true} />
-            </View>
-          </KeyboardAwareScrollView>
-        </View>
+            <ContinueWithOtherButton isUser={true} />
+          </View>
+        </KeyboardAwareScrollView>
+
 
       </Wrapper>
     </>

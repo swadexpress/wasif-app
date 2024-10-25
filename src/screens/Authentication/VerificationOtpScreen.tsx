@@ -48,18 +48,19 @@ const VerificationOtpScreen = () => {
 
           />
 
-          <View
-            style={{
+          <KeyboardAwareScrollView
+
+            contentContainerStyle={{
+              flexGrow: 1,
               alignItems: 'center',
-              justifyContent: 'center',
-              marginTop: '10%'
-
-
-
-            }}>
+              justifyContent: 'center'
+            }}
+            showsVerticalScrollIndicator={false}>
             <LottieView
               source={animations.otp}
               style={{
+                marginTop: -SIZES.responsiveScreenHeight(10),
+
                 width: SIZES.responsiveScreenWidth(50),
                 height: SIZES.responsiveScreenWidth(50),
 
@@ -72,134 +73,121 @@ const VerificationOtpScreen = () => {
 
 
 
-            <KeyboardAwareScrollView
 
-              contentContainerStyle={{
+            <LinearGradient
+              style={{
+                backgroundColor: COLORS.lightGray2,
+                borderRadius: 5,
+                marginTop: '5%',
+
+                width: SIZES.responsiveScreenWidth(83),
+                height: SIZES.responsiveScreenWidth(15),
 
 
+                elevation: 0.7,
+
+                justifyContent: 'center',
+                alignItems: 'center'
               }}
 
-              showsVerticalScrollIndicator={false}>
+              locations={[0, 1,]}
+              colors={[COLORS.lightRed, COLORS.lightBlue,]}
+              useAngle={true}
+              angle={270}>
 
-              <LinearGradient
-                style={{
-                  backgroundColor: COLORS.lightGray2,
-                  borderRadius: 5,
-                  marginTop: '10%',
+              <OTPTextInput
 
-                  width: SIZES.responsiveScreenWidth(83),
-                  height: SIZES.responsiveScreenWidth(15),
-
-
-                  elevation: 0.7,
-
-                  justifyContent: 'center',
-                  alignItems: 'center'
+                ref={e => (otpInput = e)}
+                handleTextChange={(e) => {
+                  console.log(e)
                 }}
+                defaultValue={'577065'}
+              />
 
-                locations={[0, 1,]}
-                colors={[COLORS.lightRed, COLORS.lightBlue,]}
-                useAngle={true}
-                angle={270}>
+            </LinearGradient>
 
-                <OTPTextInput
+            <View style={{
+              alignItems: 'center',
 
-                  ref={e => (otpInput = e)}
-                  handleTextChange={(e) => {
-                    console.log(e)
-                  }}
-                  defaultValue={'577065'}
-                />
+            }}>
 
-              </LinearGradient>
+              <TouchableOpacity
+                style={{
+                  marginTop: '7%',
+                }}
+                onPress={() => navigation.navigate('FillYourProfileScreen')}
 
-              <View style={{
-                alignItems: 'center',
+                activeOpacity={0.9}>
 
-              }}>
-
-                <TouchableOpacity
+                <LinearGradient
                   style={{
-                    marginTop: '7%',
-                  }}
-                  onPress={() => navigation.navigate('FillYourProfileScreen')}
+                    backgroundColor: COLORS.lightGray2,
+                    borderRadius: 5,
 
-                  activeOpacity={0.9}>
-
-                  <LinearGradient
-                    style={{
-                      backgroundColor: COLORS.lightGray2,
-                      borderRadius: 5,
-
-                      width: SIZES.responsiveScreenWidth(80),
-                      height: SIZES.responsiveScreenWidth(8.5),
+                    width: SIZES.responsiveScreenWidth(80),
+                    height: SIZES.responsiveScreenWidth(8.5),
 
 
-                      elevation: 1.5,
+                    elevation: 1.5,
 
-                      justifyContent: 'center',
-                      alignItems: 'center'
-                    }}
-
-                    locations={[0, 1,]}
-                    colors={[COLORS.darkRed, COLORS.lightBlue,]}
-                    useAngle={true}
-                    angle={90}>
-
-                    <Text style={{
-                      fontSize: SIZES.responsiveScreenFontSize(1.8),
-                      fontWeight: '800',
-                      color: COLORS.primary,
-
-                    }}>
-                      Verify
-                    </Text>
-
-                  </LinearGradient>
-
-
-                </TouchableOpacity>
-
-
-
-
-                <TouchableOpacity
-                  style={{
-
-                    marginTop: '5%'
+                    justifyContent: 'center',
+                    alignItems: 'center'
                   }}
 
-                  // onPress={() => navigation.navigate('OnBoardingCategoryScreen')}
-
-
-                  activeOpacity={0.9}>
+                  locations={[0, 1,]}
+                  colors={[COLORS.darkRed, COLORS.lightBlue,]}
+                  useAngle={true}
+                  angle={90}>
 
                   <Text style={{
-                    fontWeight: '700',
-                    fontSize: SIZES.responsiveScreenFontSize(1.5),
-                    color: COLORS.red,
-                    marginHorizontal: 15,
+                    fontSize: SIZES.responsiveScreenFontSize(1.8),
+                    fontWeight: '800',
+                    color: COLORS.primary,
 
                   }}>
-                    Didn't receive code?
-                    <Text style={{
-                      fontWeight: '800',
-                      fontSize: SIZES.responsiveScreenFontSize(1.6),
-                      color: COLORS.primary,
-
-                    }}>{`  Resed (${timer}s)`}
-                    </Text>
+                    Verify
                   </Text>
-                </TouchableOpacity>
-              </View>
-            </KeyboardAwareScrollView>
+
+                </LinearGradient>
+
+
+              </TouchableOpacity>
 
 
 
 
+              <TouchableOpacity
+                style={{
+
+                  marginTop: '5%'
+                }}
+
+                // onPress={() => navigation.navigate('OnBoardingCategoryScreen')}
 
 
-          </View>
+                activeOpacity={0.9}>
+
+                <Text style={{
+                  fontWeight: '700',
+                  fontSize: SIZES.responsiveScreenFontSize(1.5),
+                  color: COLORS.red,
+                  marginHorizontal: 15,
+
+                }}>
+                  Didn't receive code?
+                  <Text style={{
+                    fontWeight: '800',
+                    fontSize: SIZES.responsiveScreenFontSize(1.6),
+                    color: COLORS.primary,
+
+                  }}>{`  Resed (${timer}s)`}
+                  </Text>
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </KeyboardAwareScrollView>
+
+
 
         </Wrapper>
 

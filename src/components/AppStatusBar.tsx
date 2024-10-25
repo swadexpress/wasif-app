@@ -1,6 +1,5 @@
 import React from 'react';
-import {StyleSheet, StatusBar, View} from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
+import { StatusBar, View } from 'react-native';
 
 const AppStatusBar = () => {
   return (
