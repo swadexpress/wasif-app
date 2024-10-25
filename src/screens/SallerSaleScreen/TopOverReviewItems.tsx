@@ -1,8 +1,7 @@
-import { FlatList, Image, Text, TouchableOpacity, View } from "react-native"
-import FastImage from "react-native-fast-image"
-import { COLORS, SIZES, icons, images } from "../../constants"
-import * as Progress from 'react-native-progress';
+import { FlatList, Text, TouchableOpacity, View } from "react-native";
+import FastImage from "react-native-fast-image";
 import AnimatedProgressWheel from 'react-native-progress-wheel';
+import { COLORS, SIZES, images } from "../../constants";
 
 
 const data = [
@@ -46,7 +45,7 @@ const data = [
 
 ]
 
-const AllProducts = ({ }: any) => {
+const TopOverReviewItems = ({ }: any) => {
 
     return (
         <View style={{
@@ -60,7 +59,8 @@ const AllProducts = ({ }: any) => {
 
 
             <Text style={{
-                fontSize: 15,
+                fontSize: SIZES.responsiveScreenFontSize(1.8),
+
                 alignSelf: 'flex-start',
                 fontWeight: '700',
                 color: COLORS.black,
@@ -96,7 +96,7 @@ const AllProducts = ({ }: any) => {
                             backgroundColor: COLORS.lightBlue2,
                             borderRadius: 7,
                             marginTop: 8,
-                            width: 170,
+                            width: SIZES.responsiveScreenWidth(42),
                             // elevation: 0.5,
                             marginRight: 8,
                             marginBottom: 1,
@@ -109,8 +109,8 @@ const AllProducts = ({ }: any) => {
                             <FastImage
 
                                 style={{
-                                    width: 170,
-                                    height: 95,
+                                    width: SIZES.responsiveScreenWidth(41.9),
+                                    height: SIZES.responsiveScreenWidth(25),
                                     borderTopLeftRadius: 10,
                                     borderTopRightRadius: 10
                                 }}
@@ -125,16 +125,17 @@ const AllProducts = ({ }: any) => {
                                 alignItems: 'center',
                                 justifyContent: 'space-between',
                                 marginTop: 5,
-                                marginHorizontal:5,
-                                marginBottom:5,
+                                marginHorizontal: 5,
+                                marginBottom: 5,
 
 
                             }}>
-                                <View style ={{
-                                    marginLeft:3
+                                <View style={{
+                                    marginLeft: 3
                                 }}>
                                     <Text style={{
-                                        fontSize: 12,
+                                        fontSize: SIZES.responsiveScreenFontSize(1.4),
+
                                         fontWeight: '700',
                                         color: COLORS.black,
 
@@ -142,11 +143,11 @@ const AllProducts = ({ }: any) => {
                                         {`${item.name.slice(0, 10)}...`}
                                     </Text>
                                     <Text style={{
-                                        fontSize: 17,
+                                        fontSize: SIZES.responsiveScreenFontSize(1.8),
                                         fontWeight: '700',
                                         color: COLORS.black,
-                                        marginTop:4,
-                                       
+                                        marginTop: 4,
+
                                     }}>
                                         {`${index + 99}`}
                                     </Text>
@@ -193,4 +194,4 @@ const AllProducts = ({ }: any) => {
 
 }
 
-export default AllProducts
+export default TopOverReviewItems

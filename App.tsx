@@ -118,8 +118,9 @@ const App = () => {
 
                         detachPreviousScreen: false,
                     }}
-                    initialRouteName={'FoodDetailsScreen'}
+                    initialRouteName={'OnBoardingScreen'}
                 >
+                    
                     <Stack.Screen
                         name="OnBoardingScreen"
                         component={OnBoardingScreen}

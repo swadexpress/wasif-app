@@ -1,14 +1,8 @@
-import { FlatList, Image, Text, TouchableOpacity, View } from "react-native"
-import FastImage from "react-native-fast-image"
-import { COLORS, SIZES, icons, images } from "../../constants"
+import { Text, View } from "react-native";
 import {
-    LineChart,
-    BarChart,
-    PieChart,
-    ProgressChart,
-    ContributionGraph,
-    StackedBarChart
+    LineChart
 } from "react-native-chart-kit";
+import { COLORS, SIZES } from "../../constants";
 
 
 const Chart = ({ }: any) => {
@@ -17,8 +11,8 @@ const Chart = ({ }: any) => {
     return (
         <View>
             <Text style={{
-                fontSize: 14,
-                fontWeight: '700',
+                fontSize: SIZES.responsiveScreenFontSize(1.8),
+                fontWeight: '800',
                 color: COLORS.primary
             }}>Sale Graph</Text>
             <LineChart
@@ -37,9 +31,9 @@ const Chart = ({ }: any) => {
                         }
                     ]
                 }}
-                width={SIZES.width * 0.96} // from react-native
+                width={SIZES.responsiveScreenWidth(96)} // from react-native
                 height={220}
-                yAxisLabel="$"
+                yAxisLabel="৳"
                 yAxisSuffix="k"
                 yAxisInterval={1} // optional, defaults to 1
                 chartConfig={{
@@ -61,7 +55,7 @@ const Chart = ({ }: any) => {
                 bezier
                 style={{
                     marginVertical: 8,
-                    borderRadius: 16
+                    borderRadius: 10
                 }}
             />
         </View>

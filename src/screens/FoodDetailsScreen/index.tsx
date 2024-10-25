@@ -10,12 +10,13 @@ import {
 import { COLORS, SIZES, icons } from '../../constants';
 
 
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import FastImage from 'react-native-fast-image';
 import LinearGradient from 'react-native-linear-gradient';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import ScalePress from '../../components/ScalePress';
 import Wrapper from '../../components/Wrapper';
+import LoadingScreen from '../LoadingScreen';
 import Header from './Header';
 import LiveReactions from './LiveReactions';
 import RelatedItems from './RelatedItems';
@@ -52,6 +53,19 @@ const FoodDetail = () => {
 
     const liveReactionsFunctionRef = useRef<any>(null)
 
+
+
+    const [isLoading, setLoading] = useState(false)
+
+
+
+
+    useEffect(() => {
+        setLoading(false)
+        setTimeout(() => {
+            setLoading(true)
+        }, 500)
+    }, [])
     // array.push(element)
     const handelSelectedCategory = async (id: any) => {
 
@@ -82,6 +96,10 @@ const FoodDetail = () => {
 
 
     return (
+
+        <>
+        {isLoading ?
+
 
         <Wrapper>
             <StatusBar
@@ -433,7 +451,7 @@ const FoodDetail = () => {
 
             <View style={{
                 position: 'absolute',
-                bottom: 0,
+                bottom: 4,
                 left: 10,
                 right: 10,
                 // zIndex:999,
@@ -647,6 +665,12 @@ const FoodDetail = () => {
             </View>
 
         </Wrapper>
+
+:
+
+<LoadingScreen />
+}
+</>
     )
 }
 

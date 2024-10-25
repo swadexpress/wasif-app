@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native"
 import { FlatList, Image, Text, View } from "react-native"
 import FastImage from "react-native-fast-image"
 import LinearGradient from "react-native-linear-gradient"
@@ -40,6 +41,9 @@ const data = [
 
 const NearbyFoods = ({ recommends }: any) => {
 
+
+    const navigation =useNavigation<any>()
+
     console.log('dd')
     return (
         <View style={{
@@ -73,6 +77,8 @@ const NearbyFoods = ({ recommends }: any) => {
                 renderItem={({ item, index }) => (
 
                     <ScalePress
+
+                    onPress={()=>navigation.navigate('FoodDetailsScreen')}
 
 
                         >

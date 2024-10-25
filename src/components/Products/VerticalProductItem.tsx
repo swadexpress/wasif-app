@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native"
 import { Image, Text, View } from "react-native"
 import FastImage from "react-native-fast-image"
 import LinearGradient from "react-native-linear-gradient"
@@ -48,9 +49,13 @@ const data = [
 
 const VerticalProductItem = ({ item }: any) => {
 
+    const navigation =useNavigation<any>()
+
     return (
 
         <ScalePress
+        onPress={()=>navigation.navigate('FoodDetailsScreen')}
+
         >
 
             <LinearGradient
