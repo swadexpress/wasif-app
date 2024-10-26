@@ -1,5 +1,6 @@
 import {
     Image,
+    StyleSheet,
     Text,
     TouchableOpacity,
     View
@@ -143,20 +144,11 @@ const SignIn = () => {
 
 
                     <View
-                        style={{
-
-                            flex: 1,
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                        }}
+                        style={styles.mainContainer}
                     >
                         <LottieView
                             source={animations.logo}
-                            style={{
-                                width: SIZES.responsiveScreenWidth(43),
-                                height: SIZES.responsiveScreenWidth(43),
-
-                            }}
+                            style={styles.lottieViewContainer}
                             loop={true}
                             autoPlay
                             cacheComposition={true}
@@ -167,23 +159,14 @@ const SignIn = () => {
 
 
                         <KeyboardAwareScrollView
-                            contentContainerStyle={{
-                                flexGrow: 1,
-                                justifyContent: 'center'
-                            }}
+                            contentContainerStyle={styles.keyboardAwareContainer}
 
                         >
-
-
 
                             <View style={{
                                 alignItems: 'center',
                                 justifyContent: 'center',
-
                             }}>
-
-
-
 
                                 <FromInput
                                     label="Email"
@@ -286,38 +269,17 @@ const SignIn = () => {
                                     style={{
                                         marginTop: '5%',
                                     }}
-
                                     onPress={handelSignUpScreen}
-
-
                                     activeOpacity={0.9}>
 
                                     <LinearGradient
-                                        style={{
-                                            backgroundColor: COLORS.lightGray2,
-                                            borderRadius: 5,
-
-                                            width: SIZES.responsiveScreenWidth(80),
-                                            height: SIZES.responsiveScreenWidth(8.5),
-
-
-                                            elevation: 1.5,
-
-                                            justifyContent: 'center',
-                                            alignItems: 'center'
-                                        }}
+                                        style={styles.linearGradientButton}
 
                                         locations={[0, 1,]}
                                         colors={[COLORS.darkRed, COLORS.lightBlue,]}
                                         useAngle={true}
                                         angle={90}>
-
-                                        <Text style={{
-                                            fontSize: SIZES.responsiveScreenFontSize(1.8),
-                                            fontWeight: '800',
-                                            color: COLORS.primary,
-
-                                        }}>
+                                        <Text style={styles.linearGradientButtonText}>
                                             Register
                                         </Text>
 
@@ -353,5 +315,49 @@ const SignIn = () => {
 
     )
 }
+
+
+
+
+
+
+const styles = StyleSheet.create({
+    mainContainer: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    lottieViewContainer: {
+        width: SIZES.responsiveScreenWidth(43),
+        height: SIZES.responsiveScreenWidth(43),
+    },
+    keyboardAwareContainer: {
+        flexGrow: 1,
+        justifyContent: 'center'
+
+    },
+
+
+    linearGradientButton: {
+        backgroundColor: COLORS.lightGray2,
+        borderRadius: 5,
+        width: SIZES.responsiveScreenWidth(80),
+        height: SIZES.responsiveScreenWidth(8.5),
+        elevation: 1.5,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+
+    linearGradientButtonText: {
+        fontSize: SIZES.responsiveScreenFontSize(1.8),
+        fontWeight: '800',
+        color: COLORS.primary,
+    },
+
+
+}
+)
+
+
 
 export default SignIn;

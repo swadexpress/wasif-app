@@ -1,5 +1,6 @@
 import {
     Image,
+    StyleSheet,
     Text,
     TouchableOpacity,
     View
@@ -29,16 +30,9 @@ const CardItem = ({ item, isSelected, onPress }: any) => {
 
 
             <LinearGradient
-                style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    width: SIZES.responsiveScreenWidth(96),
-                    height: SIZES.responsiveScreenWidth(14),
-                    elevation: 1,
-                    backgroundColor: COLORS.lightBlue,
-                    borderRadius: 6,
-
-                }}
+                style={
+                    styles.linearGradientContainer
+                }
 
                 locations={[0, 1,]}
                 colors={[COLORS.darkRed, COLORS.lightBlue,]}
@@ -50,38 +44,25 @@ const CardItem = ({ item, isSelected, onPress }: any) => {
 
                 {/* Cards Image */}
                 <View
-                    style={{
-                        width: SIZES.responsiveScreenWidth(12),
-                        height: SIZES.responsiveScreenWidth(12),
-                        alignItems: "center",
-                        justifyContent: "center",
-                        // elevation: 1,
-                        borderRadius: 5,
-                        // backgroundColor: COLORS.lightBlue,
-                        marginLeft: 5,
-                        borderWidth:1,
-                        borderColor:COLORS.white
-                    }}>
+                    style={
+
+                        styles.linearGradientCardContainer
+
+                    }>
                     <Image
                         source={item.icon}
                         resizeMode='center'
-                        style={{
-                            width: SIZES.responsiveScreenWidth(7.6),
-                            height:SIZES.responsiveScreenWidth(5.6),
-                        }} />
+                        style={
+
+                            styles.linearGradientCardImage
+                        } />
                 </View>
 
                 {/* Name  */}
 
                 <Text
-                    style={{
-                        flex: 1,
-                        marginLeft: 8,
-                        fontSize: SIZES.responsiveScreenFontSize(1.8),
-                        fontWeight: '700',
-                        color: COLORS.primary
-
-                    }}
+                    style={styles.linearGradientCardText
+                    }
 
                 >
                     {item.name}
@@ -90,12 +71,15 @@ const CardItem = ({ item, isSelected, onPress }: any) => {
                 {/* Radio Button  */}
                 <Image
                     source={isSelected ? icons.check_on : icons.check_off}
-                    style={{
-                        width: 20,
-                        height: 20,
-                        marginRight: 10,
-                        tintColor: isSelected ? COLORS.primary : COLORS.gray
-                    }}
+                    style={
+
+
+                        {
+                            width: 20,
+                            height: 20,
+                            marginRight: 10,
+                            tintColor: isSelected ? COLORS.primary : COLORS.gray
+                        }}
 
                 />
 
@@ -107,6 +91,45 @@ const CardItem = ({ item, isSelected, onPress }: any) => {
 
 
 }
+
+
+
+
+
+const styles = StyleSheet.create({
+    linearGradientContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        width: SIZES.responsiveScreenWidth(96),
+        height: SIZES.responsiveScreenWidth(14),
+        elevation: 1,
+        backgroundColor: COLORS.lightBlue,
+        borderRadius: 6,
+    },
+    linearGradientCardContainer: {
+        width: SIZES.responsiveScreenWidth(12),
+        height: SIZES.responsiveScreenWidth(12),
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: 5,
+        marginLeft: 5,
+        borderWidth: 1,
+        borderColor: COLORS.white
+    },
+    linearGradientCardImage: {
+        width: SIZES.responsiveScreenWidth(7.6),
+        height: SIZES.responsiveScreenWidth(5.6),
+    },
+    linearGradientCardText: {
+        flex: 1,
+        marginLeft: 8,
+        fontSize: SIZES.responsiveScreenFontSize(1.8),
+        fontWeight: '700',
+        color: COLORS.primary
+    },
+
+}
+)
 
 export default CardItem;
 

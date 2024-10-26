@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 import {
+  StyleSheet,
   Text,
   TouchableOpacity,
   View
@@ -45,23 +46,12 @@ export function PhoneLogInScreen() {
         <KeyboardAwareScrollView
 
 
-          contentContainerStyle={{
-            flexGrow: 1,
-            alignItems: 'center',
-            justifyContent: 'center'
-
-          }}
+          contentContainerStyle={styles.keyboardAwareContainer}
 
           showsVerticalScrollIndicator={false}>
           <LottieView
             source={animations.location}
-            style={{
-              width: SIZES.responsiveScreenWidth(50),
-              height: SIZES.responsiveScreenWidth(50),
-              marginBottom:'5%',
-              marginTop:'-5%'
-
-            }}
+            style={styles.lottieViewContainer}
             loop={true}
             autoPlay
             cacheComposition={true}
@@ -108,28 +98,14 @@ export function PhoneLogInScreen() {
               activeOpacity={0.9}>
 
               <LinearGradient
-                style={{
-                  backgroundColor: COLORS.lightGray2,
-                  borderRadius: 5,
-
-                  width: SIZES.responsiveScreenWidth(80),
-                  height: SIZES.responsiveScreenWidth(8.5),
-                  elevation: 1,
-                  justifyContent: 'center',
-                  alignItems: 'center'
-                }}
+                style={styles.linearGradientButton}
 
                 locations={[0, 1,]}
                 colors={[COLORS.darkRed, COLORS.lightBlue,]}
                 useAngle={true}
                 angle={90}>
 
-                <Text style={{
-                  fontSize: SIZES.responsiveScreenFontSize(1.8),
-                  fontWeight: '800',
-                  color: COLORS.primary,
-
-                }}>
+                <Text style={styles.linearGradientButtonText}>
                   Register
                 </Text>
 
@@ -150,3 +126,42 @@ export function PhoneLogInScreen() {
     </>
   );
 }
+
+const styles = StyleSheet.create({
+  keyboardAwareContainer: {
+    flexGrow: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+
+},
+  lottieViewContainer: {
+    width: SIZES.responsiveScreenWidth(50),
+    height: SIZES.responsiveScreenWidth(50),
+    marginBottom:'5%',
+    marginTop:'-5%'
+  
+    },
+ 
+
+
+
+
+  linearGradientButton: {
+      backgroundColor: COLORS.lightGray2,
+      borderRadius: 5,
+      width: SIZES.responsiveScreenWidth(80),
+      height: SIZES.responsiveScreenWidth(8.5),
+      elevation: 1.5,
+      justifyContent: 'center',
+      alignItems: 'center'
+  },
+
+  linearGradientButtonText: {
+      fontSize: SIZES.responsiveScreenFontSize(1.8),
+      fontWeight: '800',
+      color: COLORS.primary,
+  },
+
+
+}
+)

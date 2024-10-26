@@ -1,5 +1,6 @@
 import {
     Image,
+    StyleSheet,
     Text,
     TouchableOpacity,
     View
@@ -19,152 +20,150 @@ const SignIn = () => {
     const navigation = useNavigation() as any
 
     const [email, setEmail] = React.useState('foodies@gmail.com')
-    const [password, setPassword] = React.useState('foodies12345')
-
-
-
     const [emailError, setEmailError] = React.useState('')
-    const [usernameError, setUsernameError] = React.useState('')
-    const [passwordError, setPasswordError] = React.useState('')
-    const [showPassword, setShowPassword] = React.useState(false)
-
-    const [saveMe, setSaveMe] = React.useState(false)
-
-
-    function isEnableSignIn() {
-
-        return email != "" && password != "" && emailError == ''
-
-    }
+   
     return (
         <Wrapper>
             <SingleImageHeader
                 name={'Forgot Password'}
 
             />
-
-
             <View
-                style={{
-                    flex:1,
-
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                }}
-            >
-
-
+                style={
+                    styles.mainContainer
+                }>
                 <LottieView
                     source={animations.forgot_password}
-                    style={{
-                        width: SIZES.responsiveScreenWidth(50),
-                        height: SIZES.responsiveScreenWidth(50),
-                        marginTop:-SIZES.responsiveScreenHeight(15)
-
-                    }}
+                    style={styles.lottieViewContainer}
                     loop={true}
                     autoPlay
                     cacheComposition={true}
                     hardwareAccelerationAndroid
                 />
-
-
-    
-
-
-
+                <View style={styles.inputContainer}>
                     <View style={{
-
                         alignItems: 'center',
-                        marginTop:SIZES.responsiveScreenHeight(2)
+                        justifyContent: 'center',
                     }}>
 
-
-
-
-                        <View style={{
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                        }}>
-
-                            <FromInput
-                                label="Email"
-                                placeholder="Email"
-                                keyboardType='email-address'
-                                autocomplete='email'
-                                value={email}
-                                onChange={(value: any) => {
-                                    setEmail(value)
-                                }}
-                                errorMsg={emailError}
-                                appendComponent={
-                                    <View
-                                        style={{
-                                            justifyContent: 'center',
-                                            marginRight: 8
-                                        }}
-                                    >
-                                        <Image
-                                            source={email == "" || (email != "" && emailError == "") ? icons.correct : icons.correct}
-
-                                            style={{
-                                                width: SIZES.responsiveScreenWidth(4.5),
-                                                height: SIZES.responsiveScreenWidth(4.5),
-                                                tintColor: email == '' ? COLORS.gray : (email != "" && emailError == '') ? COLORS.green : COLORS.red
-                                            }}
-                                        />
-
-                                    </View>
-                                }
-
-                            />
-
-
-                        </View>
-                        <TouchableOpacity
-                            style={{
-                                marginTop: '8%',
+                        <FromInput
+                            label="Email"
+                            placeholder="Email"
+                            keyboardType='email-address'
+                            autocomplete='email'
+                            value={email}
+                            onChange={(value: any) => {
+                                setEmail(value)
                             }}
-                            onPress={() => navigation.navigate('ForgotPasswordOtpVerificationScreen')}
-                            activeOpacity={0.9}>
-                            <LinearGradient
-                                style={{
-                                    backgroundColor: COLORS.lightGray2,
-                                    borderRadius: 5,
-                                    width: SIZES.responsiveScreenWidth(80),
-                                    height: SIZES.responsiveScreenWidth(8.5),
-                                    elevation: 1.5,
-                                    justifyContent: 'center',
-                                    alignItems: 'center'
-                                }}
+                            errorMsg={emailError}
+                            appendComponent={
+                                <View
+                                    style={{
+                                        justifyContent: 'center',
+                                        marginRight: 8
+                                    }}
+                                >
+                                    <Image
+                                        source={email == "" || (email != "" && emailError == "") ? icons.correct : icons.correct}
 
-                                locations={[0, 1,]}
-                                colors={[COLORS.darkRed, COLORS.lightBlue,]}
-                                useAngle={true}
-                                angle={90}>
+                                        style={{
+                                            width: SIZES.responsiveScreenWidth(4.5),
+                                            height: SIZES.responsiveScreenWidth(4.5),
+                                            tintColor: email == '' ? COLORS.gray : (email != "" && emailError == '') ? COLORS.green : COLORS.red
+                                        }}
+                                    />
 
-                                <Text style={{
-                                    fontSize: SIZES.responsiveScreenFontSize(1.8),
-                                    fontWeight: '900',
-                                    color: COLORS.primary,
-                                }}>
-                                 Continue
-                                </Text>
+                                </View>
+                            }
 
-                            </LinearGradient>
+                        />
 
-
-                        </TouchableOpacity>
 
                     </View>
+                    <TouchableOpacity
+                        style={{
+                            marginTop: '8%',
+                        }}
+                        onPress={() => navigation.navigate('ForgotPasswordOtpVerificationScreen')}
+                        activeOpacity={0.9}>
+                        <LinearGradient
+                            style={styles.linearGradientButton}
+                            locations={[0, 1,]}
+                            colors={[COLORS.darkRed, COLORS.lightBlue,]}
+                            useAngle={true}
+                            angle={90}>
+                            <Text style={styles.linearGradientButtonText}>
+                                Continue
+                            </Text>
+
+                        </LinearGradient>
+                    </TouchableOpacity>
+
+                </View>
 
 
 
-           
+
             </View>
         </Wrapper>
 
     )
 }
+
+
+
+
+
+
+
+
+const styles = StyleSheet.create({
+    mainContainer: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    lottieViewContainer: {
+        width: SIZES.responsiveScreenWidth(50),
+        height: SIZES.responsiveScreenWidth(50),
+        marginTop: -SIZES.responsiveScreenHeight(15)
+
+
+    },
+    keyboardAwareContainer: {
+        flexGrow: 1,
+        justifyContent: 'center'
+
+    },
+    inputContainer: {
+        alignItems: 'center',
+        marginTop: SIZES.responsiveScreenHeight(2)
+
+
+    },
+
+
+
+    linearGradientButton: {
+        backgroundColor: COLORS.lightGray2,
+        borderRadius: 5,
+        width: SIZES.responsiveScreenWidth(80),
+        height: SIZES.responsiveScreenWidth(8.5),
+        elevation: 1.5,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+
+    linearGradientButtonText: {
+        fontSize: SIZES.responsiveScreenFontSize(1.8),
+        fontWeight: '800',
+        color: COLORS.primary,
+    },
+
+
+}
+)
+
+
 
 export default SignIn;

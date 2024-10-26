@@ -1,5 +1,6 @@
 import {
     Image,
+    StyleSheet,
     Text,
     TouchableOpacity,
     View
@@ -18,7 +19,7 @@ import SingleImageHeader from '../../components/SingleImageHeader';
 import Wrapper from '../../components/Wrapper';
 import LoadingScreen from '../LoadingScreen';
 
-const SignIn = () => {
+const AccountSwitchScreen = () => {
 
     const navigation = useNavigation() as any
 
@@ -277,114 +278,50 @@ const SignIn = () => {
 
                     />
                     <NotificationsProvider />
-
-
-
-
-
-
                     <View
-                        style={{
-
-                            flex: 1,
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                        
-                        }}
+                        style={styles.mainContainer}
                     >
                         <LottieView
                             source={animations.loading}
-                            style={{
-                                width: SIZES.responsiveScreenWidth(80),
-                                height: SIZES.responsiveScreenWidth(80),
-
-                            }}
+                            style={styles.lottieViewContainer}
                             loop={true}
                             autoPlay
                             cacheComposition={true}
                             hardwareAccelerationAndroid
                         />
-
-
-
-
-
                         <View style={{
-
                             alignItems: 'center',
-
                             marginTop: SIZES.responsiveScreenHeight(3)
                         }}>
-
-
-
-                            <View style={{
-                                // alignItems: 'center',
-                                justifyContent: 'space-between',
-                                width: SIZES.responsiveScreenWidth(95),
-                                flexDirection: 'row',
-                                // height: SIZES.responsiveScreenHeight(15)
-                                marginTop: SIZES.responsiveScreenHeight(3)
-
-                            }}>
-
+                            <View style={styles.buttonContainer}>
                                 <TouchableOpacity
-
                                     onPress={() => navigation.navigate('FoodieHomeScreen')}
-
                                     activeOpacity={0.9}>
                                     <LinearGradient
-                                        style={{
-                                            backgroundColor: COLORS.lightGray2,
-                                            borderRadius: 5,
-                                            width: SIZES.responsiveScreenWidth(30),
-                                            height: SIZES.responsiveScreenWidth(13),
-
-                                            elevation: 1,
-                                            justifyContent: 'space-between',
-                                            alignItems: 'center',
-                                            flexDirection: 'row'
-                                        }}
-
+                                        style={styles.linearGradientButtonMainContainer}
                                         locations={[0, 1,]}
                                         colors={[COLORS.darkRed, COLORS.lightBlue,]}
                                         useAngle={true}
                                         angle={45}>
-
-                                        <View style={{
-                                            flexDirection: 'row',
-                                            alignItems: 'center'
-                                        }}>
+                                        <View style={styles.linearGradientButtonContainer}>
                                             <Image
                                                 source={icons.restaurant}
-                                                style={{
-                                                    marginLeft: 4,
-                                                    width: SIZES.responsiveScreenWidth(7),
-                                                    height: SIZES.responsiveScreenWidth(7),
-
-                                                }}
+                                                style={styles.linearGradientButtonImage}
                                             />
                                             <View>
-                                                <Text style={{
-                                                    fontSize: SIZES.responsiveScreenFontSize(1.4),
-                                                    fontWeight: '700',
-                                                    color: COLORS.primary,
-                                                    marginLeft: 6
-                                                }}>I am a</Text>
-                                                <Text style={{
-                                                    fontSize: SIZES.responsiveScreenFontSize(2.1),
-                                                    fontWeight: '900',
-                                                    color: COLORS.primary,
-                                                    marginLeft: 6,
-                                                }}>Foodie</Text>
+                                                <Text style={
+                                                    styles.linearGradientButtonTextTop
+                                                }
+                                                >
+                                                    I am a
+                                                </Text>
+                                                <Text style={
+                                                    styles.linearGradientButtonTextBottom
+                                                }>Foodie</Text>
 
                                             </View>
                                         </View>
-
-
                                     </LinearGradient>
-
-
                                 </TouchableOpacity>
 
                                 <TouchableOpacity
@@ -393,53 +330,23 @@ const SignIn = () => {
 
                                     }}
                                     onPress={() => navigation.navigate('SallerHomeScreen')}
-
                                     activeOpacity={0.9}>
                                     <LinearGradient
-                                        style={{
-                                            backgroundColor: COLORS.lightGray2,
-                                            borderRadius: 5,
-                                            width: SIZES.responsiveScreenWidth(30),
-                                            height: SIZES.responsiveScreenWidth(13),
-
-
-                                            elevation: 1,
-                                            justifyContent: 'space-between',
-                                            alignItems: 'center',
-                                            flexDirection: 'row'
-                                        }}
-
+                                        style={styles.linearGradientButtonMainContainer}
                                         locations={[0, 1,]}
                                         colors={[COLORS.darkRed, COLORS.lightBlue,]}
                                         useAngle={true}
                                         angle={45}>
-
-                                        <View style={{
-                                            flexDirection: 'row',
-                                            alignItems: 'center'
-                                        }}>
+                                        <View style={styles.linearGradientButtonContainer}>
                                             <Image
                                                 source={icons.restaurant}
-                                                style={{
-                                                    marginLeft: 4,
-                                                    width: SIZES.responsiveScreenWidth(7),
-                                                    height: SIZES.responsiveScreenWidth(7),
-
-                                                }}
+                                                style={styles.linearGradientButtonImage}
                                             />
                                             <View>
-                                                <Text style={{
-                                                    fontSize: SIZES.responsiveScreenFontSize(1.4),
-                                                    fontWeight: '700',
-                                                    color: COLORS.primary,
-                                                    marginLeft: 6
-                                                }}>I am a</Text>
-                                                <Text style={{
-                                                    fontSize: SIZES.responsiveScreenFontSize(2.1),
-                                                    fontWeight: '900',
-                                                    color: COLORS.primary,
-                                                    marginLeft: 6,
-                                                }}>Seller</Text>
+                                                <Text style={styles.linearGradientButtonTextTop}>I am a</Text>
+                                                <Text style={
+                                                    styles.linearGradientButtonTextBottom
+                                                }>Seller</Text>
 
                                             </View>
                                         </View>
@@ -457,51 +364,25 @@ const SignIn = () => {
                                     onPress={() => navigation.navigate('RiderHomeScreen')}
                                     activeOpacity={0.9}>
                                     <LinearGradient
-                                        style={{
-                                            backgroundColor: COLORS.lightGray2,
-                                            borderRadius: 5,
-                                            width: SIZES.responsiveScreenWidth(30),
-                                            height: SIZES.responsiveScreenWidth(13),
+                                        style={styles.linearGradientButtonMainContainer}
 
-
-                                            elevation: 1,
-                                            justifyContent: 'space-between',
-                                            alignItems: 'center',
-                                            flexDirection: 'row'
-                                        }}
 
                                         locations={[0, 1,]}
                                         colors={[COLORS.darkRed, COLORS.lightBlue,]}
                                         useAngle={true}
                                         angle={45}>
-
-                                        <View style={{
-                                            flexDirection: 'row',
-                                            alignItems: 'center'
-                                        }}>
+                                        <View style={styles.linearGradientButtonContainer}>
                                             <Image
                                                 source={icons.delivery}
-                                                style={{
-                                                    marginLeft: 4,
-                                                    marginTop: 3,
-                                                    width: SIZES.responsiveScreenWidth(7.5),
-                                                    height: SIZES.responsiveScreenWidth(7.5),
-
-                                                }}
+                                                style={styles.linearGradientButtonImage}
                                             />
                                             <View>
-                                                <Text style={{
-                                                    fontSize: SIZES.responsiveScreenFontSize(1.4),
-                                                    fontWeight: '700',
-                                                    color: COLORS.primary,
-                                                    marginLeft: 6
-                                                }}>I am a</Text>
-                                                <Text style={{
-                                                    fontSize: SIZES.responsiveScreenFontSize(2.2),
-                                                    fontWeight: '900',
-                                                    color: COLORS.primary,
-                                                    marginLeft: 7,
-                                                }}>Rider</Text>
+                                                <Text style={
+                                                    styles.linearGradientButtonTextTop
+                                                }>I am a</Text>
+                                                <Text style={
+                                                    styles.linearGradientButtonTextBottom
+                                                }>Rider</Text>
 
                                             </View>
                                         </View>
@@ -510,25 +391,9 @@ const SignIn = () => {
 
 
                                 </TouchableOpacity>
-
                             </View>
-
-
-
-
-
-
-
-
                         </View>
-
-
-
-
-
-
                     </View>
-
                 </Wrapper>
 
                 :
@@ -540,4 +405,63 @@ const SignIn = () => {
     )
 }
 
-export default SignIn;
+
+
+
+const styles = StyleSheet.create({
+    mainContainer: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    lottieViewContainer: {
+        width: SIZES.responsiveScreenWidth(80),
+        height: SIZES.responsiveScreenWidth(80),
+    },
+    buttonContainer: {
+        justifyContent: 'space-between',
+        width: SIZES.responsiveScreenWidth(95),
+        flexDirection: 'row',
+        // height: SIZES.responsiveScreenHeight(15)
+        marginTop: SIZES.responsiveScreenHeight(3)
+    },
+
+    linearGradientButtonMainContainer: {
+        backgroundColor: COLORS.lightGray2,
+        borderRadius: 5,
+        width: SIZES.responsiveScreenWidth(30),
+        height: SIZES.responsiveScreenWidth(13),
+        elevation: 1,
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flexDirection: 'row'
+    },
+    linearGradientButtonContainer: {
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    linearGradientButtonImage: {
+        marginLeft: 4,
+        width: SIZES.responsiveScreenWidth(7),
+        height: SIZES.responsiveScreenWidth(7),
+    },
+    linearGradientButtonTextTop: {
+        fontSize: SIZES.responsiveScreenFontSize(1.4),
+        fontWeight: '700',
+        color: COLORS.primary,
+        marginLeft: 6
+    },
+    linearGradientButtonTextBottom: {
+        fontSize: SIZES.responsiveScreenFontSize(1.4),
+        fontWeight: '700',
+        color: COLORS.primary,
+        marginLeft: 6
+    },
+
+}
+)
+
+
+
+
+export default AccountSwitchScreen;

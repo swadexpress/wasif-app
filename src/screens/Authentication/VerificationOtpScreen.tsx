@@ -1,5 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import {
+  StyleSheet,
   Text,
   TouchableOpacity,
   View
@@ -49,54 +50,23 @@ const VerificationOtpScreen = () => {
           />
 
           <KeyboardAwareScrollView
-
-            contentContainerStyle={{
-              flexGrow: 1,
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}
+            contentContainerStyle={styles.keyboardAwareContainer}
             showsVerticalScrollIndicator={false}>
             <LottieView
               source={animations.otp}
-              style={{
-                marginTop: -SIZES.responsiveScreenHeight(10),
-
-                width: SIZES.responsiveScreenWidth(50),
-                height: SIZES.responsiveScreenWidth(50),
-
-              }}
+              style={styles.lottieViewContainer}
               loop={true}
               autoPlay
               cacheComposition={true}
               hardwareAccelerationAndroid
             />
-
-
-
-
             <LinearGradient
-              style={{
-                backgroundColor: COLORS.lightGray2,
-                borderRadius: 5,
-                marginTop: '5%',
-
-                width: SIZES.responsiveScreenWidth(83),
-                height: SIZES.responsiveScreenWidth(15),
-
-
-                elevation: 0.7,
-
-                justifyContent: 'center',
-                alignItems: 'center'
-              }}
-
+              style={styles.linearGradientOtpContainer}
               locations={[0, 1,]}
               colors={[COLORS.lightRed, COLORS.lightBlue,]}
               useAngle={true}
               angle={270}>
-
               <OTPTextInput
-
                 ref={e => (otpInput = e)}
                 handleTextChange={(e) => {
                   console.log(e)
@@ -108,7 +78,6 @@ const VerificationOtpScreen = () => {
 
             <View style={{
               alignItems: 'center',
-
             }}>
 
               <TouchableOpacity
@@ -116,57 +85,24 @@ const VerificationOtpScreen = () => {
                   marginTop: '7%',
                 }}
                 onPress={() => navigation.navigate('FillYourProfileScreen')}
-
                 activeOpacity={0.9}>
-
                 <LinearGradient
-                  style={{
-                    backgroundColor: COLORS.lightGray2,
-                    borderRadius: 5,
-
-                    width: SIZES.responsiveScreenWidth(80),
-                    height: SIZES.responsiveScreenWidth(8.5),
-
-
-                    elevation: 1.5,
-
-                    justifyContent: 'center',
-                    alignItems: 'center'
-                  }}
-
+                  style={styles.linearGradientButton}
                   locations={[0, 1,]}
                   colors={[COLORS.darkRed, COLORS.lightBlue,]}
                   useAngle={true}
                   angle={90}>
-
-                  <Text style={{
-                    fontSize: SIZES.responsiveScreenFontSize(1.8),
-                    fontWeight: '800',
-                    color: COLORS.primary,
-
-                  }}>
+                  <Text style={styles.linearGradientButtonText}>
                     Verify
                   </Text>
-
                 </LinearGradient>
-
-
               </TouchableOpacity>
-
-
-
 
               <TouchableOpacity
                 style={{
-
                   marginTop: '5%'
                 }}
-
-                // onPress={() => navigation.navigate('OnBoardingCategoryScreen')}
-
-
                 activeOpacity={0.9}>
-
                 <Text style={{
                   fontWeight: '700',
                   fontSize: SIZES.responsiveScreenFontSize(1.5),
@@ -179,16 +115,12 @@ const VerificationOtpScreen = () => {
                     fontWeight: '800',
                     fontSize: SIZES.responsiveScreenFontSize(1.6),
                     color: COLORS.primary,
-
-                  }}>{`  Resed (${timer}s)`}
+                  }}>{`Resed (${timer}s)`}
                   </Text>
                 </Text>
               </TouchableOpacity>
             </View>
           </KeyboardAwareScrollView>
-
-
-
         </Wrapper>
 
       ) : (
@@ -198,5 +130,51 @@ const VerificationOtpScreen = () => {
 
   );
 };
+
+const styles = StyleSheet.create({
+  keyboardAwareContainer: {
+    flexGrow: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+
+
+  lottieViewContainer: {
+    marginTop: -SIZES.responsiveScreenHeight(10),
+    width: SIZES.responsiveScreenWidth(50),
+    height: SIZES.responsiveScreenWidth(50),
+  },
+
+  linearGradientOtpContainer: {
+    backgroundColor: COLORS.lightGray2,
+    borderRadius: 5,
+    marginTop: '5%',
+    width: SIZES.responsiveScreenWidth(83),
+    height: SIZES.responsiveScreenWidth(15),
+    elevation: 0.7,
+    justifyContent: 'center',
+    alignItems: 'center'
+
+  },
+
+  linearGradientButton: {
+    backgroundColor: COLORS.lightGray2,
+    borderRadius: 5,
+    width: SIZES.responsiveScreenWidth(80),
+    height: SIZES.responsiveScreenWidth(8.5),
+    elevation: 1.5,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  linearGradientButtonText: {
+    fontSize: SIZES.responsiveScreenFontSize(1.8),
+    fontWeight: '800',
+    color: COLORS.primary,
+  },
+
+});
+
+
+
 
 export default VerificationOtpScreen;

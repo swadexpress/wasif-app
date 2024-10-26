@@ -1,5 +1,6 @@
 import {
     Image,
+    StyleSheet,
     Text,
     TouchableOpacity,
     View
@@ -49,23 +50,13 @@ const SignIn = () => {
 
 
             <View
-                style={{
-                    flex:1,
-
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                }}
+                style={styles.mainContainer}
             >
 
 
                 <LottieView
                     source={animations.otp}
-                    style={{
-                        marginTop:'5%',
-                        width: SIZES.responsiveScreenWidth(45),
-                        height: SIZES.responsiveScreenWidth(45),
-
-                    }}
+                    style={styles.lottieViewContainer}
                     loop={true}
                     autoPlay
                     cacheComposition={true}
@@ -79,22 +70,12 @@ const SignIn = () => {
 
 
             <KeyboardAwareScrollView
-                contentContainerStyle={{
-                    flexGrow: 1,
-                    justifyContent: 'center'
-                }}
+                contentContainerStyle={styles.keyboardAwareContainer}
 
             >
 
                 <View
-                    style={{
-
-                        flex: 1,
-
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        marginBottom: 20
-                    }}
+                    style={styles.inputContainer}
                 >
 
 
@@ -187,14 +168,7 @@ const SignIn = () => {
 
 
                         <View
-                            style={{
-
-                                width: SIZES.responsiveScreenWidth(90),
-                                flexDirection: 'row',
-                                marginTop: 15,
-                                justifyContent: 'space-between'
-                            }}>
-
+                            style={styles.customSwitchContainer}>
                             <CustomSwitch
                                 value={saveMe}
                                 onChange={(value: any) => {
@@ -234,27 +208,14 @@ const SignIn = () => {
                             onPress={() => navigation.navigate('SignUpScreen')}
                             activeOpacity={0.9}>
                             <LinearGradient
-                                style={{
-                                    backgroundColor: COLORS.lightGray2,
-                                    borderRadius: 5,
-                                    width: SIZES.responsiveScreenWidth(80),
-                                    height: SIZES.responsiveScreenWidth(8.5),
-                                    elevation: 1.5,
-                                    justifyContent: 'center',
-                                    alignItems: 'center'
-                                }}
+                                style={styles.linearGradientButton}
 
                                 locations={[0, 1,]}
                                 colors={[COLORS.darkRed, COLORS.lightBlue,]}
                                 useAngle={true}
                                 angle={90}>
 
-                                <Text style={{
-                                    fontSize: SIZES.responsiveScreenFontSize(1.8),
-                                    fontWeight: '900',
-                                    color: COLORS.primary,
-
-                                }}>
+                                <Text style={styles.linearGradientButtonText}>
                                     Sign in
                                 </Text>
 
@@ -282,5 +243,67 @@ const SignIn = () => {
 
     )
 }
+
+
+
+
+
+
+const styles = StyleSheet.create({
+    mainContainer: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    lottieViewContainer: {
+        marginTop:'5%',
+        width: SIZES.responsiveScreenWidth(45),
+        height: SIZES.responsiveScreenWidth(45),
+    },
+    keyboardAwareContainer: {
+        flexGrow: 1,
+        justifyContent: 'center'
+
+    },
+    inputContainer: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 20
+
+    },
+    customSwitchContainer: {
+      
+        width: SIZES.responsiveScreenWidth(90),
+        flexDirection: 'row',
+        marginTop: 15,
+        justifyContent: 'space-between'
+   
+
+    },
+
+
+    linearGradientButton: {
+        backgroundColor: COLORS.lightGray2,
+        borderRadius: 5,
+        width: SIZES.responsiveScreenWidth(80),
+        height: SIZES.responsiveScreenWidth(8.5),
+        elevation: 1.5,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+
+    linearGradientButtonText: {
+        fontSize: SIZES.responsiveScreenFontSize(1.8),
+        fontWeight: '800',
+        color: COLORS.primary,
+    },
+
+
+}
+)
+
+
+
 
 export default SignIn;

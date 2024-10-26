@@ -2,6 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import {
     Image,
+    StyleSheet,
     Text,
     TouchableOpacity,
     View
@@ -119,179 +120,74 @@ const ContinueWithOtherButton = ({ isUser }: any) => {
         <>
 
 
-            <View style={{
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexDirection: 'row',
-                marginTop: '7%',
-
-            }}>
-
+            <View style={styles.mainContainer}>
                 <View
-                    style={{
-                        height: 1.5,
-                        backgroundColor: COLORS.primary,
-                        width: SIZES.responsiveScreenWidth(20),
-                        marginTop: 4.2,
-                        borderRadius: 5,
-                        elevation: 0.6
-                    }}
+                    style={styles.dividerLine}
                 />
-
-                <Text style={{
-                    fontWeight: '700',
-                    fontSize: SIZES.responsiveScreenFontSize(1.5),
-                    color: COLORS.primary,
-                    marginHorizontal: 15
-                }}>
+                <Text style={styles.dividerLineText}>
                     or continue with
                 </Text>
 
                 <View
-                    style={{
-                        height: 1.5,
-                        marginTop: 4.2,
-                        backgroundColor: COLORS.primary,
-                        width: SIZES.responsiveScreenWidth(20),
-                        borderRadius: 5,
-                        elevation: 0.6
-                    }}
+                    style={styles.dividerLine}
                 />
-
-
-
-
-
 
             </View>
 
 
-            <View style={{
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexDirection: 'row',
-                marginTop: '5%',
-            }}>
-
-
-
-
+            <View style={styles.buttonContainer}>
 
                 <TouchableOpacity
-
-
                     onPress={handelSignInWithGoogle}
-
-
                     activeOpacity={0.9}>
-
                     <LinearGradient
-                        style={{
-                            backgroundColor: COLORS.lightGray2,
-                            borderRadius: 5,
-
-                            width: SIZES.responsiveScreenWidth(13),
-                            height: SIZES.responsiveScreenWidth(13),
-                            elevation: 1,
-
-                            justifyContent: 'center',
-                            alignItems: 'center'
-                        }}
-
+                        style={styles.linearGradientAuthButton}
                         locations={[0, 1,]}
                         colors={[COLORS.darkRed, COLORS.lightBlue,]}
                         useAngle={true}
                         angle={45}>
-
-
                         <Image
                             source={icons.google}
                             style={{
                                 width: SIZES.responsiveScreenWidth(6),
                                 height: SIZES.responsiveScreenWidth(6),
                             }}
-
-
                         />
-
-
-
                     </LinearGradient>
-
-
                 </TouchableOpacity>
+
                 <TouchableOpacity
-
                     style={{
-
                         marginLeft: 20
                     }}
-
                     onPress={() => navigation.navigate('')}
-
-
                     activeOpacity={0.9}>
-
                     <LinearGradient
-                        style={{
-
-                            borderRadius: 5,
-
-                            width: SIZES.responsiveScreenWidth(13),
-                            height: SIZES.responsiveScreenWidth(13),
-                            elevation: 1,
-
-                            justifyContent: 'center',
-                            alignItems: 'center'
-                        }}
-
+                        style={styles.linearGradientAuthButton}
                         locations={[0, 1,]}
                         colors={[COLORS.darkRed, COLORS.lightBlue,]}
                         useAngle={true}
                         angle={40}>
-
-
                         <Image
                             source={icons.apple}
                             style={{
                                 width: SIZES.responsiveScreenWidth(5.5),
                                 height: SIZES.responsiveScreenWidth(6.5),
                             }}
-
-
                         />
-
-
-
                     </LinearGradient>
 
 
                 </TouchableOpacity>
+
                 <TouchableOpacity
-
                     style={{
-
                         marginLeft: 20
                     }}
-
                     onPress={handelLoginWithFacebook}
-
-
                     activeOpacity={0.9}>
-
                     <LinearGradient
-                        style={{
-
-                            borderRadius: 5,
-
-                            width: SIZES.responsiveScreenWidth(13),
-                            height: SIZES.responsiveScreenWidth(13),
-                            elevation: 1,
-
-                            justifyContent: 'center',
-                            alignItems: 'center'
-                        }}
-
+                        style={styles.linearGradientAuthButton}
                         locations={[0, 1,]}
                         colors={[COLORS.darkRed, COLORS.lightBlue,]}
                         useAngle={true}
@@ -310,44 +206,21 @@ const ContinueWithOtherButton = ({ isUser }: any) => {
 
 
                         />
-
-
-
                     </LinearGradient>
-
-
                 </TouchableOpacity>
+
                 <TouchableOpacity
-
                     style={{
-
                         marginLeft: 20
                     }}
-
                     onPress={() => navigation.navigate('PhoneLogInScreen')}
-
-
                     activeOpacity={0.9}>
-
                     <LinearGradient
-                        style={{
-
-                            borderRadius: 5,
-
-                            width: SIZES.responsiveScreenWidth(13),
-                            height: SIZES.responsiveScreenWidth(13),
-                            elevation: 1,
-
-                            justifyContent: 'center',
-                            alignItems: 'center'
-                        }}
-
+                        style={styles.linearGradientAuthButton}
                         locations={[0, 1,]}
                         colors={[COLORS.darkRed, COLORS.lightBlue,]}
                         useAngle={true}
                         angle={20}>
-
-
                         <Image
                             source={icons.call}
                             style={{
@@ -356,82 +229,42 @@ const ContinueWithOtherButton = ({ isUser }: any) => {
                                 borderRadius: 2,
                                 tintColor: COLORS.primary,
                                 transform: [{ rotate: '90deg' }]
-
                             }}
-
 
                         />
 
-
-
                     </LinearGradient>
-
-
                 </TouchableOpacity>
 
 
             </View>
 
             {isUser ?
-
-
                 <TouchableOpacity
                     style={{
-
                         marginTop: '5%'
                     }}
-
                     onPress={() => navigation.navigate('SigninScreen')}
-
-
                     activeOpacity={0.9}>
-
-                    <Text style={{
-                        fontWeight: '700',
-                        fontSize: SIZES.responsiveScreenFontSize(1.5),
-                        color: COLORS.primary,
-                        marginHorizontal: 15,
-
-                    }}>
+                    <Text style={
+                        styles.linearGradientAuthButtonText
+                    }>
                         Already a member?
-                        <Text style={{
-                            fontWeight: '700',
-                            fontSize: SIZES.responsiveScreenFontSize(1.5),
-                            color: COLORS.blue2,
-
-                        }}> Signin
+                        <Text style={styles.linearGradientAuthButtonText2}> Signin
                         </Text>
                     </Text>
                 </TouchableOpacity>
 
                 :
-
-
                 <TouchableOpacity
                     style={{
-
                         marginTop: '5%'
                     }}
-
                     onPress={() => navigation.navigate('SigninScreen')}
-
-
                     activeOpacity={0.9}>
-
-                    <Text style={{
-                        fontWeight: '700',
-                        fontSize: SIZES.responsiveScreenFontSize(1.5),
-                        color: COLORS.primary,
-                        marginHorizontal: 15,
-
-                    }}>
+                    <Text style={styles.linearGradientAuthButtonText}>
                         Already a member?
-                        <Text style={{
-                            fontWeight: '700',
-                            fontSize: SIZES.responsiveScreenFontSize(1.5),
-                            color: COLORS.blue2,
-
-                        }}> Signin
+                        <Text style={styles.linearGradientAuthButtonText2}> Signin
                         </Text>
                     </Text>
                 </TouchableOpacity>
@@ -442,5 +275,91 @@ const ContinueWithOtherButton = ({ isUser }: any) => {
         </>
     )
 }
+
+
+
+
+
+const styles = StyleSheet.create({
+    mainContainer: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        marginTop: '7%',
+    },
+
+    dividerLine: {
+        height: 1.5,
+        backgroundColor: COLORS.primary,
+        width: SIZES.responsiveScreenWidth(20),
+        marginTop: 4.2,
+        borderRadius: 5,
+        elevation: 0.6
+    },
+    dividerLineText: {
+        fontWeight: '700',
+        fontSize: SIZES.responsiveScreenFontSize(1.5),
+        color: COLORS.primary,
+        marginHorizontal: 15
+    },
+    buttonContainer: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        marginTop: '5%',
+    },
+
+
+    linearGradientAuthButton: {
+        backgroundColor: COLORS.lightGray2,
+        borderRadius: 5,
+        width: SIZES.responsiveScreenWidth(13),
+        height: SIZES.responsiveScreenWidth(13),
+        elevation: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+
+    },
+    linearGradientAuthButtonText: {
+        fontWeight: '700',
+        fontSize: SIZES.responsiveScreenFontSize(1.5),
+        color: COLORS.primary,
+        marginHorizontal: 15,
+
+    },
+    linearGradientAuthButtonText2: {
+        fontWeight: '700',
+        fontSize: SIZES.responsiveScreenFontSize(1.5),
+        color: COLORS.blue2,
+
+    },
+
+    linearGradientButton: {
+        backgroundColor: COLORS.lightGray2,
+        borderRadius: 5,
+        width: SIZES.responsiveScreenWidth(80),
+        height: SIZES.responsiveScreenWidth(8.5),
+        elevation: 1.5,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    linearGradientButtonText: {
+        fontSize: SIZES.responsiveScreenFontSize(1.8),
+        fontWeight: '800',
+        color: COLORS.primary,
+    },
+
+});
+
+
+
+
+
+
+
+
+
+
+
 
 export default ContinueWithOtherButton;

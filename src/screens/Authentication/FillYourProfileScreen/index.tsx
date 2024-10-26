@@ -1,5 +1,6 @@
 import {
   Image,
+  StyleSheet,
   Text,
   TouchableOpacity,
   View
@@ -18,53 +19,30 @@ import SingleImageHeader from '../../../components/SingleImageHeader';
 import Wrapper from '../../../components/Wrapper';
 import FromInput from '../FromInput';
 
-const SignIn = () => {
-
+const FillYourProfileScreen = () => {
   const navigation = useNavigation() as any
-
   const [fastName, setFastName] = React.useState('Kawsar')
   const [lastName, setLastName] = React.useState('Khan')
-  const [username, setUsername] = React.useState('')
-  const [youAre, setYouAre] = React.useState('')
-
-
   const [emailError, setEmailError] = React.useState('')
-
-  const [saveMe, setSaveMe] = React.useState(false)
-
 
   return (
     <Wrapper>
 
 
       <SingleImageHeader
-            name={'Information'}
+        name={'Information'}
 
-          />
+      />
 
-      
+
 
 
       <KeyboardAwareScrollView
-        contentContainerStyle={{
-          flexGrow: 1,
-          justifyContent: 'center'
-
-        }}
-
+        contentContainerStyle={styles.keyboardAwareContainer}
       >
 
         <View
-          style={{
-
-            flex: 1,
-
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginBottom: 20, 
-            
-            marginTop: '10%'
-          }}
+          style={styles.container}
         >
 
 
@@ -72,17 +50,9 @@ const SignIn = () => {
 
 
           <LinearGradient
-            style={{
-
-              borderRadius: 8,
-
-              width: SIZES.responsiveScreenWidth(22),
-              height: SIZES.responsiveScreenWidth(22),
-
-              elevation: 1.5,
-              justifyContent: 'center',
-              alignItems: 'center'
-            }}
+            style={
+              styles.linearGradientProfileInfoContainer
+            }
 
             locations={[0, 1,]}
             colors={[COLORS.darkRed, COLORS.lightBlue,]}
@@ -94,17 +64,10 @@ const SignIn = () => {
 
             <FastImage
               source={images.profile}
-              style={{
-                width: SIZES.responsiveScreenWidth(20),
-                height: SIZES.responsiveScreenWidth(20),
+              style={
+                styles.linearGradientProfileImage
 
-
-                borderRadius: 8,
-                alignItems: 'flex-end',
-                justifyContent: 'flex-end'
-
-
-              }}
+              }
 
 
             >
@@ -112,11 +75,10 @@ const SignIn = () => {
 
               <Image
                 source={icons.edit}
-                style={{
-                  width: SIZES.responsiveScreenWidth(7),
-                  height: SIZES.responsiveScreenWidth(7),
-                  tintColor: COLORS.gray
-                }}
+                style={
+                  styles.linearGradientProfileImageEditImage
+
+                }
 
               />
             </FastImage>
@@ -129,11 +91,7 @@ const SignIn = () => {
 
 
 
-          <View style={{
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginTop: 20
-          }}>
+          <View style={styles.inputContainer}>
 
             <FromInput
               label="Fast Name"
@@ -199,16 +157,7 @@ const SignIn = () => {
 
             />
 
-
-
-
           </View>
-
-
-
-
-
-
 
           <TouchableOpacity
             style={{
@@ -217,60 +166,28 @@ const SignIn = () => {
             onPress={() => navigation.navigate('OnBoardingCategoryScreen')}
             activeOpacity={0.9}>
             <LinearGradient
-              style={{
-                backgroundColor: COLORS.lightGray2,
-                borderRadius: 5,
-                width: SIZES.responsiveScreenWidth(80),
-                height: SIZES.responsiveScreenWidth(8.5),
-                elevation: 1.5,
-                justifyContent: 'center',
-                alignItems: 'center'
-              }}
-
+              style={styles.linearGradientButton}
               locations={[0, 1,]}
               colors={[COLORS.darkRed, COLORS.lightBlue,]}
               useAngle={true}
               angle={90}>
-
-              <Text style={{
-                fontSize: SIZES.responsiveScreenFontSize(1.8),
-                fontWeight: '900',
-                color: COLORS.primary,
-
-              }}>
+              <Text style={styles.linearGradientButtonText}>
                 Continue
               </Text>
-
             </LinearGradient>
-
 
           </TouchableOpacity>
 
-
-
-
-
-
-
           <LottieView
             source={animations.hamburger_and_french_fries}
-            style={{
-              width: SIZES.responsiveScreenWidth(40),
-              height: SIZES.responsiveScreenWidth(40),
-              marginTop: 10
-
-            }}
+            style={
+              styles.lottieViewContainer
+            }
             loop={true}
             autoPlay
             cacheComposition={true}
             hardwareAccelerationAndroid
           />
-
-
-
-
-
-
 
         </View>
       </KeyboardAwareScrollView>
@@ -279,4 +196,76 @@ const SignIn = () => {
   )
 }
 
-export default SignIn;
+const styles = StyleSheet.create({
+  keyboardAwareContainer: {
+    flexGrow: 1,
+    justifyContent: 'center'
+  },
+
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 20,
+    marginTop: '10%'
+  },
+  linearGradientProfileInfoContainer: {
+    borderRadius: 8,
+    width: SIZES.responsiveScreenWidth(22),
+    height: SIZES.responsiveScreenWidth(22),
+    elevation: 1.5,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  linearGradientProfileImage: {
+    width: SIZES.responsiveScreenWidth(20),
+    height: SIZES.responsiveScreenWidth(20),
+    borderRadius: 8,
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end'
+  },
+  linearGradientProfileImageEditImage: {
+    width: SIZES.responsiveScreenWidth(7),
+    height: SIZES.responsiveScreenWidth(7),
+    tintColor: COLORS.gray
+  },
+  inputContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 20
+  },
+
+
+  linearGradientButton: {
+    backgroundColor: COLORS.lightGray2,
+    borderRadius: 5,
+    width: SIZES.responsiveScreenWidth(80),
+    height: SIZES.responsiveScreenWidth(8.5),
+    elevation: 1.5,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+
+  linearGradientButtonText: {
+    fontSize: SIZES.responsiveScreenFontSize(1.8),
+    fontWeight: '800',
+    color: COLORS.primary,
+  },
+
+  lottieViewContainer: {
+    width: SIZES.responsiveScreenWidth(40),
+    height: SIZES.responsiveScreenWidth(40),
+    marginTop: 10
+  },
+
+
+}
+)
+
+
+
+
+
+
+
+export default FillYourProfileScreen;
