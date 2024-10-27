@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
+import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import SingleImageHeader from "../../components/SingleImageHeader";
 import Wrapper from "../../components/Wrapper";
@@ -78,126 +78,141 @@ const categoryData = [
 
 
 
-const FoodCategories = ({
-    handelChangeCategory,
-    selectedCategoryId,
-    setSelectedCategoryId,
-    selectedMenuType,
-
-
-}: any) => {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+const FoodCategories = () => {
 
 
     const navigation = useNavigation<any>()
     return (
 
         <Wrapper>
+            <SingleImageHeader
+                name={'Category'}
 
-            <View style={{
-                flex: 1,
+            />
 
-            }}>
-                <SingleImageHeader
-                    name={'Category'}
+
+            <View style={
+
+                styles.container
+            }>
+
+
+                <FlatList
+                    data={categoryData}
+                    keyExtractor={(item: any) => `${item.id}`}
+                    horizontal={false}
+                    numColumns={5}
+                    // style={{
+                    //     marginLeft: 8
+                    // }}
+                    showsHorizontalScrollIndicator={false}
+                    renderItem={({ item, index }: any) => (
+                        <TouchableOpacity
+
+                            style={
+
+                                styles.renderItemMainContainer
+                            }
+
+                            onPress={() => {
+
+                                navigation.navigate('SearchingAndFiteringProducts')
+
+
+
+                            }}
+
+                        >
+
+                            <LinearGradient
+                                style={styles.linearGradientCardContainer}
+
+                                locations={[0, 1]}
+                                colors={[COLORS.darkRed, COLORS.lightBlue,]}
+                                useAngle={true}
+                                angle={20}>
+
+
+                                <Image source={item.image}
+                                    style={
+                                        styles.linearGradientCardImage
+                                    } />
+                                <Text style={styles.linearGradientCardText
+                                }>
+                                    {item.name}
+                                </Text>
+                            </LinearGradient>
+                        </TouchableOpacity>
+
+
+                    )}
+
 
                 />
-
-
-                <View style={{
-                    flex: 1,
-                    alignItems: 'center',
-
-                }}>
-
-
-                    <FlatList
-                        data={categoryData}
-                        keyExtractor={(item: any) => `${item.id}`}
-                        horizontal={false}
-                        numColumns={5}
-                        // style={{
-                        //     marginLeft: 8
-                        // }}
-                        showsHorizontalScrollIndicator={false}
-                        renderItem={({ item, index }: any) => (
-                            <TouchableOpacity
-
-                                style={{
-                                    marginHorizontal: 3,
-                                    marginTop: 8,
-                                    marginBottom: 1
-                                }}
-
-                                onPress={() => {
-
-                                    navigation.navigate('SearchingAndFiteringProducts')
-
-
-
-                                }}
-
-                            >
-
-                                <LinearGradient
-                                    style={{
-
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        height: SIZES.responsiveScreenWidth(19),
-                                        width: SIZES.responsiveScreenWidth(17.8),
-                                        borderRadius: 6,
-                                        elevation: 2,
-
-                                    }}
-
-                                    locations={[0, 1]}
-                                    colors={[COLORS.darkRed, COLORS.lightBlue,]}
-                                    useAngle={true}
-                                    angle={20}>
-
-
-                                    <Image source={item.image}
-                                        style={{
-                                            height: SIZES.responsiveScreenWidth(12),
-                                            width: SIZES.responsiveScreenWidth(12),
-
-                                        }} />
-                                    <Text style={{
-                                        fontSize: SIZES.responsiveScreenFontSize(1.3),
-                                        fontWeight: '800',
-                                        color: COLORS.black,
-                                        marginTop: 3
-                                    }}>
-                                        {item.name}
-                                    </Text>
-                                </LinearGradient>
-                            </TouchableOpacity>
-
-
-                        )}
-
-
-                    />
-                </View>
             </View>
+
 
         </Wrapper>
 
     )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+    },
+    renderItemMainContainer: {
+        marginHorizontal: 3,
+        marginTop: 8,
+        marginBottom: 1
+    },
+
+
+    linearGradientCardContainer: {
+
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: SIZES.responsiveScreenWidth(19),
+        width: SIZES.responsiveScreenWidth(17.8),
+        borderRadius: 6,
+        elevation: 2,
+    },
+
+    linearGradientCardImage: {
+        height: SIZES.responsiveScreenWidth(12),
+        width: SIZES.responsiveScreenWidth(12),
+
+    },
+    linearGradientCardText: {
+        fontSize: SIZES.responsiveScreenFontSize(1.3),
+        fontWeight: '800',
+        color: COLORS.black,
+        marginTop: 3
+    },
+
+
+
+}
+)
+
+
+
+
+
+
+
+
 
 export default FoodCategories

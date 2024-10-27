@@ -14,7 +14,6 @@ import Geolocation from 'react-native-geolocation-service';
 import LinearGradient from 'react-native-linear-gradient';
 import MapViewDirections from 'react-native-maps-directions';
 import { utils } from '../../../utils';
-import IconButton from '../../components/IconButton';
 import SingleImageHeader from '../../components/SingleImageHeader';
 import Wrapper from '../../components/Wrapper';
 
@@ -115,452 +114,7 @@ const Map = ({ navigation }) => {
 
     }, [])
 
-    function renderMap() {
 
-        return (
-            <MapView
-                ref={mapView}
-                style={{
-                    flex: 1,
-                    marginHorizontal: 10,
-                    borderRadius: 10
-                }}
-                provider={PROVIDER_GOOGLE}
-                initialRegion={region}
-
-
-            >
-
-                {
-                    fromLoc &&
-                    <Marker
-
-                        key={'FromLoc'}
-                        coordinate={fromLoc}
-                        tracksViewChanges={false}
-                        icon={icons.navigator}
-                        rotation={angle}
-                        anchor={{ x: 0.5, y: 0.5 }}
-                        style={{ width: 26, height: 28 }}
-
-                    >
-                        {/* <Image
-                                source ={icons.navigator1}
-                                style ={{width:30,height:30}}
-                            /> */}
-
-                    </Marker>
-                }
-
-
-                {
-                    toLoc &&
-                    <Marker
-                        width={10}
-
-
-                        key={'ToLoc'}
-                        coordinate={toLoc}
-                        tracksViewChanges={false}
-                        icon={icons.location_pin}
-                        rotation={angle}
-                        anchor={{ x: 0.5, y: 0.5 }}
-
-
-                    >
-
-
-
-
-
-                    </Marker>
-                }
-
-                <MapViewDirections
-                    origin={fromLoc}
-                    destination={toLoc}
-                    apikey='AIzaSyDxe1h0iHqQMFcEV43yNAMAVcGYkpbxV-Y'
-                    strokeWidth={5}
-                    strokeColor={COLORS.primary}
-                    optimizeWaypoints={true}
-                    onReady={result => {
-                        setDuration(Math.ceil(result.duration))
-
-
-                        if (!isReady) {
-                            mapView.current.fitToCoordinates(result.coordinates, {
-                                edgePadding: {
-                                    right: SIZES.width * 0.1,
-                                    bottom: 400,
-                                    left: SIZES.width * 0.1,
-                                    top: SIZES.height * 0.1
-                                }
-                            })
-                            // Repostion the navigator
-
-                            if (result.coordinates.length >= 2) {
-                                let angle = utils.calculateAngle(result.coordinates)
-                                setAngle(angle)
-
-                            }
-                            setIsReady(true)
-
-
-                        }
-
-
-
-
-                    }}
-
-
-
-
-
-                />
-
-
-
-
-
-
-
-            </MapView>
-
-
-        )
-    }
-
-    function renderHeaderButtons() {
-        return (
-            <>
-
-                <IconButton
-                    icon={icons.back}
-                    containerStyle={{
-                        position: 'absolute',
-                        top: SIZES.padding * 1,
-                        left: SIZES.padding,
-                        ...styles.buttonStyle,
-                    }}
-                    iconStyle={{
-                        width: 20,
-                        height: 20,
-                        tintColor: COLORS.gray2
-                    }}
-                    onPress={() => {
-                        navigation.goBack();
-
-                    }}
-
-
-                />
-                <View
-                    style={{
-                        position: 'absolute',
-                        top: SIZES.padding * 1,
-                        right: SIZES.padding,
-                    }}
-
-                >
-
-                    <IconButton
-                        icon={icons.globe}
-                        containerStyle={{
-                            ...styles.buttonStyle
-                        }}
-                        iconStyle={{
-                            width: 20,
-                            height: 20,
-                            tintColor: COLORS.gray
-                        }}
-
-                    />
-
-                    <IconButton
-                        icon={icons.focus}
-                        containerStyle={{
-                            marginTop: SIZES.radius,
-                            ...styles.buttonStyle
-                        }}
-                        iconStyle={{
-                            width: 20,
-                            height: 20,
-                            tintColor: COLORS.gray
-                        }}
-
-                        onPress={() => {
-                            requestCameraPermission()
-                        }}
-
-                    />
-
-
-                </View>
-
-
-
-
-
-            </>
-
-
-
-
-        )
-
-    }
-
-
-
-
-    function renderInfo() {
-
-        return (
-
-
-            <LinearGradient
-                style={{
-                    borderTopRightRadius: 20,
-                    borderTopLeftRadius: 20,
-                    elevation: 1,
-                    marginTop: 5,
-                    alignItems: 'center'
-
-                }}
-
-                locations={[0, 1,]}
-                colors={[COLORS.lightRed, COLORS.lightBlue,]}
-                useAngle={true}
-                angle={190}>
-
-
-
-                <LinearGradient
-                    style={{
-                        borderRadius: 5,
-                        elevation: 1,
-                        marginTop: 20,
-                        width: SIZES.responsiveScreenWidth(95),
-                    }}
-                    locations={[0, 1,]}
-                    colors={[COLORS.lightRed, COLORS.lightBlue,]}
-                    useAngle={true}
-                    angle={90}>
-                    <View style={{
-                        marginTop: 5,
-                        borderRadius: 10,
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        marginHorizontal: 8
-
-
-                    }}>
-                        <View style={{
-                            flexDirection: 'row',
-                            // alignItems: 'center',
-                        }}>
-
-                            <Image
-                                source={icons.location}
-                                style={{
-                                    width: SIZES.responsiveScreenWidth(5.5),
-                                    height: SIZES.responsiveScreenWidth(5.5),
-
-                                    tintColor: COLORS.primary
-                                }}
-                            />
-                            <View style={{
-                                marginLeft: 5,
-                                width: '84%'
-                            }} >
-
-                                <Text style={{
-                                    fontSize: SIZES.responsiveScreenFontSize(1.6),
-                                    fontWeight: '800',
-                                    color: COLORS.primary,
-                                    marginTop: 2
-                                }}>
-                                    {`Kawsar Khan`}
-                                </Text>
-                                <Text style={{
-                                    fontSize: SIZES.responsiveScreenFontSize(1.3),
-
-                                    fontWeight: '700',
-                                    color: COLORS.gray,
-                                    marginBottom: 8,
-                                    marginTop: 2,
-                                    
-                                }}>
-                                    Kazi office-2d floor, Kalkini, Madaripur, Dhaka, Bangladesh
-                                    Bangladesh
-                                </Text>
-
-                            </View>
-
-
-
-
-                        </View>
-
-
-
-                        <Image
-                            source={icons.coupon}
-
-
-                            style={{
-                                width: SIZES.responsiveScreenWidth(7),
-                                height: SIZES.responsiveScreenWidth(7),
-                                tintColor: COLORS.primary
-                            }}
-
-                        />
-                    </View>
-
-                </LinearGradient>
-
-
-                <TouchableOpacity
-
-                    activeOpacity={0.9}
-
-                    style={{
-                        marginBottom: 15,
-                        marginTop: 10
-                    }}
-                    onPress={() => {
-                        navigation.navigate('RiderReviewScreen')
-                    }}
-                >
-
-                    <LinearGradient
-                        style={{
-                            borderRadius: 6,
-                            elevation: 1,
-                            width: SIZES.responsiveScreenWidth(95),
-
-                        }}
-
-                        locations={[0, 1,]}
-                        colors={[COLORS.darkRed, COLORS.lightBlue,]}
-                        useAngle={true}
-                        angle={90}>
-
-                        <View style={{
-                            flexDirection: 'row',
-                            paddingHorizontal: 5,
-                            alignItems: 'center',
-                            justifyContent: 'space-between',
-                            marginVertical: 6
-
-
-                        }}>
-                            <View
-
-                                style={{
-                                    flexDirection: 'row',
-                                    alignItems: 'center',
-                                    justifyContent: 'center'
-
-                                }}>
-
-                                <Image
-                                    source={images.profile}
-                                    style={{
-                                        width: SIZES.responsiveScreenWidth(15),
-                                        height: SIZES.responsiveScreenWidth(15),
-                                        borderRadius: 5
-                                    }}
-                                />
-
-
-
-                                <View
-                                    style={{
-                                        marginLeft: 8
-                                    }}
-                                >
-                                    <Text
-                                        style={{
-
-                                            fontSize: SIZES.responsiveScreenFontSize(1.7),
-                                            fontWeight: '800',
-                                            color: COLORS.primary
-
-                                        }}
-                                    >Kawsar khan
-                                    </Text>
-
-                                    <Text
-                                        style={{
-                                            fontSize: SIZES.responsiveScreenFontSize(1.4),
-                                            fontWeight: '700',
-                                            color: COLORS.darkGray2,
-                                            marginTop: 2
-                                        }}
-                                    >Delivery man
-                                    </Text>
-                                    <Text
-                                        style={{
-                                            fontSize: SIZES.responsiveScreenFontSize(1.4),
-                                            fontWeight: '700',
-                                            color: COLORS.darkGray2,
-
-                                        }}
-                                    >+8801771297948
-                                    </Text>
-                                </View>
-
-                            </View>
-
-                            <View
-                                style={{
-                                    height: SIZES.responsiveScreenWidth(8.5),
-                                    width: SIZES.responsiveScreenWidth(8.5),
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    borderWidth: 1,
-                                    borderRadius: 5,
-                                    borderColor: COLORS.primary,
-
-
-
-                                }}
-
-
-                            >
-                                <Image
-
-                                    source={icons.call}
-                                    style={{
-                                        width: SIZES.responsiveScreenWidth(6),
-                                        height: SIZES.responsiveScreenWidth(6),
-                                        tintColor: COLORS.primary
-                                    }}
-
-
-
-                                />
-
-                            </View>
-
-                        </View>
-                    </LinearGradient>
-
-                </TouchableOpacity>
-
-            </LinearGradient>
-
-
-
-        )
-
-
-
-
-    }
 
 
 
@@ -569,33 +123,384 @@ const Map = ({ navigation }) => {
 
         <Wrapper>
             <View
-                style={{
-                    flex: 1,
-                }}
+                style={styles.mainContainer}
             >
 
                 <SingleImageHeader name='Map' />
+                {/* ======================== */}
 
-                {renderMap()}
-                {renderInfo()}
 
-            </View>
-        </Wrapper>
+                <MapView
+                    ref={mapView}
+                    style={
+                        styles.mapViewMainContainer
+                    }
+                    provider={PROVIDER_GOOGLE}
+                    initialRegion={region}
+
+
+                >
+
+                    {
+                        fromLoc &&
+                        <Marker
+
+                            key={'FromLoc'}
+                            coordinate={fromLoc}
+                            tracksViewChanges={false}
+                            icon={icons.navigator}
+                            rotation={angle}
+                            anchor={{ x: 0.5, y: 0.5 }}
+                            style={{ width: 26, height: 28 }}
+
+                        >
+                            {/* <Image
+                                source ={icons.navigator1}
+                                style ={{width:30,height:30}}
+                            /> */}
+
+                        </Marker>
+                    }
+
+
+                    {
+                        toLoc &&
+                        <Marker
+                            width={10}
+                            key={'ToLoc'}
+                            coordinate={toLoc}
+                            tracksViewChanges={false}
+                            icon={icons.location_pin}
+                            rotation={angle}
+                            anchor={{ x: 0.5, y: 0.5 }}
+                        >
+
+                        </Marker>
+                    }
+
+                    <MapViewDirections
+                        origin={fromLoc}
+                        destination={toLoc}
+                        apikey='AIzaSyDxe1h0iHqQMFcEV43yNAMAVcGYkpbxV-Y'
+                        strokeWidth={5}
+                        strokeColor={COLORS.primary}
+                        optimizeWaypoints={true}
+                        onReady={result => {
+                            setDuration(Math.ceil(result.duration))
+
+
+                            if (!isReady) {
+                                mapView.current.fitToCoordinates(result.coordinates, {
+                                    edgePadding: {
+                                        right: SIZES.width * 0.1,
+                                        bottom: 400,
+                                        left: SIZES.width * 0.1,
+                                        top: SIZES.height * 0.1
+                                    }
+                                })
+                                // Repostion the navigator
+
+                                if (result.coordinates.length >= 2) {
+                                    let angle = utils.calculateAngle(result.coordinates)
+                                    setAngle(angle)
+
+                                }
+                                setIsReady(true)
+                            }
+                        }}
+
+                    />
+                </MapView>
+
+
+
+
+                {/* ============renderInfo============= */}
+
+
+                <LinearGradient
+                    style={
+
+                        styles.linearGradientInfoMainContainer
+                    }
+
+                    locations={[0, 1,]}
+                    colors={[COLORS.lightRed, COLORS.lightBlue,]}
+                    useAngle={true}
+                    angle={190}>
+
+
+
+                    <LinearGradient
+                        style={
+
+                            styles.linearGradientRiderInfoMainContainer
+                        }
+                        locations={[0, 1,]}
+                        colors={[COLORS.lightRed, COLORS.lightBlue,]}
+                        useAngle={true}
+                        angle={90}>
+                        <View style={
+                            styles.linearGradientRiderInfoContainer
+                        }>
+                            <View style={
+
+                                styles.linearGradientRiderLeftSiteInfoContainer
+                            }>
+
+                                <Image
+                                    source={icons.location}
+                                    style={
+                                        styles.linearGradientRiderLeftSiteInfoIcon
+                                    }
+                                />
+                                <View style={{
+                                    marginLeft: 5,
+                                    width: '84%'
+                                }} >
+
+                                    <Text style={
+                                        styles.linearGradientRiderLeftSiteInfoText
+                                    }>
+                                        {`Kawsar Khan`}
+                                    </Text>
+                                    <Text style={
+                                        styles.linearGradientRiderLeftSiteInfoText2
+                                    }>
+                                        Kazi office-2d floor, Kalkini, Madaripur, Dhaka, Bangladesh
+                                        Bangladesh
+                                    </Text>
+
+                                </View>
+
+
+
+
+                            </View>
+
+
+
+                            <Image
+                                source={icons.coupon}
+
+
+                                style={
+
+                                    styles.linearGradientRiderLeftSiteInfoCouponIcon
+                                }
+
+                            />
+                        </View>
+
+                    </LinearGradient>
+
+
+                    <TouchableOpacity
+
+                        activeOpacity={0.9}
+
+                        style={{
+                            marginBottom: 15,
+                            marginTop: 10
+                        }}
+                        onPress={() => {
+                            navigation.navigate('RiderReviewScreen')
+                        }}
+                    >
+
+                        <LinearGradient
+                            style={
+
+                                styles.linearGradientDeliveryLeftSiteInfoMainContainer
+                            }
+
+                            locations={[0, 1,]}
+                            colors={[COLORS.darkRed, COLORS.lightBlue,]}
+                            useAngle={true}
+                            angle={90}>
+
+                            <View style={
+
+                                styles.linearGradientDeliveryLeftSiteInfoContainer
+                            }>
+                                <View
+
+                                    style={
+                                        styles.linearGradientDeliveryLeftSiteInfoSubContainer
+                                    }>
+
+                                    <Image
+                                        source={images.profile}
+                                        style={styles.linearGradientDeliveryLeftSiteInfoProfileImage}
+                                    />
+
+
+
+                                    <View
+                                        style={{
+                                            marginLeft: 8
+                                        }}
+                                    >
+                                        <Text
+                                            style={
+                                                styles.linearGradientDeliveryLeftSiteInfoProfileNameText
+                                            }
+                                        >Kawsar khan
+                                        </Text>
+
+                                        <Text
+                                            style={
+                                                styles.linearGradientDeliveryLeftSiteInfoProfileStatusText
+                                            }
+                                        >Delivery man
+                                        </Text>
+                                        <Text
+                                            style={styles.linearGradientDeliveryLeftSiteInfoProfileStatusText}
+                                        >+8801771297948
+                                        </Text>
+                                    </View>
+
+                                </View>
+
+                                <View
+                                    style={
+                                        styles.linearGradientDeliveryRightInfoContainer
+                                    }
+
+
+                                >
+                                    <Image
+
+                                        source={icons.call}
+                                        style={
+                                            styles.linearGradientDeliveryRightInfoIcon
+                                        }
+
+
+
+                                    />
+
+                                </View>
+
+                            </View>
+                        </LinearGradient>
+
+                    </TouchableOpacity>
+
+                </LinearGradient>
+
+            </View >
+        </Wrapper >
     )
 }
 
 
 const styles = StyleSheet.create({
-    buttonStyle: {
-        width: 40,
-        height: 40,
-        borderRadius: SIZES.radius,
-        alignItems: "center",
-        justifyContent: "center",
-        borderWidth: 1,
-        borderColor: COLORS.gray2,
-        backgroundColor: COLORS.white
-    }
+    mainContainer: {
+        flex: 1,
+    },
+    mapViewMainContainer: {
+        flex: 1,
+        marginHorizontal: 10,
+        borderRadius: 10
+    },
+    linearGradientInfoMainContainer: {
+        borderTopRightRadius: 20,
+        borderTopLeftRadius: 20,
+        elevation: 1,
+        marginTop: 5,
+        alignItems: 'center'
+    },
+    linearGradientRiderInfoMainContainer: {
+        borderRadius: 5,
+        elevation: 1,
+        marginTop: 20,
+        width: SIZES.responsiveScreenWidth(95),
+
+    },
+    linearGradientRiderInfoContainer: {
+        marginTop: 5,
+        borderRadius: 10,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        marginHorizontal: 8
+    },
+    linearGradientRiderLeftSiteInfoContainer: {
+        flexDirection: 'row',
+    },
+    linearGradientRiderLeftSiteInfoIcon: {
+        width: SIZES.responsiveScreenWidth(5.5),
+        height: SIZES.responsiveScreenWidth(5.5),
+        tintColor: COLORS.primary
+    },
+    linearGradientRiderLeftSiteInfoText: {
+        fontSize: SIZES.responsiveScreenFontSize(1.6),
+        fontWeight: '800',
+        color: COLORS.primary,
+        marginTop: 2
+    },
+    linearGradientRiderLeftSiteInfoText2: {
+        fontSize: SIZES.responsiveScreenFontSize(1.3),
+        fontWeight: '700',
+        color: COLORS.gray,
+        marginBottom: 8,
+        marginTop: 2,
+    },
+    linearGradientRiderLeftSiteInfoCouponIcon: {
+        width: SIZES.responsiveScreenWidth(7),
+        height: SIZES.responsiveScreenWidth(7),
+        tintColor: COLORS.primary,
+    },
+    linearGradientDeliveryLeftSiteInfoMainContainer: {
+        borderRadius: 6,
+        elevation: 1,
+        width: SIZES.responsiveScreenWidth(95),
+    },
+
+    linearGradientDeliveryLeftSiteInfoContainer: {
+        flexDirection: 'row',
+        paddingHorizontal: 5,
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        marginVertical: 6
+
+    },
+    linearGradientDeliveryLeftSiteInfoSubContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center'
+
+    },
+    linearGradientDeliveryLeftSiteInfoProfileImage: {
+        width: SIZES.responsiveScreenWidth(15),
+        height: SIZES.responsiveScreenWidth(15),
+        borderRadius: 5
+
+    },
+    linearGradientDeliveryLeftSiteInfoProfileNameText: {
+        fontSize: SIZES.responsiveScreenFontSize(1.7),
+        fontWeight: '800',
+        color: COLORS.primary
+
+    },
+    linearGradientDeliveryLeftSiteInfoProfileStatusText: {
+        fontSize: SIZES.responsiveScreenFontSize(1.4),
+        fontWeight: '700',
+        color: COLORS.darkGray2,
+        marginTop: 2
+
+    },
+
+    linearGradientDeliveryRightInfoIcon: {
+        width: SIZES.responsiveScreenWidth(6),
+        height: SIZES.responsiveScreenWidth(6),
+        tintColor: COLORS.primary
+    },
+
+
+
+
 })
 
 export default Map;
