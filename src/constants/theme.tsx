@@ -1,14 +1,21 @@
-import { Dimensions, Platform, StatusBar } from "react-native";
+import { Dimensions } from "react-native";
 const { width, height } = Dimensions.get("window");
 
 
-import { responsiveScreenFontSize, responsiveScreenHeight, responsiveScreenWidth, useResponsiveScreenFontSize } from "../components/ResponsiveDimensions";
+import { responsiveScreenFontSize, responsiveScreenHeight, responsiveScreenWidth } from "../components/ResponsiveDimensions";
 
 export const COLORS = {
     primary: "#19253D", //orange
     primary2: "#FFBC01", //orange
     primary3: "#191C25", //orange
     primary4: "#0ecba1", //orangebackgroundColor
+    linearGradientPrimary: "#FDC4A2", //orangebackgroundColor
+    linearGradientPrimary2: "#FFC8EC", //orangebackgroundColor
+    linearGradientSecondary: "#FFC8EC", //orangebackgroundColor
+    linearGradientSecondary2: "#FFC8EC", //orangebackgroundColor
+
+
+
     backgroundColor:'#ffffff',
     backgroundColor2:'#ffffff',
     orange: "#FFA133",

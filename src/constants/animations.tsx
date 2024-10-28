@@ -14,11 +14,16 @@ const forgot_password = require("../assets/animations/forgot_password.json")
 const otp = require("../assets/animations/otp.json")
 const password_change_success = require("../assets/animations/password_change_success.json")
 const chef = require("../assets/animations/chef.json")
+const car = require("../assets/animations/car.json")
+const car_rent = require("../assets/animations/car_reant.json")
+
 
 
 
 
 export default {
+    car,
+    car_rent,
     true_food,
     password_change_success,
     forgot_password,

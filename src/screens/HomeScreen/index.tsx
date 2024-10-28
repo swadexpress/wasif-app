@@ -25,11 +25,11 @@ import Wrapper from '../../components/Wrapper';
 import LoadingScreen from '../LoadingScreen';
 import AllProducts from './AllProducts';
 import FilterModel from './FilterModel';
-import FoodCategories from './FoodCategories';
 import HomeHeader from './HomeHeader';
 import HomeSearchBar from './HomeSearchBar';
 import Kitchen from './Kitchen';
 import NearbyFoods from './NearbyFoods';
+import RideCategories from './RideCategories';
 import Seller from './Seller';
 
 let noticeHeight2 = 75
@@ -281,7 +281,7 @@ const Home = () => {
                                     <>
 
                                         {/* Food categories */}
-                                        <FoodCategories
+                                        <RideCategories
                                             handelChangeCategory={handelChangeCategory}
                                             selectedCategoryId={selectedCategoryId}
                                             setSelectedCategoryId={setSelectedCategoryId}

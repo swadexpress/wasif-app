@@ -27,6 +27,7 @@ import CategoryScreen from './src/screens/CategoryScreen';
 import CheckoutScreen from './src/screens/CheckoutScreen';
 import DeliveryMapScreen from './src/screens/DeliveryMapScreen';
 import DeliveryStatusScreen from './src/screens/DeliveryStatusScreen';
+import DestinationSearchScreen from './src/screens/DestinationSearchScreen';
 import FavoriteAndWishScreen from './src/screens/FavoriteAndWishScreen';
 import FoodDetailsScreen from './src/screens/FoodDetailsScreen';
 import OnBoardingScreen from './src/screens/OnBoardingScreen';
@@ -118,7 +119,7 @@ const App = () => {
 
                         detachPreviousScreen: false,
                     }}
-                    initialRouteName={'OnBoardingScreen'}
+                    initialRouteName={'DestinationSearchScreen'}
                 >
                     
                     <Stack.Screen
@@ -142,12 +143,18 @@ const App = () => {
                         component={RiderBottomNavigator}
                         options={{ headerShown: false }}
                     />
+
                     <Stack.Screen
                         name="FoodieHomeScreen"
                         component={BottomNavigator}
                         options={{ headerShown: false }}
                     />
 
+
+                    <Stack.Screen
+                        name="DestinationSearchScreen"
+                        component={DestinationSearchScreen}
+                    />
 
                     <Stack.Screen
                         name="SignUpScreen"

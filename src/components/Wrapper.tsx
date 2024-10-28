@@ -1,7 +1,7 @@
 import React from 'react';
-import {ImageBackground, SafeAreaView, StyleSheet, View} from 'react-native';
-import { COLORS } from '../constants';
+import { StyleSheet, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import { COLORS } from '../constants';
 
 
 const Wrapper = ({children, style}:any) => {
@@ -13,10 +13,10 @@ const Wrapper = ({children, style}:any) => {
 
     }}
 
-    locations={[0, 1,]}
-    colors={[COLORS.lightRed, COLORS.lightBlue,]}
+    locations={[0.1, 1,]}
+    colors={[COLORS.linearGradientPrimary, COLORS.linearGradientSecondary,]}
     useAngle={true}
-    angle={190}>
+    angle={80}>
     <View style={[styles.container]}>
 
         {children}
