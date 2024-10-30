@@ -27,7 +27,10 @@ import CategoryScreen from './src/screens/CategoryScreen';
 import CheckoutScreen from './src/screens/CheckoutScreen';
 import DeliveryMapScreen from './src/screens/DeliveryMapScreen';
 import DeliveryStatusScreen from './src/screens/DeliveryStatusScreen';
+import DestinationSearchResultsScreen from './src/screens/DestinationSearchResultsScreen';
 import DestinationSearchScreen from './src/screens/DestinationSearchScreen';
+import DestinationsForRiderAndDriverMapScreen from './src/screens/DestinationsForRiderAndDriverMapScreen';
+import DestinationsMapScreen from './src/screens/DestinationsMapScreen';
 import FavoriteAndWishScreen from './src/screens/FavoriteAndWishScreen';
 import FoodDetailsScreen from './src/screens/FoodDetailsScreen';
 import OnBoardingScreen from './src/screens/OnBoardingScreen';
@@ -152,8 +155,21 @@ const App = () => {
 
 
                     <Stack.Screen
+                        name="DestinationSearchResultsScreen"
+                        component={DestinationSearchResultsScreen}
+                    />
+                    <Stack.Screen
                         name="DestinationSearchScreen"
                         component={DestinationSearchScreen}
+                    />
+                    
+                    <Stack.Screen
+                        name="DestinationsForRiderAndDriverMapScreen"
+                        component={DestinationsForRiderAndDriverMapScreen}
+                    />
+                    <Stack.Screen
+                        name="DestinationsMapScreen"
+                        component={DestinationsMapScreen}
                     />
 
                     <Stack.Screen
