@@ -138,10 +138,10 @@ const DestinationSearch = () => {
 
         <AnimationBottomSheet
 
-          onPress={() => {
-            Keyboard.dismiss()
+          // onPress={() => {
+          //   Keyboard.dismiss()
 
-          }}
+          // }}
 
           ref={ref}>
           {/* <TouchableOpacity
