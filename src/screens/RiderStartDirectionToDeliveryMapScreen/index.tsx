@@ -635,10 +635,7 @@ const Map = () => {
                 </LinearGradient>
 
 
-
-
-
-
+                
 
             </View>
         </Wrapper>

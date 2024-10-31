@@ -42,7 +42,7 @@ const typesData = [
 
 
 const UberTypes = ({ selectedRideType,
-   setSelectedRideType, routeParams }: any) => {
+  setSelectedRideType, routeParams }: any) => {
 
   const navigation = useNavigation<any>()
 
@@ -53,11 +53,12 @@ const UberTypes = ({ selectedRideType,
     <View style={{
       alignItems: 'center',
       marginTop: 5,
-      height:'100%'
+      height: '100%'
 
     }}>
       {typesData.map(v => (
         <TouchableOpacity
+          key={v.id}
           activeOpacity={0.9}
           onPress={() => {
             setSelectedRideType(v)
@@ -149,20 +150,19 @@ const UberTypes = ({ selectedRideType,
           // left: 0,
           // right: 0,
           // bottom:90,
-          alignItems:'center',
-          marginTop:20
+          alignItems: 'center',
+          marginTop: 20
         }}>
           <TouchableOpacity
             style={{
 
             }}
-            onPress={() =>
-              {
-                navigation.navigate('DestinationsForRiderAndDriverMapScreen', {
-                  ...routeParams,
-                  
-                })
-              }}
+            onPress={() => {
+              navigation.navigate('DestinationsForRiderAndDriverMapScreen', {
+                ...routeParams,
+
+              })
+            }}
             activeOpacity={0.9}>
             <LinearGradient
               style={styles.linearGradientButton}

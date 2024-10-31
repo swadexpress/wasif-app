@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Image, StyleSheet, View } from 'react-native';
+import { Dimensions, Image, Keyboard, StatusBar, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
 // import styles from './styles.js';
@@ -10,7 +10,9 @@ import { COLORS, SIZES, icons } from '../../constants';
 import AnimationBottomSheet from './AnimationBottomSheet';
 import Map from './Map';
 import PlaceRow from './PlaceRow';
+const { height: SCREEN_HEIGHT, width: SCREEN_WIDTH } = Dimensions.get('window');
 
+const MAX_TRANSLATE_Y = -SCREEN_HEIGHT + StatusBar.currentHeight + 45;
 
 
 
@@ -24,10 +26,14 @@ const workPlace = {
 };
 
 const DestinationSearch = () => {
+  const [autoFocus, setAutoFocus] = useState<any>(false);
   const [originPlace, setOriginPlace] = useState<any>(null);
   const [destinationPlace, setDestinationPlace] = useState<any>(null);
   const [myCurrentLocationUpdated, setMyCurrentLocationUpdated] =
     useState<any>(null);
+  const ref = useRef<any>(null);
+  const googlePlacesAutocompleteRef = useRef<any>(null);
+
 
   const navigation = useNavigation<any>();
 
@@ -64,130 +70,219 @@ const DestinationSearch = () => {
 
 
 
-  const ref = useRef<any>(null);
-
   const handelAnimationBottomSheet = useCallback(() => {
     const isActive = ref?.current?.isActive();
     // if (isActive) {
     //   ref?.current?.scrollTo(0);
     // } else {
-      ref?.current?.scrollTo(-200);
+    ref?.current?.scrollTo(-200);
     // }
   }, []);
+
+  const onPressIn = useCallback(() => {
+    ref?.current?.scrollTo(MAX_TRANSLATE_Y);
+    console.log('safkinpreee')
+  }, []);
+
+
+  const onPressOut = useCallback(() => {
+
+    console.log('onPressOut')
+  }, []);
+
+
+  const onFocus = useCallback(() => {
+
+    console.log('onFocus')
+  }, []);
+
+  const onBlur = useCallback(() => {
+
+    console.log('onBlur')
+  }, []);
+
+
+
+
+
 
   useEffect(() => {
     handelAnimationBottomSheet()
   }, [0]);
+  console.log(googlePlacesAutocompleteRef?.current?.isFocused, '....')
 
+
+  const handelOpenkayboard = () => {
+    // setAutoFocus(true)
+    // googlePlacesAutocompleteRef.current.focused()
+    console.log(googlePlacesAutocompleteRef.current.focus(), 'kk')
+  }
 
 
   return (
     <Wrapper>
 
 
-      <View style ={{
-        flex:1
+      <View style={{
+        flex: 1
       }}>
 
-   
-    
-      <SingleImageMapHeader
-        name={''}
-
-      />
-      
-      <Map />
-
-      <AnimationBottomSheet ref={ref}>
 
 
-        
-        <View style={styles.mainContainer}>
-          <GooglePlacesAutocomplete
-            placeholder="Where from?"
-            onPress={(data, details = null) => {
-              setOriginPlace({ data, details });
+        <SingleImageMapHeader
+          name={''}
 
-            }}
-            enablePoweredByContainer={false}
-            suppressDefaultStyles
-            currentLocation={true}
-            currentLocationLabel="Near by Current location"
-            styles={{
-              textInput: styles.textInput,
-              container: styles.autocompleteContainer,
-              listView: styles.listView,
-              separator: styles.separator,
-            }}
-            fetchDetails
-            query={{
-              key: 'AIzaSyALoxAkEa7ovp5MMeb3NcjEoZa-xu6Frk0',
-              language: 'en',
-            }}
-            renderRow={data => <PlaceRow data={data} />}
-            renderDescription={(data: any) => data.description || data.vicinity}
-            predefinedPlaces={[
-              myCurrentLocationUpdated ? myCurrentLocationUpdated : null,
-              homePlace,
-              workPlace,
-            ]}
-          />
-          <GooglePlacesAutocomplete
-            placeholder="Where to?"
-            onPress={(data, details = null) => {
-              setDestinationPlace({ data, details });
+        />
 
-            }}
-            enablePoweredByContainer={false}
-            suppressDefaultStyles
-            // currentLocation={true}
-            currentLocationLabel="Near by Current location"
-            styles={{
-              textInput: styles.textInput,
-              // container: styles.autocompleteContainer,
-              container: {
-                ...styles.autocompleteContainer,
-                top: SIZES.responsiveScreenWidth(11.2),
-              },
-              listView: styles.listView,
-              separator: styles.separator,
-            }}
-            fetchDetails
-            query={{
-              key: 'AIzaSyALoxAkEa7ovp5MMeb3NcjEoZa-xu6Frk0',
-              language: 'en',
-            }}
-            renderRow={data => <PlaceRow data={data} />}
-            renderDescription={(data: any) => data.description || data.vicinity}
-            predefinedPlaces={[
-              myCurrentLocationUpdated ? myCurrentLocationUpdated : null,
-              homePlace,
-              workPlace,
-            ]}
-          />
+        <Map />
+
+        <AnimationBottomSheet
+
+          onPress={() => {
+            Keyboard.dismiss()
+
+          }}
+
+          ref={ref}>
+          {/* <TouchableOpacity
+          onPress={()=>{
+            Keyboard.dismiss()
+
+          }}>
+
+            <Text>
+              aslkfjlk
+            </Text>
+          </TouchableOpacity> */}
 
 
 
-          {/* Circle near Origin input */}
-          <View style={styles.whereFromContainer} >
+          <TouchableOpacity
+            onPress={() => {
+              Keyboard.dismiss()
 
-            <Image source={icons.location}
-              style={styles.whereFromContainerIcon}
+            }}>
+
+            <View style={{
+              height: 12,
+              width: '100%'
+            }} />
+
+          </TouchableOpacity>
+
+          <View style={styles.mainContainer}>
+
+
+
+
+
+            <GooglePlacesAutocomplete
+              ref={googlePlacesAutocompleteRef}
+              placeholder="Where from?"
+              onPress={(data, details = null) => {
+                setOriginPlace({ data, details });
+
+              }}
+              enablePoweredByContainer={false}
+              suppressDefaultStyles
+              currentLocation={true}
+
+              textInputProps={{
+                onPressIn: onPressIn,
+                onPressOut: onPressOut,
+                onFocus: onFocus,
+                onBlur: onBlur,
+
+              }}
+              currentLocationLabel="Near by Current location"
+              styles={{
+                textInput: styles.textInput,
+                container: styles.autocompleteContainer,
+                listView: styles.listView,
+                separator: styles.separator,
+              }}
+              fetchDetails
+              query={{
+                key: 'AIzaSyALoxAkEa7ovp5MMeb3NcjEoZa-xu6Frk0',
+                language: 'en',
+              }}
+              renderRow={data => {
+
+                // console.log(data,'okay')
+                return (
+                  <PlaceRow data={data} />
+                )
+              }}
+              renderDescription={(data: any) => data.description || data.vicinity}
+              predefinedPlaces={[
+                myCurrentLocationUpdated ? myCurrentLocationUpdated : null,
+                homePlace,
+                workPlace,
+              ]}
             />
-          </View>
+            <GooglePlacesAutocomplete
+              placeholder="Where to?"
+              onPress={(data, details = null) => {
+                setDestinationPlace({ data, details });
 
-          {/* Line between dots */}
+              }}
+              enablePoweredByContainer={false}
+              textInputProps={{
+                onPressIn: onPressIn,
+                onPressOut: onPressOut,
+                onFocus: onFocus,
+                onBlur: onBlur,
+
+              }}
+              suppressDefaultStyles
+              // currentLocation={true}
+              currentLocationLabel="Near by Current location"
+              styles={{
+                textInput: styles.textInput,
+                // container: styles.autocompleteContainer,
+                container: {
+                  ...styles.autocompleteContainer,
+                  top: SIZES.responsiveScreenWidth(11.2),
+                },
+                listView: styles.listView,
+                separator: styles.separator,
+              }}
+              fetchDetails
+              query={{
+                key: 'AIzaSyALoxAkEa7ovp5MMeb3NcjEoZa-xu6Frk0',
+                language: 'en',
+              }}
+              renderRow={data => <PlaceRow data={data} />}
+              renderDescription={(data: any) => data.description || data.vicinity}
+              predefinedPlaces={[
+                myCurrentLocationUpdated ? myCurrentLocationUpdated : null,
+                homePlace,
+                workPlace,
+              ]}
+            />
 
 
-          <View style={{
-            top: SIZES.responsiveScreenWidth(9),
-            backgroundColor: '#c4c4c4',
-            position: 'absolute',
-            left: SIZES.responsiveScreenWidth(7),
-            zIndex: 999
 
-          }} >
-            {/* <Image source={icons.dotted_line}
+            {/* Circle near Origin input */}
+            <View style={styles.whereFromContainer} >
+
+              <Image source={icons.location}
+                style={styles.whereFromContainerIcon}
+              />
+            </View>
+
+            {/* Line between dots */}
+
+
+            <View style={{
+              top: SIZES.responsiveScreenWidth(9),
+              backgroundColor: '#c4c4c4',
+              position: 'absolute',
+              left: SIZES.responsiveScreenWidth(7),
+              zIndex: 999
+
+            }} >
+              {/* <Image source={icons.dotted_line}
             style={{
               width: 2,
               height: SIZES.responsiveScreenWidth(5.5),
@@ -196,24 +291,24 @@ const DestinationSearch = () => {
 
             }}
           /> */}
+            </View>
+
+            {/* Square near Destination input */}
+            <View style={[styles.whereFromContainer, { top: SIZES.responsiveScreenWidth(11.2) + 5, }]} >
+              <Image source={icons.delivery}
+                style={{
+                  width: SIZES.responsiveScreenWidth(4.5),
+                  height: SIZES.responsiveScreenWidth(4.5),
+                  tintColor: COLORS.primary
+                }}
+              />
+            </View>
+
           </View>
 
-          {/* Square near Destination input */}
-          <View style={[styles.whereFromContainer, { top: SIZES.responsiveScreenWidth(11.2) + 5, }]} >
-            <Image source={icons.delivery}
-              style={{
-                width: SIZES.responsiveScreenWidth(4.5),
-                height: SIZES.responsiveScreenWidth(4.5),
-                tintColor: COLORS.primary
-              }}
-            />
-          </View>
-
-        </View>
-       
 
 
-      </AnimationBottomSheet>
+        </AnimationBottomSheet>
 
       </View>
     </Wrapper>
@@ -231,7 +326,7 @@ const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     alignItems: 'center',
-    marginTop: 20,
+
     marginHorizontal: 10
 
   },

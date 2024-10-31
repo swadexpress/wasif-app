@@ -19,7 +19,7 @@ const SearchResults = () => {
   const [selectedRideType, setSelectedRideType] = useState();
 
   const route = useRoute<any>();
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
 
   const { originPlace, destinationPlace } = route.params;
 
@@ -37,6 +37,24 @@ const SearchResults = () => {
   useEffect(() => {
     handelAnimationBottomSheet()
   }, [0]);
+
+
+  useEffect(() => {
+    var timerId = setTimeout(() => {
+      navigation.navigate('RiderReviewScreen')
+ 
+    }, 7000);
+    return function cleanup() {
+      clearInterval(timerId);
+    };
+  },[0]);
+
+
+
+
+
+
+
 
 
   return (

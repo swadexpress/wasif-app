@@ -7,6 +7,7 @@ import RouteMap from './RouteMap';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { COLORS, SIZES } from '../../constants';
 import AnimationBottomSheet from '../DestinationSearchScreen/AnimationBottomSheet';
+import Confirmation from './Confirmation';
 import UberTypes from './UberTypes';
 
 const SearchResults = () => {
@@ -17,6 +18,7 @@ const SearchResults = () => {
 
   });
   const [selectedRideType, setSelectedRideType] = useState();
+  const [showConfirmDestination, setShowConfirmDestination] = useState<boolean>(true);
 
   const route = useRoute<any>();
   const navigation = useNavigation();
@@ -32,6 +34,17 @@ const SearchResults = () => {
     // } else {
     ref?.current?.scrollTo(-200);
     // }
+  }, []);
+  const handelConfirmDestination = useCallback(() => {
+
+    ref?.current?.scrollTo(0);
+    setTimeout(() => {
+      ref?.current?.scrollTo(-200);
+    },1500)
+
+    setShowConfirmDestination(false)
+
+
   }, []);
 
   useEffect(() => {
@@ -58,14 +71,23 @@ const SearchResults = () => {
 
 
       <AnimationBottomSheet ref={ref}>
-        <UberTypes
-          setSelectedRideType={setSelectedRideType}
-          selectedRideType={selectedRideType}
-          routeParams={route.params}
+        {showConfirmDestination ?
+          <Confirmation handelConfirmDestination={handelConfirmDestination} />
 
-        />
-
+          :
+          <UberTypes
+            setSelectedRideType={setSelectedRideType}
+            selectedRideType={selectedRideType}
+            routeParams={route.params}
+          />
+        }
       </AnimationBottomSheet>
+
+
+
+
+
+
     </View>
   );
 };

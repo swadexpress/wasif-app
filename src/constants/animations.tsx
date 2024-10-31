@@ -16,12 +16,25 @@ const password_change_success = require("../assets/animations/password_change_su
 const chef = require("../assets/animations/chef.json")
 const car = require("../assets/animations/car.json")
 const car_rent = require("../assets/animations/car_reant.json")
+const car_rider = require("../assets/animations/car_rider.json")
+const ambulance = require("../assets/animations/amnbulancia.json")
+const car_find = require("../assets/animations/car_find.json")
+const parcel_ride = require("../assets/animations/parcel_ride.json")
+const car_find_with_map = require("../assets/animations/car_find_with_map.json")
+const car_ride_reant = require("../assets/animations/car_ride_reant.json")
+
 
 
 
 
 
 export default {
+    parcel_ride,
+    car_ride_reant,
+    car_find_with_map,
+    car_find,
+    car_rider,
+    ambulance,
     car,
     car_rent,
     true_food,

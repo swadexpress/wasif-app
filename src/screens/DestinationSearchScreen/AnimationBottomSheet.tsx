@@ -1,5 +1,5 @@
 import React, { useCallback, useImperativeHandle } from 'react';
-import { Dimensions, StatusBar, StyleSheet, View } from 'react-native';
+import { Dimensions, Keyboard, StatusBar, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
 import Animated, {
@@ -57,14 +57,14 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, BottomSheetProps>(
       })
       .onEnd(() => {
         if (translateY.value > -SCREEN_HEIGHT / 3) {
-          scrollTo(-200);
+          scrollTo(-230);
         } else if (translateY.value < -SCREEN_HEIGHT / 1.5) {
           scrollTo(MAX_TRANSLATE_Y);
         }
       });
 
     const rBottomSheetStyle = useAnimatedStyle(() => {
-   
+
 
       return {
         transform: [{ translateY: translateY.value }],
@@ -119,23 +119,24 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, BottomSheetProps>(
           >
             <LinearGradient
               style={[{
-
-                flex:1,
-                borderRadius:15
-              
-             
-
-              },rBottomSheetStyle2]}
+                flex: 1,
+                borderRadius: 15
+              }, rBottomSheetStyle2]}
 
               locations={[0.1, 1,]}
               colors={[COLORS.lightRed, COLORS.lightBlue,]}
               useAngle={true}
               angle={190}>
+              <TouchableOpacity
+              activeOpacity={1}
+                onPress={() => {
+                  Keyboard.dismiss()
 
+                }}>
+                <View style={styles.line} />
+              </TouchableOpacity>
 
-              <View style={styles.line} />
               {children}
-
             </LinearGradient>
           </Animated.View>
         </GestureDetector>

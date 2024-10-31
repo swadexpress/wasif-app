@@ -218,7 +218,6 @@ const NearbyFoods = ({ recommends }: any) => {
 
 
                                 <View style={{
-
                                     // alignItems: 'center',
                                     justifyContent: 'center',
                                     flexDirection: 'row',
@@ -244,17 +243,13 @@ const NearbyFoods = ({ recommends }: any) => {
                                         fontWeight: '900',
                                         color: COLORS.black,
                                         marginLeft: 3
-
                                     }}>
                                         4.5
                                     </Text>
                                     <Text style={{
                                         fontSize: SIZES.responsiveScreenFontSize(0.9),
-
                                         fontWeight: '900',
                                         color: COLORS.gray
-
-
                                     }}>
                                         (23+)
                                     </Text>

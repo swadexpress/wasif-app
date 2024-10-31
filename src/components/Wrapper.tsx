@@ -16,7 +16,7 @@ const Wrapper = ({children, style}:any) => {
     locations={[0.1, 1,]}
     colors={[COLORS.lightRed, COLORS.lightBlue2,]}
     useAngle={true}
-    angle={80}>
+    angle={190}>
     <View style={[styles.container]}>
 
         {children}
