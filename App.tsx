@@ -25,6 +25,7 @@ import VerificationOtpScreen from './src/screens/Authentication/VerificationOtpS
 import CardScreen from './src/screens/CardScreen';
 import CategoryScreen from './src/screens/CategoryScreen';
 import CheckParcelAndCourierDetailsScreen from './src/screens/CheckParcelAndCourierDetailsScreen';
+import CheckRentCarDetailsScreen from './src/screens/CheckRentCarDetailsScreen';
 import CheckoutScreen from './src/screens/CheckoutScreen';
 import CreateParcelAndCourierDetailsScreen from './src/screens/CreateParcelAndCourierDetailsScreen';
 import CreateRentCarDetailsScreen from './src/screens/CreateRentCarDetailsScreen';
@@ -197,6 +198,11 @@ const App = () => {
                     <Stack.Screen
                         name="CreateRentCarDetailsScreen"
                         component={CreateRentCarDetailsScreen}
+                        options={{ headerShown: false }}
+                    />
+                    <Stack.Screen
+                        name="CheckRentCarDetailsScreen"
+                        component={CheckRentCarDetailsScreen}
                         options={{ headerShown: false }}
                     />
 

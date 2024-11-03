@@ -1,5 +1,8 @@
 import {
+    Dimensions,
     Image,
+    Keyboard,
+    StatusBar,
     StyleSheet,
     Text,
     TouchableOpacity,
@@ -20,6 +23,12 @@ import FromInput from '../Authentication/FromInput';
 import AnimationFixedBottomSheet from './AnimationFixedBottomSheet';
 import CarType from './CarType';
 import OfferFromInput from './OfferFromInput';
+const { height: SCREEN_HEIGHT, width: SCREEN_WIDTH } = Dimensions.get('window');
+
+
+const MAX_TRANSLATE_Y = -SCREEN_HEIGHT + StatusBar.currentHeight + 45;
+
+
 
 const offerPriceData = [
     {
@@ -54,7 +63,7 @@ const CreateParcelAndCourierDetailsScreen = () => {
     const [date, setDate] = useState(new Date());
     const [open, setOpen] = useState(false);
     const [emailError, setEmailError] = useState<any>('')
-    const [offerPrice, setOfferPrice] = useState<any>('')
+    const [offerPrice, setOfferPrice] = useState<any>('55')
     const { NotificationsProvider, useNotifications } = createNotifications({
         notificationPosition: 'center',
     })
@@ -70,6 +79,10 @@ const CreateParcelAndCourierDetailsScreen = () => {
 
     const handelAnimationFixedOfferAreasonableFareBottomSheetRef = useCallback(() => {
         animationFixedOfferAreasonableFareBottomSheetRef?.current?.scrollTo(-310);
+    }, []);
+
+    const onPressIn = useCallback(() => {
+        animationFixedOfferAreasonableFareBottomSheetRef?.current?.scrollTo(MAX_TRANSLATE_Y);
     }, []);
 
 
@@ -560,7 +573,7 @@ const CreateParcelAndCourierDetailsScreen = () => {
             {/* ================================ */}
             <AnimationFixedBottomSheet
                 ref={animationFixedOfferAreasonableFareBottomSheetRef}
-                MAX_TRANSLATE_Y={-310}
+                MAX_TRANSLATE_Y={MAX_TRANSLATE_Y}
 
             >
                 <View style={{
@@ -568,50 +581,67 @@ const CreateParcelAndCourierDetailsScreen = () => {
                     justifyContent: 'center',
                 }}>
 
-                    <Text
-                        style={{
-                            color: COLORS.primary,
-                            fontWeight: '700',
-                            fontSize: SIZES.responsiveScreenFontSize(1.7),
-                            marginTop: 10,
-                            marginLeft: 11,
-                            alignSelf: 'flex-start'
-                        }}
-                    >
-                        Offer a reasonable fare
-                    </Text>
 
-                    <Text
-                        style={{
-                            color: COLORS.gray,
-                            fontWeight: '700',
-                            fontSize: SIZES.responsiveScreenFontSize(1.2),
-                            marginTop: 2,
-                            marginLeft: 11,
-                            marginBottom: 10,
-                            alignSelf: 'flex-start'
+                    <TouchableOpacity
+                        activeOpacity={1}
+                        style ={{
+                            width:'100%'
                         }}
-                    >Offer a fare between <Text
-                        style={{
-                            color: COLORS.primary,
-                            fontWeight: '700',
-                            fontSize: SIZES.responsiveScreenFontSize(1.2),
-                            marginTop: 2,
-                            marginLeft: 11,
-                            marginBottom: 10,
-                            alignSelf: 'flex-start'
-                        }}
-                    > ৳4770 - ৳7100
+                        onPress={() => {
+                            Keyboard.dismiss()
+
+                        }}>
+
+
+                        <Text
+                            style={{
+                                color: COLORS.primary,
+                                fontWeight: '700',
+                                fontSize: SIZES.responsiveScreenFontSize(1.7),
+                                marginTop: 10,
+                                marginLeft: 11,
+                                alignSelf: 'flex-start'
+                            }}
+                        >
+                            Offer a reasonable fare
                         </Text>
-                    </Text>
+
+                        <Text
+                            style={{
+                                color: COLORS.gray,
+                                fontWeight: '700',
+                                fontSize: SIZES.responsiveScreenFontSize(1.2),
+                                marginTop: 2,
+                                marginLeft: 11,
+                                marginBottom: 10,
+                                alignSelf: 'flex-start'
+                            }}
+                        >Offer a fare between <Text
+                            style={{
+                                color: COLORS.primary,
+                                fontWeight: '700',
+                                fontSize: SIZES.responsiveScreenFontSize(1.2),
+                                marginTop: 2,
+                                marginLeft: 11,
+                                marginBottom: 10,
+                                alignSelf: 'flex-start'
+                            }}
+                        > ৳4770 - ৳7100
+                            </Text>
+                        </Text>
+
+
+                    </TouchableOpacity>
 
 
                     <OfferFromInput
                         label="Offer Price"
-                        placeholder="Price"
-                        keyboardType='email-address'
-                        autocomplete='email'
-                        value={43}
+                        placeholder={'0'}
+                        keyboardType='number-pad'
+                        autocomplete='cc-number'
+                        value={offerPrice}
+
+                        onPressIn={onPressIn}
                         onChange={(value: any) => {
                             setOfferPrice(value)
                         }}
@@ -623,7 +653,8 @@ const CreateParcelAndCourierDetailsScreen = () => {
 
 
                     <View style={{
-                        flexDirection: 'row'
+                        flexDirection: 'row',
+                        marginTop: 8
                     }}>
 
                         {offerPriceData.map((v: any) => {
@@ -638,11 +669,12 @@ const CreateParcelAndCourierDetailsScreen = () => {
                                             marginTop: 10,
                                             marginHorizontal: 6
                                         }}
-                                        activeOpacity={0.9}
+                                        activeOpacity={1}
                                         onPress={() => {
-                                            setOfferPrice(v.price)
+                                            setOfferPrice(v.price.toString())
+                                            console.log(offerPrice, 'offerPrice')
 
-                                            console.log(offerPrice,'offerPrice')
+
                                         }}
                                     >
                                         <LinearGradient
@@ -654,11 +686,10 @@ const CreateParcelAndCourierDetailsScreen = () => {
                                                 height: SIZES.responsiveScreenWidth(10),
                                                 borderRadius: 6,
                                                 flexDirection: 'row',
-
-                                                elevation: 1
+                                                elevation: 0.5
                                             }}
-                                            locations={[0, 1,]}
-                                            colors={[v.price ==offerPrice ?  COLORS.lightOrange :COLORS.darkRed, COLORS.lightBlue,]}
+                                            locations={[0.4, 1,]}
+                                            colors={[v.price == offerPrice ? COLORS.lightYellow : COLORS.darkRed, COLORS.lightBlue,]}
                                             useAngle={true}
                                             angle={10}>
 
@@ -703,11 +734,10 @@ const CreateParcelAndCourierDetailsScreen = () => {
                         }}
                         activeOpacity={0.9}
                         onPress={() => {
-                            // setSelectCarType(selectCarTypeData.name)
-
-                            // handelAnimationFixedOfferAreasonableFareBottomSheetRef?.current?.scrollTo(0);
-
-
+                         navigation.navigate('CheckRentCarDetailsScreen')
+                           
+                            Keyboard.dismiss()
+                       
                         }}
                     >
                         <LinearGradient
@@ -719,37 +749,28 @@ const CreateParcelAndCourierDetailsScreen = () => {
                                 height: SIZES.responsiveScreenWidth(8.5),
                                 borderRadius: 6,
                                 flexDirection: 'row',
-
                                 elevation: 1
                             }}
                             locations={[0, 1,]}
                             colors={[COLORS.darkRed, COLORS.lightBlue,]}
                             useAngle={true}
                             angle={10}>
-
-
-
-
                             <Image source={icons.transaction}
                                 style={{
-                                    width: SIZES.responsiveScreenWidth(5),
-                                    height: SIZES.responsiveScreenWidth(5),
+                                    width: SIZES.responsiveScreenWidth(4),
+                                    height: SIZES.responsiveScreenWidth(4),
                                     tintColor: COLORS.primary
                                 }}
                             />
-
                             <Text
                                 style={{
                                     color: COLORS.primary,
                                     fontWeight: '700',
                                     fontSize: SIZES.responsiveScreenFontSize(1.7),
-                                    marginLeft: 8
+                                    marginLeft: 5
                                 }}
-                            >
-                                Next
+                            > Offer
                             </Text>
-
-
                         </LinearGradient>
                     </TouchableOpacity>
 

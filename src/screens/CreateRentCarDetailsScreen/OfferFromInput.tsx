@@ -24,34 +24,38 @@ const FromInput = ({
     autoCompleteType = "off",
     autoCapitalize = "none",
     errorMsg = "",
-    value ,
-    maxLength
+    value = '',
+    onPressIn,
+    maxLength,
 
 }: any) => {
     return (
 
         <View style={{
             flexDirection: 'row',
-            height: SIZES.responsiveScreenWidth(22),
+            height: SIZES.responsiveScreenWidth(20),
             marginTop: 15,
             borderRadius: 7,
             backgroundColor: COLORS.lightGray2,
-            width: SIZES.responsiveScreenWidth(80),
+            width: SIZES.responsiveScreenWidth(70),
             alignItems: 'center',
             justifyContent:'center'
         }}>
-       
+            {prependComponent}
 
             <TextInput
                 style={{
 
+
                     fontSize: SIZES.responsiveScreenFontSize(1.7),
-                    fontWeight: '700',
-                    color:COLORS.primary,
-                    marginHorizontal:10
+                    fontWeight: '800',
+                
+                    color:COLORS.primary
 
                 }}
+                
                 value={value}
+                onPressIn={onPressIn}
                 placeholder={placeholder}
                 placeholderTextColor={COLORS.gray}
                 secureTextEntry={secureTextEntry}
@@ -61,7 +65,7 @@ const FromInput = ({
                 maxLength={maxLength}
                 onChangeText={(text) => onChange(text)}
             />
-       
+            {appendComponent}
 
         </View>
     )
