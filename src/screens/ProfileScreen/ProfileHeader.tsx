@@ -126,14 +126,14 @@ const ProfileValue = ({ icon, value, onPress, isProfile, setSelectedShowDetails 
 
                 <ProfileValueTop
                     icon={icons.order}
-                    value={"Orders"}
+                    value={"Bike"}
                     onPress={() => navigation.navigate('UserOrdersScreen')}
                 />
 
                 <ProfileValueTop
                     icon={icons.delivery}
 
-                    value={"To Ship"}
+                    value={"Car"}
                     onPress={() => navigation.navigate('UserToShipOrdersScreen')}
 
                 />
@@ -141,8 +141,8 @@ const ProfileValue = ({ icon, value, onPress, isProfile, setSelectedShowDetails 
                 <ProfileValueTop
                     icon={!isProfile ? icons.eye : icons.check}
 
-                    value={"Receive"}
-                    onPress={() => navigation.navigate('UserReceiveOrdersScreen')}
+                    value={"Courier"}
+                    onPress={() => navigation.navigate('ParcelAndCourierOrdersScreen')}
 
                 />
 
@@ -150,13 +150,13 @@ const ProfileValue = ({ icon, value, onPress, isProfile, setSelectedShowDetails 
                     icon={!isProfile ? icons.map : icons.restaurant}
                     onPress={() => navigation.navigate('UserReturnOrdersScreen')}
 
-                    value={"Returns"}
+                    value={"Rental"}
 
                 />
                 <ProfileValueTop
                     icon={!isProfile ? icons.transaction : icons.transaction}
                     onPress={() => navigation.navigate('UserOrdersReviewScreen')}
-                    value={"Review"}
+                    value={"Orders"}
 
                 />
 

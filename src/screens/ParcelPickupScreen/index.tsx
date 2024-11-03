@@ -86,7 +86,7 @@ const DestinationSearch = () => {
   const handelAnimationFixedBottomSheet = useCallback(() => {
 
     setTimeout(() => {
-      animationFixedBottomSheetRef?.current?.scrollTo(-250);
+      animationFixedBottomSheetRef?.current?.scrollTo(-200);
     }, 900)
 
     ref?.current?.scrollTo(0);
@@ -317,7 +317,217 @@ const DestinationSearch = () => {
           animationBottomSheetRef={ref}
 
         >
+          <View style={{
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
 
+
+            <Text
+              style={{
+                color: COLORS.primary,
+                fontWeight: '700',
+                fontSize: SIZES.responsiveScreenFontSize(1.7),
+                marginTop: 15
+              }}
+            >
+              Courier Method
+            </Text>
+
+
+
+            <View style={{
+              flexDirection: 'row',
+              flexWrap: 'wrap',
+
+
+
+            }}>
+
+              <TouchableOpacity
+                activeOpacity={0.9}
+                onPress={() => {
+                  navigation.navigate('CheckParcelAndCourierDetailsScreen')
+
+                }}
+              >
+                <LinearGradient
+                  style={{
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    backgroundColor: COLORS.primary,
+                    width: SIZES.responsiveScreenWidth(28),
+                    height: SIZES.responsiveScreenWidth(23),
+                    borderRadius: 6,
+
+                    marginTop: 20,
+                    elevation: 2
+                  }}
+                  locations={[0, 1,]}
+                  colors={[COLORS.darkRed, COLORS.lightBlue,]}
+                  useAngle={true}
+                  angle={10}>
+
+
+
+
+                  <Image source={icons.location}
+                    style={{
+                      width: SIZES.responsiveScreenWidth(7),
+                      height: SIZES.responsiveScreenWidth(7),
+                      tintColor: COLORS.primary
+                    }}
+                  />
+
+                  <Text
+                    style={{
+                      color: COLORS.primary,
+                      fontWeight: '700',
+                      fontSize: SIZES.responsiveScreenFontSize(1.4),
+                      marginTop: 8
+                    }}
+                  >
+                    Home Pickup
+                  </Text>
+
+                  <Text
+                    style={{
+                      color: COLORS.primary,
+                      fontWeight: '700',
+                      marginTop: 3,
+                      fontSize: SIZES.responsiveScreenFontSize(1.3),
+
+                    }}
+                  >
+                    ৳130
+                  </Text>
+
+
+                </LinearGradient>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={{
+                  marginLeft: 15
+                }}
+                activeOpacity={0.9}
+                onPress={() => {
+                  navigation.navigate('CheckParcelAndCourierDetailsScreen')
+
+                }}
+              >
+                <LinearGradient
+                  style={{
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    backgroundColor: COLORS.primary,
+                    width: SIZES.responsiveScreenWidth(28),
+                    height: SIZES.responsiveScreenWidth(23),
+                    borderRadius: 6,
+
+                    marginTop: 20,
+                    elevation: 2
+                  }}
+                  locations={[0, 1,]}
+                  colors={[COLORS.darkRed, COLORS.lightBlue,]}
+                  useAngle={true}
+                  angle={10}>
+
+
+
+
+                  <Image source={icons.transaction}
+                    style={{
+                      width: SIZES.responsiveScreenWidth(6),
+                      height: SIZES.responsiveScreenWidth(6),
+                      tintColor: COLORS.primary
+                    }}
+                  />
+
+                  <Text
+                    style={{
+                      color: COLORS.primary,
+                      fontWeight: '700',
+                      fontSize: SIZES.responsiveScreenFontSize(1.4),
+                      marginTop: 8
+                    }}
+                  >
+                    Kiosk Drop
+                  </Text>
+
+                  <Text
+                    style={{
+                      color: COLORS.primary,
+                      fontWeight: '700',
+                      marginTop: 3,
+                      fontSize: SIZES.responsiveScreenFontSize(1.3),
+
+                    }}
+                  >
+                    ৳130
+                  </Text>
+
+
+                </LinearGradient>
+              </TouchableOpacity>
+
+
+
+
+
+
+
+            </View>
+
+            {/* 
+            <TouchableOpacity
+              activeOpacity={0.9}
+              onPress={() => navigation.navigate("Home")}
+            >
+              <LinearGradient
+                style={{
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  backgroundColor: COLORS.primary,
+                  width: SIZES.responsiveScreenWidth(80),
+                  height: SIZES.responsiveScreenWidth(8.5),
+                  borderRadius: 6,
+                  flexDirection: 'row',
+                  marginTop: 40,
+                  elevation: 2
+                }}
+                locations={[0, 1,]}
+                colors={[COLORS.darkRed, COLORS.lightBlue,]}
+                useAngle={true}
+                angle={10}>
+
+
+
+
+                <Image source={icons.transaction}
+                  style={{
+                    width: SIZES.responsiveScreenWidth(5),
+                    height: SIZES.responsiveScreenWidth(5),
+                    tintColor: COLORS.primary
+                  }}
+                />
+
+                <Text
+                  style={{
+                    color: COLORS.primary,
+                    fontWeight: '700',
+                    fontSize: SIZES.responsiveScreenFontSize(1.7),
+                    marginLeft: 8
+                  }}
+                >
+                  Submit Review
+                </Text>
+
+
+              </LinearGradient>
+            </TouchableOpacity> */}
+
+          </View>
 
 
         </AnimationFixedBottomSheet>

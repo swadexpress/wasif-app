@@ -15,7 +15,7 @@ import { COLORS } from '../../constants';
 
 const { height: SCREEN_HEIGHT, width: SCREEN_WIDTH } = Dimensions.get('window');
 
-const MAX_TRANSLATE_Y = -250;
+const MAX_TRANSLATE_Y = -200;
 
 type BottomSheetProps = {
   children?: React.ReactNode;
@@ -57,7 +57,7 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, BottomSheetProps>(
         translateY.value = Math.max(translateY.value, MAX_TRANSLATE_Y);
       })
       .onEnd(() => {
-        if (translateY.value > -SCREEN_HEIGHT / 3) {
+        if (translateY.value > -10) {
           scrollTo(0);
           animationBottomSheetRef?.current?.scrollTo(-250);
         } else if (translateY.value < -SCREEN_HEIGHT / 1.5) {

@@ -1,5 +1,5 @@
 import React, { useCallback, useImperativeHandle } from 'react';
-import { Dimensions, Keyboard, StatusBar, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Dimensions, Keyboard, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
 import Animated, {
@@ -15,19 +15,21 @@ import { COLORS } from '../../constants';
 
 const { height: SCREEN_HEIGHT, width: SCREEN_WIDTH } = Dimensions.get('window');
 
-const MAX_TRANSLATE_Y = -SCREEN_HEIGHT + StatusBar.currentHeight + 45;
 
 type BottomSheetProps = {
   children?: React.ReactNode;
+  animationBottomSheetRef?: any;
+  MAX_TRANSLATE_Y?: number;
 };
 
 export type BottomSheetRefProps = {
   scrollTo: (destination: number) => void;
   isActive: () => boolean;
+  animationFixedBottomSheetRef:any;
 };
 
 const BottomSheet = React.forwardRef<BottomSheetRefProps, BottomSheetProps>(
-  ({ children,animationFixedBottomSheetRef }, ref) => {
+  ({ children,animationBottomSheetRef,MAX_TRANSLATE_Y }, ref) => {
     const translateY = useSharedValue(0);
     const active = useSharedValue(false);
 
@@ -56,21 +58,24 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, BottomSheetProps>(
         translateY.value = Math.max(translateY.value, MAX_TRANSLATE_Y);
       })
       .onEnd(() => {
-        if (translateY.value > -SCREEN_HEIGHT / 3) {
-          scrollTo(-250);
-          animationFixedBottomSheetRef?.current?.scrollTo(-200);
+        if (translateY.value > -10) {
+          scrollTo(0);
+          animationBottomSheetRef?.current?.scrollTo(-250);
         } else if (translateY.value < -SCREEN_HEIGHT / 1.5) {
           scrollTo(MAX_TRANSLATE_Y);
         }
       });
 
+
+
     const rBottomSheetStyle = useAnimatedStyle(() => {
-
-
       return {
         transform: [{ translateY: translateY.value }],
       };
     });
+
+
+
     const rBottomSheetStyle2 = useAnimatedStyle(() => {
       const borderRadius = interpolate(
         translateY.value,
@@ -86,10 +91,11 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, BottomSheetProps>(
 
     const rBackdropStyle = useAnimatedStyle(() => {
       return {
-        // opacity: withTiming(active.value ? 1 : 0),
         opacity: withTiming(active.value ? 0 : 0),
       };
     }, []);
+
+
 
     const rBackdropProps = useAnimatedProps(() => {
       return {
@@ -97,6 +103,9 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, BottomSheetProps>(
         pointerEvents: active.value ? 'none' : 'none',
       } as any;
     }, []);
+
+
+
 
     return (
       <>

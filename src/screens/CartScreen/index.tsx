@@ -388,7 +388,7 @@ const MyCart = ({ }) => {
                                             <Text style={
                                                 styles.rightSiteCartMainPriceButtonText
                                             }>
-                                                ৳ 200.0
+                                                ৳200.0
                                             </Text>
 
                                         </View>

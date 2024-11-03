@@ -26,7 +26,7 @@ const categoryData = [
         name: 'Rental',
         image: icons.coffee,
         animation: animations.car_rent,
-        navigationScreen:'DestinationSearchScreen',
+        navigationScreen:'CreateRentCarDetailsScreen',
 
         id: 3,
     },
