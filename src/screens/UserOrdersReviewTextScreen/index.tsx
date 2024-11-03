@@ -153,10 +153,8 @@ const MyCard = () => {
                                 <View style={{
                                     flexDirection: 'row',
                                     alignItems: 'center',
-
                                 }}>
                                     <FastImage
-
                                         style={{
                                             width: 72,
                                             height: 72,
@@ -164,7 +162,6 @@ const MyCard = () => {
                                         }}
                                         source={{ uri: 'https://img.freepik.com/free-photo/baked-vegetables-white-plate-eggplant-zucchini-tomatoes-paprika-onions-top-view_2829-17239.jpg?t=st=1727304096~exp=1727307696~hmac=60a4a4300e1e61aac4db57f1537c4047eead205fa2c844deeff0f965bf7050cc&w=2000' }}
                                         resizeMode={'cover'}
-                                    // resizeMode={'stretch'}
 
                                     />
                                     <View style={{
@@ -173,24 +170,14 @@ const MyCard = () => {
                                         <View style={{
                                             flexDirection: 'row',
                                             alignItems: 'center',
-
-
                                         }}>
-
-
-
                                             <Text style={{
                                                 fontSize: 14,
                                                 fontWeight: '700',
                                                 color: COLORS.black,
-
                                             }}>
                                                 {`${"Hot spicy stew eggplant, sweet pepper,"}...`}
                                             </Text>
-
-
-
-
                                         </View>
 
                                         <View style={{
@@ -198,13 +185,10 @@ const MyCard = () => {
                                             alignItems: 'center',
                                             marginTop: 5
                                         }}>
-
                                             <View style={{
                                                 flexDirection: 'row',
                                                 alignItems: 'center',
-
                                             }}>
-
                                                 <Image
                                                     source={icons.delivery}
                                                     style={{
@@ -461,6 +445,8 @@ const MyCard = () => {
 
 
                         </View>
+
+
 
                         <TouchableOpacity
                             activeOpacity={0.9}

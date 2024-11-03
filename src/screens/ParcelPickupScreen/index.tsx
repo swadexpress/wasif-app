@@ -1,20 +1,21 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Dimensions, Image, Keyboard, StatusBar, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Dimensions, Image, Keyboard, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
 // import styles from './styles.js';
+import LinearGradient from 'react-native-linear-gradient';
 import SingleImageMapHeader from '../../components/SingleImageMapHeader';
 import Wrapper from '../../components/Wrapper';
 import { COLORS, SIZES, icons } from '../../constants';
 import AnimationBottomSheet from './AnimationBottomSheet';
+import AnimationFixedBottomSheet from './AnimationFixedBottomSheet';
+import FromInput from './FromInput';
 import Map from './Map';
 import PlaceRow from './PlaceRow';
 const { height: SCREEN_HEIGHT, width: SCREEN_WIDTH } = Dimensions.get('window');
 
 const MAX_TRANSLATE_Y = -SCREEN_HEIGHT + StatusBar.currentHeight + 45;
-
-
 
 const homePlace = {
   description: 'Home',
@@ -32,7 +33,9 @@ const DestinationSearch = () => {
   const [myCurrentLocationUpdated, setMyCurrentLocationUpdated] =
     useState<any>(null);
   const ref = useRef<any>(null);
+  const animationFixedBottomSheetRef = useRef<any>(null);
   const googlePlacesAutocompleteRef = useRef<any>(null);
+  const [guidePickupAgent, setGuidePickupAgent] = useState<any>('')
 
 
   const navigation = useNavigation<any>();
@@ -78,6 +81,19 @@ const DestinationSearch = () => {
     ref?.current?.scrollTo(-200);
     // }
   }, []);
+
+
+  const handelAnimationFixedBottomSheet = useCallback(() => {
+
+    setTimeout(() => {
+      animationFixedBottomSheetRef?.current?.scrollTo(-250);
+    }, 900)
+
+    ref?.current?.scrollTo(0);
+
+  }, []);
+
+
 
   const onPressIn = useCallback(() => {
     ref?.current?.scrollTo(MAX_TRANSLATE_Y);
@@ -137,30 +153,12 @@ const DestinationSearch = () => {
         <Map />
 
         <AnimationBottomSheet
-
-          // onPress={() => {
-          //   Keyboard.dismiss()
-
-          // }}
-
-          ref={ref}>
-          {/* <TouchableOpacity
-          onPress={()=>{
-            Keyboard.dismiss()
-
-          }}>
-
-            <Text>
-              aslkfjlk
-            </Text>
-          </TouchableOpacity> */}
-
-
-
+          animationBottomSheetRef={ref}
+          ref={ref}
+        >
           <TouchableOpacity
             onPress={() => {
               Keyboard.dismiss()
-
             }}>
 
             <View style={{
@@ -169,16 +167,11 @@ const DestinationSearch = () => {
             }} />
 
           </TouchableOpacity>
-
           <View style={styles.mainContainer}>
-
-
-
-
 
             <GooglePlacesAutocomplete
               ref={googlePlacesAutocompleteRef}
-              placeholder="Where from?"
+              placeholder="Pickup"
               onPress={(data, details = null) => {
                 setOriginPlace({ data, details });
 
@@ -220,78 +213,56 @@ const DestinationSearch = () => {
                 workPlace,
               ]}
             />
-            <GooglePlacesAutocomplete
-              placeholder="Where to?"
-              onPress={(data, details = null) => {
-                setDestinationPlace({ data, details });
 
-              }}
-              enablePoweredByContainer={false}
-              textInputProps={{
-                onPressIn: onPressIn,
-                onPressOut: onPressOut,
-                onFocus: onFocus,
-                onBlur: onBlur,
+            <View style={{
+              position: 'absolute',
+              left: SIZES.responsiveScreenWidth(10),
+              top: SIZES.responsiveScreenWidth(12.3),
+            }}>
+              <FromInput
+                label="Guide Pickup Agent"
+                placeholder="Guide Pickup Agent"
+                keyboardType='number-pad'
+                autocomplete='cc-number'
+                value={guidePickupAgent}
+                onChange={(value: any) => {
+                  setGuidePickupAgent(value)
+                }}
 
-              }}
-              suppressDefaultStyles
-              // currentLocation={true}
-              currentLocationLabel="Near by Current location"
-              styles={{
-                textInput: styles.textInput,
-                // container: styles.autocompleteContainer,
-                container: {
-                  ...styles.autocompleteContainer,
-                  top: SIZES.responsiveScreenWidth(11.2),
-                },
-                listView: styles.listView,
-                separator: styles.separator,
-              }}
-              fetchDetails
-              query={{
-                key: 'AIzaSyALoxAkEa7ovp5MMeb3NcjEoZa-xu6Frk0',
-                language: 'en',
-              }}
-              renderRow={data => <PlaceRow data={data} />}
-              renderDescription={(data: any) => data.description || data.vicinity}
-              predefinedPlaces={[
-                myCurrentLocationUpdated ? myCurrentLocationUpdated : null,
-                homePlace,
-                workPlace,
-              ]}
-            />
+                onPressIn={onPressIn}
+
+
+                appendComponent={
+                  <View
+                    style={{
+                      justifyContent: 'center',
+                      marginRight: 8
+                    }}
+                  >
+                    {/* <Image
+                      source={fullAddress == "" || (fullAddress != "") ? icons.correct : icons.correct}
+
+                      style={{
+                        width: 20,
+                        height: 20,
+                        tintColor: fullAddress == '' ? COLORS.gray : (fullAddress != "") ? COLORS.green : COLORS.red
+                      }}
+                    /> */}
+
+                  </View>
+                }
+              />
+            </View>
 
 
 
             {/* Circle near Origin input */}
             <View style={styles.whereFromContainer} >
-
               <Image source={icons.location}
                 style={styles.whereFromContainerIcon}
               />
             </View>
 
-            {/* Line between dots */}
-
-
-            <View style={{
-              top: SIZES.responsiveScreenWidth(9),
-              backgroundColor: '#c4c4c4',
-              position: 'absolute',
-              left: SIZES.responsiveScreenWidth(7),
-              zIndex: 999
-
-            }} >
-              {/* <Image source={icons.dotted_line}
-            style={{
-              width: 2,
-              height: SIZES.responsiveScreenWidth(5.5),
-              tintColor: COLORS.primary
-
-
-            }}
-          /> */}
-            </View>
 
             {/* Square near Destination input */}
             <View style={[styles.whereFromContainer, { top: SIZES.responsiveScreenWidth(11.2) + 5, }]} >
@@ -303,12 +274,53 @@ const DestinationSearch = () => {
                 }}
               />
             </View>
+          </View>
+          <View style={{
+            position: 'absolute',
+            top: '83%',
+            left: 0,
+            right: 0,
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}>
+
+            <TouchableOpacity
+
+              onPress={handelAnimationFixedBottomSheet}
+              activeOpacity={0.9}>
+              <LinearGradient
+                style={styles.linearGradientButton}
+
+                locations={[0, 1,]}
+                colors={[COLORS.darkRed, COLORS.lightBlue,]}
+                useAngle={true}
+                angle={90}>
+
+                <Text style={styles.linearGradientButtonText}>
+                  Confirm
+                </Text>
+
+              </LinearGradient>
+
+
+            </TouchableOpacity>
+
 
           </View>
 
-
-
         </AnimationBottomSheet>
+
+
+
+        <AnimationFixedBottomSheet
+          ref={animationFixedBottomSheetRef}
+          animationBottomSheetRef={ref}
+
+        >
+
+
+
+        </AnimationFixedBottomSheet>
 
       </View>
     </Wrapper>
@@ -326,7 +338,6 @@ const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     alignItems: 'center',
-
     marginHorizontal: 10
 
   },
@@ -339,7 +350,12 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     elevation: 1.5,
     marginLeft: SIZES.responsiveScreenWidth(7.5),
-    
+    fontSize: SIZES.responsiveScreenFontSize(1.6),
+    fontWeight: '600',
+    color: COLORS.primary
+
+
+
   },
 
   separator: {
@@ -386,6 +402,29 @@ const styles = StyleSheet.create({
     top: 80,
     left: 15,
   },
+
+
+
+
+
+
+
+  linearGradientButton: {
+    backgroundColor: COLORS.lightGray2,
+    borderRadius: 5,
+    width: SIZES.responsiveScreenWidth(80),
+    height: SIZES.responsiveScreenWidth(8.5),
+    elevation: 1.5,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+
+  linearGradientButtonText: {
+    fontSize: SIZES.responsiveScreenFontSize(1.8),
+    fontWeight: '800',
+    color: COLORS.primary,
+  },
+
 });
 
 

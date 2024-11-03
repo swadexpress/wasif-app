@@ -25,6 +25,7 @@ import VerificationOtpScreen from './src/screens/Authentication/VerificationOtpS
 import CardScreen from './src/screens/CardScreen';
 import CategoryScreen from './src/screens/CategoryScreen';
 import CheckoutScreen from './src/screens/CheckoutScreen';
+import CreateParcelAndCourierDetailsScreen from './src/screens/CreateParcelAndCourierDetailsScreen';
 import DeliveryMapScreen from './src/screens/DeliveryMapScreen';
 import DeliveryStatusScreen from './src/screens/DeliveryStatusScreen';
 import DestinationSearchResultsScreen from './src/screens/DestinationSearchResultsScreen';
@@ -35,6 +36,8 @@ import FavoriteAndWishScreen from './src/screens/FavoriteAndWishScreen';
 import FoodDetailsScreen from './src/screens/FoodDetailsScreen';
 import OnBoardingScreen from './src/screens/OnBoardingScreen';
 import OnBoardingCategoryScreen from './src/screens/OnBoardingScreen/OnBoardingCategoryScreen';
+import ParcelDeliveryTypeScreen from './src/screens/ParcelDeliveryTypeScreen';
+import ParcelPickupScreen from './src/screens/ParcelPickupScreen';
 import PaymentHistoryScreen from './src/screens/PaymentHistoryScreen';
 import PaymentWalletScreen from './src/screens/PaymentWalletScreen';
 import ReviewScreen from './src/screens/ReviewScreen';
@@ -122,7 +125,7 @@ const App = () => {
 
                         detachPreviousScreen: false,
                     }}
-                    initialRouteName={'DestinationSearchScreen'}
+                    initialRouteName={'FoodieHomeScreen'}
                 >
                     
                     <Stack.Screen
@@ -152,6 +155,27 @@ const App = () => {
                         component={BottomNavigator}
                         options={{ headerShown: false }}
                     />
+                    <Stack.Screen
+                        name="ParcelDeliveryTypeScreen"
+                        component={ParcelDeliveryTypeScreen}
+                        options={{ headerShown: false }}
+                    />
+                    
+                    <Stack.Screen
+                        name="ParcelPickupScreen"
+                        component={ParcelPickupScreen}
+                        options={{ headerShown: false }}
+                    />
+
+                    <Stack.Screen
+                        name="CreateParcelAndCourierDetailsScreen"
+                        component={CreateParcelAndCourierDetailsScreen}
+                        options={{ headerShown: false }}
+                    />
+
+
+
+
 
 
                     <Stack.Screen

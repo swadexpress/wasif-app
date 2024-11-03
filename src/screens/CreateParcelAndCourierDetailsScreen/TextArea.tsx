@@ -78,5 +78,6 @@ const styles = StyleSheet.create({
     right: 8,
     fontSize: SIZES.responsiveScreenFontSize(1.3),
     color: COLORS.gray,
+
   },
 });

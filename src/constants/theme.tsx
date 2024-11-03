@@ -13,9 +13,6 @@ export const COLORS = {
     linearGradientPrimary2: "#FFC8EC", //orangebackgroundColor
     linearGradientSecondary: "#FFC8EC", //orangebackgroundColor
     linearGradientSecondary2: "#FFC8EC", //orangebackgroundColor
-
-
-
     backgroundColor:'#ffffff',
     backgroundColor2:'#ffffff',
     orange: "#FFA133",

@@ -187,6 +187,7 @@ const Checkout = ({ route }: any) => {
                             Kazi office-2d floor, Kalkini, Madaripur, Dhaka, Bangladesh
                         </Text>
                     </LinearGradient>
+                    
                     {/* Coupon */}
                     {renderCoupon()}
 

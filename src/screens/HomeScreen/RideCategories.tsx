@@ -42,7 +42,7 @@ const categoryData = [
         name: 'Parcel',
         image: icons.icecream,
         animation: animations.location,
-        navigationScreen:'DestinationSearchScreen',
+        navigationScreen:'ParcelDeliveryTypeScreen',
         id: 5,
     },
     {
