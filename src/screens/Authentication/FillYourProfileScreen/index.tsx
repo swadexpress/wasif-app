@@ -5,13 +5,12 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
-import { COLORS, SIZES, animations, icons, images } from '../../../constants';
+import { COLORS, SIZES, icons, images } from '../../../constants';
 
 import React from 'react';
 
 
 import { useNavigation } from '@react-navigation/native';
-import LottieView from 'lottie-react-native';
 import FastImage from 'react-native-fast-image';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import LinearGradient from 'react-native-linear-gradient';
@@ -163,7 +162,7 @@ const FillYourProfileScreen = () => {
             style={{
               marginTop: '8%',
             }}
-            onPress={() => navigation.navigate('OnBoardingCategoryScreen')}
+            onPress={() => navigation.navigate('AccountSwitchScreen')}
             activeOpacity={0.9}>
             <LinearGradient
               style={styles.linearGradientButton}
@@ -178,17 +177,7 @@ const FillYourProfileScreen = () => {
 
           </TouchableOpacity>
 
-          <LottieView
-            source={animations.hamburger_and_french_fries}
-            style={
-              styles.lottieViewContainer
-            }
-            loop={true}
-            autoPlay
-            cacheComposition={true}
-            hardwareAccelerationAndroid
-          />
-
+   
         </View>
       </KeyboardAwareScrollView>
     </Wrapper>

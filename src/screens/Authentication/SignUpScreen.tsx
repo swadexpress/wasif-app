@@ -1,26 +1,24 @@
 import {
+    Alert,
     Image,
     StyleSheet,
     Text,
     TouchableOpacity,
     View
 } from 'react-native';
-import { COLORS, SIZES, animations, icons } from '../../constants';
+import { COLORS, SIZES, icons } from '../../constants';
 
 import React, { useState } from 'react';
 import FromInput from './FromInput';
 
-import notifee, { AndroidImportance } from '@notifee/react-native';
-import AsysncStorage from '@react-native-community/async-storage';
 import { useNavigation } from '@react-navigation/native';
-import LottieView from 'lottie-react-native';
+import axios from 'axios';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import LinearGradient from 'react-native-linear-gradient';
-import { createNotifications } from 'react-native-notificated';
+import { endpointdajngobackend } from '../../../profileconstants';
 import SingleImageHeader from '../../components/SingleImageHeader';
 import Wrapper from '../../components/Wrapper';
 import LoadingScreen from '../LoadingScreen';
-import ContinueWithOtherButton from './ContinueWithOtherButton';
 
 const SignIn = () => {
 
@@ -35,54 +33,7 @@ const SignIn = () => {
     const [emailError, setEmailError] = useState('') as any
     const [passwordError, setPasswordError] = useState('') as any
     const [showPassword, setShowPassword] = useState(false) as any
-
-    const { NotificationsProvider, useNotifications } = createNotifications({
-        notificationPosition: 'center',
-    })
-
-    const { notify } = useNotifications()
-
-    const [isLoading, setLoading] = useState(true)
-
-
-
-
-    async function onDisplayNotification() {
-        // Request permissions (required for iOS)
-        await notifee.requestPermission()
-
-        // Create a channel (required for Android)
-        const channelId = await notifee.createChannel({
-            id: 'default',
-            name: 'Default Channel',
-            importance: AndroidImportance.HIGH,
-
-            vibration: true,
-            sound: 'hollow',
-
-        });
-
-        // Display a notification
-        await notifee.displayNotification({
-            title: `<p style="color:${COLORS.primary4};"><b>Wellcome Foodies</span></p></b></p>  &#127881; `,
-
-            body: `<p style="color:${COLORS.primary}; font-size=10px"><b>You will get 90% discount on first order</span></p></b></p> &#128576;`,
-            android: {
-                channelId,
-                sound: 'hollow',
-
-
-                vibrationPattern: [300, 500],
-
-                // smallIcon: 'default',
-                // smallIcon: 'name-of-a-small-icon', // optional, defaults to 'ic_launcher'.
-                // pressAction is needed if you want the notification to open the app when pressed
-                pressAction: {
-                    id: 'default',
-                },
-            },
-        });
-    }
+    const [isLoading, setIsLoading] = useState(true) as any
 
 
 
@@ -94,36 +45,68 @@ const SignIn = () => {
 
 
     const handelSignUpScreen = async () => {
-        // onDisplayNotification()
 
         if (
-
             email !== '' &&
             password !== '' &&
             confirmPassword !== ''
         ) {
 
+            setIsLoading(false)
 
-            await AsysncStorage.setItem('@username', 'Kawsar Khan');
-            await AsysncStorage.setItem('@email', email);
-            await AsysncStorage.setItem('@youAre', youAre);
+            axios
+            .post(`${endpointdajngobackend}/auth/register/`, {
+              username: 'kawsarkhan',
+              email: email,
+              password: password,
+              password2: confirmPassword
+            })
+            .then(res => {
+                setIsLoading(true)
 
-            // await AsysncStorage.removeItem('@username');
-            // await AsysncStorage.removeItem('@email');
-            // await AsysncStorage.removeItem('@youAre');
+                navigation.navigate('SigninScreen')
+            })
+            .catch(err => {
+              console.log(err.response.data, '....................eee')
+              if (err.response.data.data) {
+                // this.setState({ errors: err.response.data.data.Message });
+                // setErrors(err.response.data.data.Message)
+              }
+      
+      
+              if (err.response.data.errors) {
+      
+      
+                if (err.response.data.errors.email) {
+                    Alert.alert(`${err.response.data.errors.email}`);
+      
+      
+                }
+      
+                else if (err.response.data.errors.password) {
+                  Alert.alert(`${err.response.data.errors.password}`);
+      
+      
+                }
+      
+                else if (err.response.data.errors.username) {
+                    Alert.alert(`${err.response.data.errors.username}`);
+      
+      
+                }
+      
+      
+      
+              }
+      
+      
+      
+            });
+      
 
+            
 
-
-            setLoading(false)
-            setTimeout(() => {
-                setLoading(true)
-                navigation.navigate('FillYourProfileScreen')
-
-                setTimeout(() => {
-                    onDisplayNotification()
-                }, 50000)
-            }, 1500)
-
+         
 
 
 
@@ -146,16 +129,7 @@ const SignIn = () => {
                     <View
                         style={styles.mainContainer}
                     >
-                        <LottieView
-                            source={animations.logo}
-                            style={styles.lottieViewContainer}
-                            loop={true}
-                            autoPlay
-                            cacheComposition={true}
-                            hardwareAccelerationAndroid
-                        />
-
-
+                       
 
 
                         <KeyboardAwareScrollView
@@ -288,9 +262,6 @@ const SignIn = () => {
 
                                 </TouchableOpacity>
 
-
-                                {/* ============ContinueWithOtherButton===================== */}
-                                <ContinueWithOtherButton />
                             </View>
                         </KeyboardAwareScrollView>
 

@@ -10,25 +10,16 @@ import LinearGradient from 'react-native-linear-gradient';
 import CartScreen from '../screens/CartScreen';
 import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
-import SearchScreen from '../screens/SearchScreen';
-import UserChatScreen from '../screens/UserChatScreen';
-import UserNotificationsScreen from '../screens/UserNotificationsScreen';
 import TabButton from './TabButton';
 const TabArr = [
   {
     route: 'Home',
     label: 'Home',
-    activeIcon: icons.restaurant,
-    inActiveIcon: icons.restaurant,
+    activeIcon: icons.home,
+    inActiveIcon: icons.home,
     component: HomeScreen,
   },
-  {
-    route: 'SearchScreen',
-    label: 'SearchScreen',
-    activeIcon: icons.search,
-    inActiveIcon: icons.search,
-    component: SearchScreen,
-  },
+
   {
     route: 'CartScreen',
     label: 'CartScreen',
@@ -36,25 +27,12 @@ const TabArr = [
     inActiveIcon: icons.cart,
     component: CartScreen,
   },
-  {
-    route: 'UserNotificationsScreen',
-    label: 'UserNotificationsScreen',
-    activeIcon: icons.notification,
-    inActiveIcon: icons.notification,
-    component: UserNotificationsScreen,
-  },
-  {
-    route: 'UserChatScreen',
-    label: 'UserChatScreen',
-    activeIcon: icons.chat,
-    inActiveIcon: icons.chat,
-    component: UserChatScreen,
-  },
+
   {
     route: 'ProfileScreen',
     label: 'ProfileScreen',
-    activeIcon: icons.profile,
-    inActiveIcon: icons.profile,
+    activeIcon: icons.edit,
+    inActiveIcon: icons.edit,
     component: ProfileScreen,
   },
 ];

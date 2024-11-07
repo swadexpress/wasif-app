@@ -7,8 +7,9 @@ import {
 } from 'react-native';
 import { COLORS, SIZES, icons, images } from '../../constants';
 
-import { useNavigation } from '@react-navigation/native';
-import React, { useState } from 'react';
+import AsyncStorage from '@react-native-community/async-storage';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import React, { useEffect, useState } from 'react';
 import FastImage from 'react-native-fast-image';
 import LinearGradient from 'react-native-linear-gradient';
 import { SwipeListView } from 'react-native-swipe-list-view';
@@ -24,8 +25,8 @@ const data = [
         qty: 2,
         delivery_status: 'Free Delivery',
         delivery_time: '10-15',
-        name: 'Penne pasta in tomato sauce with chicken and tomatoes on a wooden table',
-        image: 'https://img.freepik.com/free-photo/penne-pasta-tomato-sauce-with-chicken-tomatoes-wooden-table_2829-19744.jpg?t=st=1727299306~exp=1727302906~hmac=cf04c4b185584c4f3a4779bc57590cfe789f45ad80d64aae552433c729b4d18e&w=2000',
+        name: 'Bikini Set 1 Set Pink Colour / Bikini Bra Pantie Set For Girls And Women / Swim Bikini Dress For Ladies',
+        image: 'https://img.drz.lazcdn.com/static/bd/p/c510f4d4df5881aea3567d70a50eab72.jpg_720x720q80.jpg',
     },
     {
         id: 2,
@@ -34,8 +35,8 @@ const data = [
         profile_image: images.profile,
         delivery_status: 'Free Delivery',
         delivery_time: '10-15',
-        name: 'Hot spicy stew eggplant, sweet pepper, olives and capers with basil leaves',
-        image: 'https://img.freepik.com/free-photo/hot-spicy-stew-eggplant-sweet-pepper-olives-capers-with-basil-leaves-top-view_2829-6430.jpg?t=st=1727303387~exp=1727306987~hmac=7805ac560df897065e84d473e0ee128a910f288db06569b8edf331193656f999&w=2000',
+        name: '2024 Sexy Lace-up White Pearl Micro Mini Bikini Set in Pink        ',
+        image: 'https://www.dhresource.com/webp/m/0x0/f2/albu/g20/M00/16/67/rBVaqWGF1nqAXVJiAAhzd03Yg7s448.jpg',
     },
     {
         id: 3,
@@ -45,8 +46,8 @@ const data = [
         delivery_status: 'Free Delivery',
         delivery_time: '10-15',
 
-        name: 'Hot spicy stew eggplant, sweet pepper, olives and capers with basil leaves',
-        image: 'https://img.freepik.com/free-photo/baked-vegetables-white-plate-eggplant-zucchini-tomatoes-paprika-onions-top-view_2829-17239.jpg?t=st=1727304096~exp=1727307696~hmac=60a4a4300e1e61aac4db57f1537c4047eead205fa2c844deeff0f965bf7050cc&w=2000',
+        name: "GHXCJ Women's Tie Knot Front Spaghetti Strap High Cut Bikini Set Swimsuit",
+        image: 'https://m.media-amazon.com/images/I/81wmcUGVt5L.jpg',
     },
 
 
@@ -58,8 +59,18 @@ const data = [
 
 
 const MyCart = ({ }) => {
+    const [myCartList, setMyCartList] = useState<any>()
+    const [shouldUpdate, setShouldUpdate] = useState<any>(true)
 
-    const [myCartList, setMyCartList] = useState(data)
+    const loadProductData = async () => {
+        let cartProducts = JSON.parse(await AsyncStorage.getItem('@cartProducts')) || []
+        console.log(cartProducts)
+        setMyCartList(cartProducts)
+        console.log(route.name, 'route')
+
+    }
+    const route = useRoute()
+
 
     const navigation = useNavigation<any>()
 
@@ -83,7 +94,13 @@ const MyCart = ({ }) => {
 
 
 
+    useEffect(() => {
+        loadProductData()
+        let times = new Date()
+        // setShouldUpdate(times)
+    }, [])
 
+    console.log(shouldUpdate, 'shouldUpdate')
 
 
 
@@ -138,135 +155,45 @@ const MyCart = ({ }) => {
                                         <FastImage
 
                                             style={styles.linearGradientCardImage}
-                                            source={{ uri: item.image }}
+                                            source={{ uri: item.product_image }}
                                             resizeMode={'cover'}
 
                                         />
                                         <View style={{
                                             marginLeft: 8
                                         }}>
-                                            <View style={
 
-                                                styles.linearGradientCardLeftTextContainer
+
+
+
+                                            <Text style={styles.linearGradientCardLeftText}>
+                                                {`${item?.product_name.slice(0, 25)}...`}
+                                            </Text>
+
+
+
+                                            <Text style={{
+                                                fontSize: SIZES.responsiveScreenFontSize(1.8),
+                                                fontWeight: '800',
+                                                color: COLORS.red2,
+                                                alignSelf: 'flex-start',
+                                                marginTop: 5,
+                                                marginBottom: 5
+                                            }
+
                                             }>
-
-
-
-                                                <Text style={styles.linearGradientCardLeftText}>
-                                                    {`${item.name.slice(0, 25)}...`}
-                                                </Text>
+                                                {item.product_price}
+                                            </Text>
 
 
 
 
-                                            </View>
-
-                                            <View style={
-
-                                                styles.linearGradientCardLeftDeliveryStatusMainContainer
-                                            }>
-
-                                                <View style={
-
-                                                    styles.linearGradientCardLeftDeliveryStatusContainer
-
-                                                }>
-
-                                                    <Image
-                                                        source={icons.delivery}
-                                                        style={
-
-                                                            styles.linearGradientCardLeftDeliveryStatusIcons
-
-                                                        }
-
-                                                    />
-
-
-                                                    <Text style={
-
-                                                        styles.linearGradientCardLeftDeliveryStatusText
-                                                    }>
-                                                        {item.delivery_status}
-                                                    </Text>
-
-                                                </View>
-
-
-                                                <View
-                                                    style={[
-                                                        styles.linearGradientCardLeftDeliveryStatusContainer, {
-                                                            marginLeft: 7
-
-                                                        }]}>
-
-                                                    <Image
-                                                        source={icons.clock}
-                                                        style={styles.linearGradientCardLeftDeliveryStatusIcons}
-
-                                                    />
-
-
-                                                    <Text style={styles.linearGradientCardLeftDeliveryStatusText
-                                                    }>
-                                                        {`${item.delivery_time} min`}
-                                                    </Text>
-
-                                                </View>
-                                            </View>
-
-                                            {/* =========================== */}
-                                            <View style={
-
-                                                styles.linearGradientCardLeftDeliveryStarContainer
-                                            }>
-                                                <Image
-                                                    source={icons.star}
-                                                    style={
-                                                        styles.linearGradientCardLeftDeliveryStarIcons
-                                                    }
-                                                />
-                                                <Image
-                                                    source={icons.star}
-                                                    style={
-                                                        styles.linearGradientCardLeftDeliveryStarIcons
-                                                    }
-                                                />
-                                                <Image
-                                                    source={icons.star}
-                                                    style={
-                                                        styles.linearGradientCardLeftDeliveryStarIcons
-                                                    }
-                                                />
-                                                <Image
-                                                    source={icons.star}
-                                                    style={
-                                                        styles.linearGradientCardLeftDeliveryStarIcons
-                                                    }
-                                                />
-                                                <Image
-                                                    source={icons.star}
-                                                    style={
-                                                        styles.linearGradientCardLeftDeliveryStarIcons
-                                                    }
-                                                />
 
 
 
-                                                <Text style={
 
-                                                    styles.linearGradientCardLeftDeliveryStarText
 
-                                                }>
-                                                    4.5
-                                                </Text>
-                                                <Text style={
 
-                                                    styles.linearGradientCardLeftDeliveryStarSubText
-                                                }>
-                                                    (23+)
-                                                </Text>
-                                            </View>
 
 
 
@@ -347,54 +274,6 @@ const MyCart = ({ }) => {
 
                                     </View>
 
-                                    <View style={
-                                        styles.rightSiteCartMainContainer
-                                    }>
-
-
-
-                                        <View style={
-
-                                            styles.rightSiteCartMainLoveButtonContainer
-
-                                        }>
-                                            <Image
-                                                source={icons.love}
-                                                style={
-                                                    styles.rightSiteCartMainLoveButtonIcons
-                                                }
-                                            />
-                                        </View>
-
-
-
-                                        <View style={
-
-
-                                            styles.rightSiteCartMainPriceButtonContainer
-                                        }>
-
-                                            {/* <Image
-                                                    source={icons.dollar}
-                                                    style={{
-                                                        width: SIZES.responsiveScreenFontSize(1.6),
-                                                        height: SIZES.responsiveScreenFontSize(1.6),
-                                                        tintColor: COLORS.red2
-                                                    }}
-
-                                                /> */}
-
-
-                                            <Text style={
-                                                styles.rightSiteCartMainPriceButtonText
-                                            }>
-                                                ৳200.0
-                                            </Text>
-
-                                        </View>
-
-                                    </View>
-
                                 </LinearGradient>
 
 
@@ -419,7 +298,9 @@ const MyCart = ({ }) => {
                                 style={
                                     styles.hiddenItemButtonContainer
                                 }
-                                onPress={() => {
+                                onPress={async () => {
+                                    await AsyncStorage.removeItem('@cartProducts');
+
                                     removeMyCartHandler(data.item.id)
                                 }}
 
@@ -451,8 +332,8 @@ const MyCart = ({ }) => {
                                 style={
 
                                     styles.listFooterTotalAmountContainer
-                                    
-                                   }
+
+                                }
 
                             >
                                 <Text
@@ -553,7 +434,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        marginLeft: 5,
+
         height: SIZES.responsiveScreenWidth(26),
         elevation: 1,
         borderRadius: 8,
@@ -573,9 +454,7 @@ const styles = StyleSheet.create({
 
     },
     linearGradientCardLeftTextContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginTop: -10
+        // alignItems: 'center',
 
     },
     linearGradientCardLeftText: {
@@ -634,7 +513,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         flexDirection: 'row',
-        marginTop: 15
+        marginTop: 5
     },
     leftSiteCartUpdateButtonContainer: {
         width: SIZES.responsiveScreenWidth(5.4),
@@ -692,7 +571,8 @@ const styles = StyleSheet.create({
         fontSize: SIZES.responsiveScreenFontSize(1.5),
         fontWeight: '700',
         color: COLORS.red2,
-        marginLeft: -2
+        flex: 1
+
 
     },
     hiddenItemMainContainer: {
@@ -756,13 +636,13 @@ const styles = StyleSheet.create({
         elevation: 1.5,
         justifyContent: 'center',
         alignItems: 'center'
-      },
-      linearGradientButtonText: {
+    },
+    linearGradientButtonText: {
         fontSize: SIZES.responsiveScreenFontSize(1.8),
         fontWeight: '800',
         color: COLORS.primary,
-      },
-    
+    },
+
 
 
 

@@ -75,10 +75,14 @@ const restaurant = require("../assets/icons/restaurant.png")
 const cash_out = require("../assets/icons/cash_out.png")
 const transaction = require("../assets/icons/transaction.png")
 const email = require("../assets/icons/email.png")
+const camera = require("../assets/icons/camera.png")
+const gallery = require("../assets/icons/gallery.png")
 
 
 
 export default {
+    gallery,
+    camera,
     transaction,
     email,
     cash_out,

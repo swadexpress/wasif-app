@@ -3,16 +3,13 @@ import { applyMiddleware, createStore } from 'redux';
 
 
 import { TransitionPresets, createStackNavigator } from "@react-navigation/stack";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Provider } from 'react-redux';
 import { thunk } from 'redux-thunk';
 
+import AsysncStorage from '@react-native-community/async-storage';
 import { NavigationContainer } from '@react-navigation/native';
-import { PermissionsAndroid, Platform } from 'react-native';
 import BottomNavigator from './src/navigation/BottomNavigator';
-import RiderBottomNavigator from './src/navigation/RiderBottomNavigator';
-import SallerBottomNavigator from './src/navigation/SallerBottomNavigator';
-import AddNewCardScreen from './src/screens/AddNewCardScreen';
 import AccountSwitchScreen from './src/screens/Authentication/AccountSwitchScreen';
 import FillYourProfileScreen from './src/screens/Authentication/FillYourProfileScreen';
 import ForgotNewPasswordScreen from './src/screens/Authentication/ForgotNewPasswordScreen';
@@ -22,55 +19,8 @@ import { PhoneLogInScreen } from './src/screens/Authentication/PhoneLogInScreen'
 import SignUpScreen from './src/screens/Authentication/SignUpScreen';
 import SigninScreen from './src/screens/Authentication/SigninScreen';
 import VerificationOtpScreen from './src/screens/Authentication/VerificationOtpScreen';
-import CardScreen from './src/screens/CardScreen';
-import CategoryScreen from './src/screens/CategoryScreen';
-import CheckParcelAndCourierDetailsScreen from './src/screens/CheckParcelAndCourierDetailsScreen';
-import CheckRentCarDetailsScreen from './src/screens/CheckRentCarDetailsScreen';
-import CheckoutScreen from './src/screens/CheckoutScreen';
-import CreateParcelAndCourierDetailsScreen from './src/screens/CreateParcelAndCourierDetailsScreen';
-import CreateRentCarDetailsScreen from './src/screens/CreateRentCarDetailsScreen';
-import DeliveryMapScreen from './src/screens/DeliveryMapScreen';
-import DeliveryStatusScreen from './src/screens/DeliveryStatusScreen';
-import DestinationSearchResultsScreen from './src/screens/DestinationSearchResultsScreen';
-import DestinationSearchScreen from './src/screens/DestinationSearchScreen';
-import DestinationsForRiderAndDriverMapScreen from './src/screens/DestinationsForRiderAndDriverMapScreen';
-import DestinationsMapScreen from './src/screens/DestinationsMapScreen';
-import FavoriteAndWishScreen from './src/screens/FavoriteAndWishScreen';
-import FoodDetailsScreen from './src/screens/FoodDetailsScreen';
 import OnBoardingScreen from './src/screens/OnBoardingScreen';
 import OnBoardingCategoryScreen from './src/screens/OnBoardingScreen/OnBoardingCategoryScreen';
-import ParcelAndCourierOrdersDetailsScreen from './src/screens/ParcelAndCourierOrdersDetailsScreen';
-import ParcelAndCourierOrdersScreen from './src/screens/ParcelAndCourierOrdersScreen';
-import ParcelDeliveryTypeScreen from './src/screens/ParcelDeliveryTypeScreen';
-import ParcelPickupScreen from './src/screens/ParcelPickupScreen';
-import PaymentHistoryScreen from './src/screens/PaymentHistoryScreen';
-import PaymentWalletScreen from './src/screens/PaymentWalletScreen';
-import ReviewScreen from './src/screens/ReviewScreen';
-import RiderOrderScreen from './src/screens/RiderOrderScreen';
-import RiderReviewScreen from './src/screens/RiderReviewScreen';
-import RiderStartDirectionToDeliveryMapScreen from './src/screens/RiderStartDirectionToDeliveryMapScreen';
-import RiderSuccessScreen from './src/screens/RiderSuccessScreen';
-import RiderTruckAreaMapScreen from './src/screens/RiderTruckAreaMapScreen';
-import RiderTruckWorkingAreaMapScreen from './src/screens/RiderTruckWorkingAreaMapScreen';
-import SallerInventoryScreen from './src/screens/SallerInventoryScreen';
-import SallerNotificationsScreen from './src/screens/SallerNotificationsScreen';
-import SallerPaymentScreen from './src/screens/SallerPaymentScreen';
-import SallerProfileScreen from './src/screens/SallerProfileScreen';
-import SallerSaleScreen from './src/screens/SallerSaleScreen';
-import SallerShopProfileScreen from './src/screens/SallerShopProfileScreen';
-import SearchingAndFiteringProducts from './src/screens/SearchingAndFiteringProducts';
-import SettingsScreen from './src/screens/SettingsScreen';
-import SuccessScreen from './src/screens/SuccessScreen';
-import UpdateProfileScreen from './src/screens/UpdateProfileScreen';
-import UserNotificationsScreen from './src/screens/UserNotificationsScreen';
-import UserOrdersDeliveryDetailsScreen from './src/screens/UserOrdersDeliveryDetailsScreen';
-import UserOrdersDetailsScreen from './src/screens/UserOrdersDetailsScreen';
-import UserOrdersReviewScreen from './src/screens/UserOrdersReviewScreen';
-import UserOrdersReviewTextScreen from './src/screens/UserOrdersReviewTextScreen';
-import UserOrdersScreen from './src/screens/UserOrdersScreen';
-import UserReceiveOrdersScreen from './src/screens/UserReceiveOrdersScreen';
-import UserReturnOrdersScreen from './src/screens/UserReturnOrdersScreen';
-import UserToShipOrdersScreen from './src/screens/UserToShipOrdersScreen';
 import rootReducer from './src/stores/rootReducer';
 
 
@@ -84,41 +34,24 @@ const store = createStore(
 
 
 
-const requestNotificationPermission = async () => {
-    if (Platform.OS === "android") {
-        try {
-            PermissionsAndroid.check('android.permission.POST_NOTIFICATIONS').then(
-                response => {
-                    if (!response) {
-                        PermissionsAndroid.request('android.permission.POST_NOTIFICATIONS', {
-                            title: 'Notification',
-                            message:
-                                'App needs access to your notification ' +
-                                'so you can get Updates',
-                            buttonNeutral: 'Ask Me Later',
-                            buttonNegative: 'Cancel',
-                            buttonPositive: 'OK',
-                        })
-                    }
-                }
-            ).catch(
-                err => {
-                    console.log("Notification Error=====>", err);
-                }
-            )
-        } catch (err) {
-            console.log(err);
-        }
-    }
-};
-
-
 
 const App = () => {
 
+    const[isToken,setIsToken] =useState<any>()
+
+    const loadingToken =async()=>{
+
+       let token = await AsysncStorage.getItem('@token')|| null;
+        setIsToken(token)
+    }
+
     useEffect(() => {
-        requestNotificationPermission()
+
+        loadingToken()
     })
+
+
+
     return (
 
         <Provider store={store}>
@@ -142,92 +75,16 @@ const App = () => {
                         component={OnBoardingCategoryScreen}
                     />
 
-                    <Stack.Screen
-                        name="SallerHomeScreen"
-                        component={SallerBottomNavigator}
-                        options={{ headerShown: false }}
-                    />
-
-
-                    <Stack.Screen
-                        name="RiderHomeScreen"
-                        component={RiderBottomNavigator}
-                        options={{ headerShown: false }}
-                    />
+               
 
                     <Stack.Screen
                         name="FoodieHomeScreen"
-                        component={BottomNavigator}
-                        options={{ headerShown: false }}
-                    />
-                    <Stack.Screen
-                        name="ParcelDeliveryTypeScreen"
-                        component={ParcelDeliveryTypeScreen}
-                        options={{ headerShown: false }}
-                    />
-                    
-                    <Stack.Screen
-                        name="ParcelPickupScreen"
-                        component={ParcelPickupScreen}
-                        options={{ headerShown: false }}
-                    />
-                    <Stack.Screen
-                        name="CheckParcelAndCourierDetailsScreen"
-                        component={CheckParcelAndCourierDetailsScreen}
+                        component={ isToken ? BottomNavigator :SignUpScreen}
                         options={{ headerShown: false }}
                     />
 
-                    <Stack.Screen
-                        name="CreateParcelAndCourierDetailsScreen"
-                        component={CreateParcelAndCourierDetailsScreen}
-                        options={{ headerShown: false }}
-                    />
+      
                   
-
-                    <Stack.Screen
-                        name="ParcelAndCourierOrdersScreen"
-                        component={ParcelAndCourierOrdersScreen}
-                        options={{ headerShown: false }}
-                    />
-                    <Stack.Screen
-                        name="ParcelAndCourierOrdersDetailsScreen"
-                        component={ParcelAndCourierOrdersDetailsScreen}
-                        options={{ headerShown: false }}
-                    />
-
-                    <Stack.Screen
-                        name="CreateRentCarDetailsScreen"
-                        component={CreateRentCarDetailsScreen}
-                        options={{ headerShown: false }}
-                    />
-                    <Stack.Screen
-                        name="CheckRentCarDetailsScreen"
-                        component={CheckRentCarDetailsScreen}
-                        options={{ headerShown: false }}
-                    />
-
-
-
-
-
-
-                    <Stack.Screen
-                        name="DestinationSearchResultsScreen"
-                        component={DestinationSearchResultsScreen}
-                    />
-                    <Stack.Screen
-                        name="DestinationSearchScreen"
-                        component={DestinationSearchScreen}
-                    />
-                    
-                    <Stack.Screen
-                        name="DestinationsForRiderAndDriverMapScreen"
-                        component={DestinationsForRiderAndDriverMapScreen}
-                    />
-                    <Stack.Screen
-                        name="DestinationsMapScreen"
-                        component={DestinationsMapScreen}
-                    />
 
                     <Stack.Screen
                         name="SignUpScreen"
@@ -276,176 +133,6 @@ const App = () => {
                         name="FillYourProfileScreen"
                         component={FillYourProfileScreen}
                     />
-
-
-
-                    <Stack.Screen
-                        name="FoodDetailsScreen"
-                        component={FoodDetailsScreen}
-                    />
-
-                    <Stack.Screen
-                        name="CheckoutScreen"
-                        component={CheckoutScreen}
-                    />
-
-                    <Stack.Screen
-                        name="UpdateProfileScreen"
-                        component={UpdateProfileScreen}
-                    />
-
-                    <Stack.Screen
-                        name="CardScreen"
-                        component={CardScreen}
-                    />
-                    <Stack.Screen
-                        name="AddNewCardScreen"
-                        component={AddNewCardScreen}
-                    />
-                    <Stack.Screen
-                        name="SuccessScreen"
-                        component={SuccessScreen}
-                    />
-                    <Stack.Screen
-                        name="DeliveryStatusScreen"
-                        component={DeliveryStatusScreen}
-                    />
-                    <Stack.Screen
-                        name="DeliveryMapScreen"
-                        component={DeliveryMapScreen}
-                    />
-                    <Stack.Screen
-                        name="SettingsScreen"
-                        component={SettingsScreen}
-                    />
-                    <Stack.Screen
-                        name="RiderReviewScreen"
-                        component={RiderReviewScreen}
-                    />
-
-                    <Stack.Screen
-                        name="UserOrdersScreen"
-                        component={UserOrdersScreen}
-                    />
-                    <Stack.Screen
-                        name="UserReceiveOrdersScreen"
-                        component={UserReceiveOrdersScreen}
-                    />
-                    <Stack.Screen
-                        name="UserToShipOrdersScreen"
-                        component={UserToShipOrdersScreen}
-                    />
-                    <Stack.Screen
-                        name="UserReturnOrdersScreen"
-                        component={UserReturnOrdersScreen}
-                    />
-                    <Stack.Screen
-                        name="UserOrdersReviewScreen"
-                        component={UserOrdersReviewScreen}
-                    />
-                    
-                    <Stack.Screen
-                        name="UserOrdersReviewTextScreen"
-                        component={UserOrdersReviewTextScreen}
-                    />
-
-
-
-                    <Stack.Screen
-                        name="UserNotificationsScreen"
-                        component={UserNotificationsScreen}
-                    />
-                    <Stack.Screen
-                        name="SearchingAndFiteringProducts"
-                        component={SearchingAndFiteringProducts}
-                    />
-                    <Stack.Screen
-                        name="FavoriteAndWishScreen"
-                        component={FavoriteAndWishScreen}
-                    />
-
-
-                    <Stack.Screen
-                        name="CategoryScreen"
-                        component={CategoryScreen}
-                    />
-
-                    <Stack.Screen
-                        name="SallerNotificationsScreen"
-                        component={SallerNotificationsScreen}
-                    />
-                    <Stack.Screen
-                        name="SallerProfileScreen"
-                        component={SallerProfileScreen}
-                    />
-                    <Stack.Screen
-                        name="SallerShopProfileScreen"
-                        component={SallerShopProfileScreen}
-                    />
-                    <Stack.Screen
-                        name="SallerSaleScreen"
-                        component={SallerSaleScreen}
-                    />
-                    <Stack.Screen
-                        name="SallerInventoryScreen"
-                        component={SallerInventoryScreen}
-                    />
-
-                    <Stack.Screen
-                        name="SallerPaymentScreen"
-                        component={SallerPaymentScreen}
-                    />
-                    <Stack.Screen
-                        name="RiderTruckWorkingAreaMapScreen"
-                        component={RiderTruckWorkingAreaMapScreen}
-                    />
-                    <Stack.Screen
-                        name="RiderTruckAreaMapScreen"
-                        component={RiderTruckAreaMapScreen}
-                    />
-                    <Stack.Screen
-                        name="RiderOrderScreen"
-                        component={RiderOrderScreen}
-                    />
-
-                    <Stack.Screen
-                        name="RiderStartDirectionToDeliveryMapScreen"
-                        component={RiderStartDirectionToDeliveryMapScreen}
-                    />
-                    <Stack.Screen
-                        name="RiderSuccessScreen"
-                        component={RiderSuccessScreen}
-                    />
-                    <Stack.Screen
-                        name="ReviewScreen"
-                        component={ReviewScreen}
-                    />
-
-                    <Stack.Screen
-                        name="UserOrdersDetailsScreen"
-                        component={UserOrdersDetailsScreen}
-                    />
-
-                    <Stack.Screen
-                        name="UserOrdersDeliveryDetailsScreen"
-                        component={UserOrdersDeliveryDetailsScreen}
-                    />
-
-                    <Stack.Screen
-                        name="PaymentWalletScreen"
-                        component={PaymentWalletScreen}
-                    />
-                    <Stack.Screen
-                        name="PaymentHistoryScreen"
-                        component={PaymentHistoryScreen}
-                    />
-
-                    {/* <Stack.Screen
-                        name="CategoryDetailsScreen"
-                        component={CategoryDetailsScreen}
-                    /> */}
-
-
                 </Stack.Navigator>
             </NavigationContainer>
         </Provider>

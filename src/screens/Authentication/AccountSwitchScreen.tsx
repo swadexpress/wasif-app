@@ -5,14 +5,12 @@ import {
     TouchableOpacity,
     View
 } from 'react-native';
-import { COLORS, SIZES, animations, icons } from '../../constants';
+import { COLORS, SIZES, icons } from '../../constants';
 
 import React, { useState } from 'react';
 
 import notifee, { AndroidImportance } from '@notifee/react-native';
-import AsysncStorage from '@react-native-community/async-storage';
 import { useNavigation } from '@react-navigation/native';
-import LottieView from 'lottie-react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { createNotifications } from 'react-native-notificated';
 import SingleImageHeader from '../../components/SingleImageHeader';
@@ -101,165 +99,8 @@ const AccountSwitchScreen = () => {
         ) {
 
 
-            await AsysncStorage.setItem('@username', 'Kawsar Khan');
-            await AsysncStorage.setItem('@email', email);
-            await AsysncStorage.setItem('@youAre', youAre);
 
-            // await AsysncStorage.removeItem('@username');
-            // await AsysncStorage.removeItem('@email');
-            // await AsysncStorage.removeItem('@youAre');
-
-            if (youAre == 'Foodie') {
-
-                setLoading(false)
-                const timeoutId = setTimeout(() => {
-                    setLoading(true)
-                    navigation.navigate('OnBoardingCategoryScreen')
-
-                    setTimeout(() => {
-                        onDisplayNotification()
-                    }, 10000)
-                }, 3000)
-            } else if (youAre == 'Seller') {
-
-                setLoading(false)
-                const timeoutId = setTimeout(() => {
-                    setLoading(true)
-                    navigation.navigate('SallerHomeScreen')
-
-                    setTimeout(() => {
-                        onDisplayNotification()
-                    }, 10000)
-                }, 3000)
-
-                return () => clearTimeout(timeoutId)
-
-
-            }
-            else if (youAre == 'Rider') {
-
-                setLoading(false)
-                const timeoutId = setTimeout(() => {
-                    setLoading(true)
-                    navigation.navigate('RiderHomeScreen')
-
-                    setTimeout(() => {
-                        onDisplayNotification()
-                    }, 10000)
-                }, 3000)
-
-                return () => clearTimeout(timeoutId)
-
-
-            }
-
-
-
-
-
-
-
-        }
-        else {
-
-
-            if (
-                youAre == ''
-
-            ) {
-
-
-
-
-                return (
-                    <>
-                        {
-                            notify('error', {
-                                params: {
-                                    description: 'Select Foodie, Seller, Rider!',
-                                    title: 'I am a ?',
-                                    style: {
-                                        leftIconSource: icons.restaurant,
-                                        titleSize: SIZES.responsiveScreenFontSize(1.8),
-                                        titleWeight: '800',
-                                        titleColor: COLORS.red,
-                                        descriptionSize: SIZES.responsiveScreenFontSize(1.4),
-                                        descriptionWeight: '600',
-                                        accentColor: COLORS.darkRed,
-
-                                    },
-                                },
-
-                            })
-                        }
-
-                    </>
-                )
-            }
-            else if (
-                email == ''
-
-            ) {
-
-
-                return (
-                    <>
-                        {
-                            notify('error', {
-                                params: {
-                                    description: '',
-                                    title: 'Check your Mail!',
-                                    style: {
-                                        leftIconSource: icons.profile,
-                                        titleSize: SIZES.responsiveScreenFontSize(1.6),
-                                        titleWeight: '800',
-                                        titleColor: COLORS.red,
-                                        descriptionSize: SIZES.responsiveScreenFontSize(1.4),
-                                        descriptionWeight: '600',
-                                        accentColor: COLORS.darkRed,
-
-
-                                    },
-                                },
-
-                            })
-                        }
-
-                    </>
-                )
-            }
-            else if (
-                password == ''
-
-            ) {
-
-
-                return (
-                    <>
-                        {
-                            notify('error', {
-                                params: {
-                                    description: '',
-                                    title: 'Check your Password!',
-                                    style: {
-                                        leftIconSource: icons.restaurant,
-                                        titleSize: SIZES.responsiveScreenFontSize(1.6),
-                                        titleWeight: '800',
-                                        titleColor: COLORS.red,
-                                        descriptionSize: SIZES.responsiveScreenFontSize(1.4),
-                                        descriptionWeight: '600',
-                                        accentColor: COLORS.darkRed,
-
-
-                                    },
-                                },
-
-                            })
-                        }
-
-                    </>
-                )
-            }
+            navigation.navigate('SallerHomeScreen')
 
 
 
@@ -281,14 +122,7 @@ const AccountSwitchScreen = () => {
                     <View
                         style={styles.mainContainer}
                     >
-                        <LottieView
-                            source={animations.loading}
-                            style={styles.lottieViewContainer}
-                            loop={true}
-                            autoPlay
-                            cacheComposition={true}
-                            hardwareAccelerationAndroid
-                        />
+
                         <View style={{
                             alignItems: 'center',
                             marginTop: SIZES.responsiveScreenHeight(3)
@@ -317,44 +151,14 @@ const AccountSwitchScreen = () => {
                                                 </Text>
                                                 <Text style={
                                                     styles.linearGradientButtonTextBottom
-                                                }>Foodie</Text>
-
-                                            </View>
-                                        </View>
-                                    </LinearGradient>
-                                </TouchableOpacity>
-
-                                <TouchableOpacity
-
-                                    style={{
-
-                                    }}
-                                    onPress={() => navigation.navigate('SallerHomeScreen')}
-                                    activeOpacity={0.9}>
-                                    <LinearGradient
-                                        style={styles.linearGradientButtonMainContainer}
-                                        locations={[0, 1,]}
-                                        colors={[COLORS.darkRed, COLORS.lightBlue,]}
-                                        useAngle={true}
-                                        angle={45}>
-                                        <View style={styles.linearGradientButtonContainer}>
-                                            <Image
-                                                source={icons.restaurant}
-                                                style={styles.linearGradientButtonImage}
-                                            />
-                                            <View>
-                                                <Text style={styles.linearGradientButtonTextTop}>I am a</Text>
-                                                <Text style={
-                                                    styles.linearGradientButtonTextBottom
                                                 }>Seller</Text>
 
                                             </View>
                                         </View>
-
                                     </LinearGradient>
-
-
                                 </TouchableOpacity>
+
+
 
                                 <TouchableOpacity
 
@@ -382,7 +186,7 @@ const AccountSwitchScreen = () => {
                                                 }>I am a</Text>
                                                 <Text style={
                                                     styles.linearGradientButtonTextBottom
-                                                }>Rider</Text>
+                                                }>Buyer</Text>
 
                                             </View>
                                         </View>
@@ -429,7 +233,7 @@ const styles = StyleSheet.create({
     linearGradientButtonMainContainer: {
         backgroundColor: COLORS.lightGray2,
         borderRadius: 5,
-        width: SIZES.responsiveScreenWidth(30),
+        width: SIZES.responsiveScreenWidth(45),
         height: SIZES.responsiveScreenWidth(13),
         elevation: 1,
         justifyContent: 'space-between',
