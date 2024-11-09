@@ -129,7 +129,7 @@ const AccountSwitchScreen = () => {
                         }}>
                             <View style={styles.buttonContainer}>
                                 <TouchableOpacity
-                                    onPress={() => navigation.navigate('FoodieHomeScreen')}
+                                    onPress={() => navigation.navigate('FoodieHomeScreen1')}
                                     activeOpacity={0.9}>
                                     <LinearGradient
                                         style={styles.linearGradientButtonMainContainer}
@@ -165,7 +165,7 @@ const AccountSwitchScreen = () => {
                                     style={{
 
                                     }}
-                                    onPress={() => navigation.navigate('RiderHomeScreen')}
+                                    onPress={() => navigation.navigate('RiderHomeScreen1')}
                                     activeOpacity={0.9}>
                                     <LinearGradient
                                         style={styles.linearGradientButtonMainContainer}

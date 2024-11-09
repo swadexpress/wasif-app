@@ -79,7 +79,12 @@ const App = () => {
 
                     <Stack.Screen
                         name="FoodieHomeScreen"
-                        component={ isToken ? BottomNavigator :SignUpScreen}
+                        component={ isToken ? BottomNavigator :SigninScreen}
+                        options={{ headerShown: false }}
+                    />
+                    <Stack.Screen
+                        name="FoodieHomeScreen1"
+                        component={  BottomNavigator }
                         options={{ headerShown: false }}
                     />
 

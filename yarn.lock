@@ -6871,13 +6871,13 @@ __metadata:
   linkType: hard
 
 "cross-spawn@npm:^7.0.0":
-  version: 7.0.4
-  resolution: "cross-spawn@npm:7.0.4"
+  version: 7.0.5
+  resolution: "cross-spawn@npm:7.0.5"
   dependencies:
     path-key: ^3.1.0
     shebang-command: ^2.0.0
     which: ^2.0.1
-  checksum: 7db025938789a927d0e55eecefef2236319eb4ca723d457faa2c1572f8927f6b048fa20667ef2e663b5873b24145401219813120be4023554d239a9bd2e76644
+  checksum: 55c50004cb6bbea3649784caac6e7b8ddd03fa8c1e14dbd5a1f15896708378006eb7526a52a0f48770c768c9b8aed48a5888eb8e785ff59ff7749e74f66cd96b
   languageName: node
   linkType: hard
 
@@ -9004,6 +9004,7 @@ __metadata:
     react-native-chart-kit: ^6.12.0
     react-native-country-picker-modal: ^2.0.0
     react-native-date-picker: ^5.0.7
+    react-native-device-info: ^14.0.0
     react-native-dropdown-picker: ^5.4.6
     react-native-fast-image: ^8.6.3
     react-native-fbsdk-next: ^13.1.3
@@ -14626,6 +14627,15 @@ __metadata:
     react: ">= 17.0.1"
     react-native: ">= 0.64.3"
   checksum: 94191bf3ce6e88a3acc4ca5e5514eaa6fc15c61666393d85ca258dba3a3efd9145c8fd31ed0f18676d7f083e17f08c760de8193ad24367a65761330084bcdc6b
+  languageName: node
+  linkType: hard
+
+"react-native-device-info@npm:^14.0.0":
+  version: 14.0.0
+  resolution: "react-native-device-info@npm:14.0.0"
+  peerDependencies:
+    react-native: "*"
+  checksum: d9990fce678c6c179f498866d5042f08dc9c3fec1a139fc12a83341b3289f4ee954e86613b1794047d7646d25f04a902d96927b0a52db9d324e194ffb99e8946
   languageName: node
   linkType: hard
 

@@ -19,7 +19,7 @@ const SignIn = () => {
 
     const navigation = useNavigation() as any
 
-    const [email, setEmail] = React.useState('foodies@gmail.com')
+    const [email, setEmail] = React.useState('kawsarkhan@gmail.com')
     const [emailError, setEmailError] = React.useState('')
    
     return (

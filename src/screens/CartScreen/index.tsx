@@ -336,7 +336,7 @@ const MyCart = ({ }) => {
                                 }
 
                             >
-                                <Text
+                                {/* <Text
                                     style={styles.listFooterTotalAmountText}
                                 >
                                     Total Amount
@@ -352,7 +352,7 @@ const MyCart = ({ }) => {
                                 >
                                     {'৳ 400'}
 
-                                </Text>
+                                </Text> */}
 
                             </View>
 

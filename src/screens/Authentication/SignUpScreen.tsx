@@ -19,14 +19,15 @@ import { endpointdajngobackend } from '../../../profileconstants';
 import SingleImageHeader from '../../components/SingleImageHeader';
 import Wrapper from '../../components/Wrapper';
 import LoadingScreen from '../LoadingScreen';
+import ContinueWithOtherButton from './ContinueWithOtherButton';
 
 const SignIn = () => {
 
     const navigation = useNavigation() as any
 
-    const [email, setEmail] = useState('foodies@gmail.com')
-    const [password, setPassword] = useState('foodies12345') as any
-    const [confirmPassword, setConfirmPassword] = useState('foodies12345') as any
+    const [email, setEmail] = useState('kawsarkhan@gmail.com')
+    const [password, setPassword] = useState('kawsarkhan12345') as any
+    const [confirmPassword, setConfirmPassword] = useState('kawsarkhan12345') as any
     const [youAre, setYouAre] = useState('R') as any
 
 
@@ -67,6 +68,7 @@ const SignIn = () => {
                 navigation.navigate('SigninScreen')
             })
             .catch(err => {
+                setIsLoading(true)
               console.log(err.response.data, '....................eee')
               if (err.response.data.data) {
                 // this.setState({ errors: err.response.data.data.Message });
@@ -261,6 +263,7 @@ const SignIn = () => {
 
 
                                 </TouchableOpacity>
+                                <ContinueWithOtherButton isUser={true}/>
 
                             </View>
                         </KeyboardAwareScrollView>

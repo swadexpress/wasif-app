@@ -1,14 +1,12 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import {
-    Image,
     StyleSheet,
     Text,
     TouchableOpacity,
     View
 } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
-import { COLORS, SIZES, icons } from '../../constants';
+import { COLORS, SIZES } from '../../constants';
 
 import {
     GoogleSignin, isErrorWithCode, isSuccessResponse, statusCodes
@@ -135,109 +133,6 @@ const ContinueWithOtherButton = ({ isUser }: any) => {
             </View>
 
 
-            <View style={styles.buttonContainer}>
-
-                <TouchableOpacity
-                    onPress={handelSignInWithGoogle}
-                    activeOpacity={0.9}>
-                    <LinearGradient
-                        style={styles.linearGradientAuthButton}
-                        locations={[0, 1,]}
-                        colors={[COLORS.darkRed, COLORS.lightBlue,]}
-                        useAngle={true}
-                        angle={45}>
-                        <Image
-                            source={icons.google}
-                            style={{
-                                width: SIZES.responsiveScreenWidth(6),
-                                height: SIZES.responsiveScreenWidth(6),
-                            }}
-                        />
-                    </LinearGradient>
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                    style={{
-                        marginLeft: 20
-                    }}
-                    onPress={() => navigation.navigate('')}
-                    activeOpacity={0.9}>
-                    <LinearGradient
-                        style={styles.linearGradientAuthButton}
-                        locations={[0, 1,]}
-                        colors={[COLORS.darkRed, COLORS.lightBlue,]}
-                        useAngle={true}
-                        angle={40}>
-                        <Image
-                            source={icons.apple}
-                            style={{
-                                width: SIZES.responsiveScreenWidth(5.5),
-                                height: SIZES.responsiveScreenWidth(6.5),
-                            }}
-                        />
-                    </LinearGradient>
-
-
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                    style={{
-                        marginLeft: 20
-                    }}
-                    onPress={handelLoginWithFacebook}
-                    activeOpacity={0.9}>
-                    <LinearGradient
-                        style={styles.linearGradientAuthButton}
-                        locations={[0, 1,]}
-                        colors={[COLORS.darkRed, COLORS.lightBlue,]}
-                        useAngle={true}
-                        angle={20}>
-
-
-                        <Image
-                            source={icons.fb}
-                            style={{
-                                width: SIZES.responsiveScreenWidth(6.5),
-                                height: SIZES.responsiveScreenWidth(6.5),
-                                borderRadius: 2,
-                                tintColor: '#106BFF'
-
-                            }}
-
-
-                        />
-                    </LinearGradient>
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                    style={{
-                        marginLeft: 20
-                    }}
-                    onPress={() => navigation.navigate('PhoneLogInScreen')}
-                    activeOpacity={0.9}>
-                    <LinearGradient
-                        style={styles.linearGradientAuthButton}
-                        locations={[0, 1,]}
-                        colors={[COLORS.darkRed, COLORS.lightBlue,]}
-                        useAngle={true}
-                        angle={20}>
-                        <Image
-                            source={icons.call}
-                            style={{
-                                width: SIZES.responsiveScreenWidth(6.5),
-                                height: SIZES.responsiveScreenWidth(6.5),
-                                borderRadius: 2,
-                                tintColor: COLORS.primary,
-                                transform: [{ rotate: '90deg' }]
-                            }}
-
-                        />
-
-                    </LinearGradient>
-                </TouchableOpacity>
-
-
-            </View>
 
             {isUser ?
                 <TouchableOpacity
@@ -260,11 +155,11 @@ const ContinueWithOtherButton = ({ isUser }: any) => {
                     style={{
                         marginTop: '5%'
                     }}
-                    onPress={() => navigation.navigate('SigninScreen')}
+                    onPress={() => navigation.navigate('SignUpScreen')}
                     activeOpacity={0.9}>
                     <Text style={styles.linearGradientAuthButtonText}>
                         Already a member?
-                        <Text style={styles.linearGradientAuthButtonText2}> Signin
+                        <Text style={styles.linearGradientAuthButtonText2}> Signup
                         </Text>
                     </Text>
                 </TouchableOpacity>
